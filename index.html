@@ -272,7 +272,7 @@ tr.hr.sel td{background:rgba(63,185,80,.14)}
   <div class="hdr-in">
     <div class="logo"><span class="logo-dot"></span>股東會紀念品追蹤器</div>
     <span class="hbadge">2026 ／ 零股寶資料</span>
-    <span style="font-size:11px;font-family:var(--mo);color:var(--tx3)">更新時間：2026/03/20</span>
+    <span id="update-time" style="font-size:11px;font-family:var(--mo);color:var(--tx3)">更新時間：2026/03/20</span>
     <a class="hlink" href="https://stockgift.tw/STOCK/Stock/Info" target="_blank">
 前往零股寶
     </a>
@@ -604,7 +604,7 @@ const INIT=[
 // ── 設定你的 Cloudflare Worker URL ──────────────────────────────────────
 // 部署 stockgift-worker.js 後，把 Worker URL 填在這裡
 // 例如：'https://stockgift-proxy.你的帳號.workers.dev'
-let WORKER_URL = localStorage.getItem('workerUrl') || '';
+let WORKER_URL = 'https://round-mountain-c25d.cindypc33.workers.dev';
 
 const PS=20;
 // Multi-account: accounts = [{id, name, color, holdings:[{code,name}]}]
@@ -993,6 +993,13 @@ async function doRefresh(){
       const now = new Date().toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'});
       status.textContent = '✓ 共 '+result.total+' 筆，新增 '+result.added+'・更新 '+result.updated+'・'+now;
       status.style.color = 'var(--gn)';
+      // 更新 header 的更新時間
+      const today = new Date();
+      const dateStr = today.getFullYear()+'/'
+        +String(today.getMonth()+1).padStart(2,'0')+'/'
+        +String(today.getDate()).padStart(2,'0');
+      const ut = document.getElementById('update-time');
+      if(ut) ut.textContent = '更新時間：'+dateStr;
       rFull();
       setTimeout(()=>{ btn.classList.remove('done'); status.textContent=''; }, 5000);
     } else {
