@@ -607,11 +607,43 @@ const INIT=[
 let WORKER_URL = 'https://round-mountain-c25d.cindypc33.workers.dev';
 
 const PS=20;
-// Multi-account: accounts = [{id, name, color, holdings:[{code,name}]}]
 const ACCT_COLORS=['#3fb950','#58a6ff','#d29922','#f85149','#bc8cff','#39d353','#79c0ff','#ffa657'];
+
+// ── localStorage 持久化 ──────────────────────────────────────
+function saveData(){
+  try{
+    localStorage.setItem('sg_all', JSON.stringify(ALL));
+    localStorage.setItem('sg_accounts', JSON.stringify(accounts));
+    localStorage.setItem('sg_updateDate', document.getElementById('update-time')?.textContent||'');
+  }catch(e){}
+}
+function loadData(){
+  try{
+    const saved=localStorage.getItem('sg_all');
+    if(saved){
+      const arr=JSON.parse(saved);
+      if(Array.isArray(arr)&&arr.length>0){
+        ALL.length=0;
+        arr.forEach(s=>ALL.push(s));
+      }
+    }
+    const savedAccts=localStorage.getItem('sg_accounts');
+    if(savedAccts){
+      const arr=JSON.parse(savedAccts);
+      if(Array.isArray(arr)&&arr.length>0) accounts=arr;
+    }
+    const savedDate=localStorage.getItem('sg_updateDate');
+    if(savedDate){
+      const ut=document.getElementById('update-time');
+      if(ut) ut.textContent=savedDate;
+    }
+  }catch(e){}
+}
+// ────────────────────────────────────────────────────────────
+
 let accounts=[{id:'a1',name:'帳號一',color:'#3fb950',holdings:[...INIT]}];
-let curAcct='a1'; // current account id for manage tab
-let mineFilter='all'; // 'all' or account id
+let curAcct='a1';
+let mineFilter='all';
 let rem={},ec=null,aq='',etab='all',pa=1,pm=1,fa=[],fm=[];
 const days=s=>Math.ceil((new Date(s.lbo)-new Date(new Date().toDateString()))/864e5);
 
@@ -1001,6 +1033,7 @@ async function doRefresh(){
       const ut = document.getElementById('update-time');
       if(ut) ut.textContent = '更新時間：'+dateStr;
       rFull();
+      saveData();
       setTimeout(()=>{ btn.classList.remove('done'); status.textContent=''; }, 5000);
     } else {
       throw new Error('解析到 0 筆，請確認 Worker 是否正確回傳零股寶內容');
@@ -1224,6 +1257,7 @@ document.getElementById('fc').addEventListener('change',rFull);
 document.getElementById('srch').addEventListener('keydown',e=>{if(e.key==='Enter'){aq=e.target.value.toLowerCase().trim();rFull();}});
 document.getElementById('add-code').addEventListener('keydown',e=>{if(e.key==='Enter')addH();});
 
+loadData();
 rHoldings();
 rFull();
 </script>
