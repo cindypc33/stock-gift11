@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>台股股東會紀念品 2026</title>
+<title>台股股東會紀念品 2026 雲端版</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0d1117;--bg2:#161b22;--bg3:#21262d;--br:#30363d;--br2:#484f58;--tx:#e6edf3;--tx2:#8b949e;--tx3:#6e7681;--gn:#3fb950;--gnb:rgba(63,185,80,.1);--bl:#58a6ff;--blb:rgba(88,166,255,.1);--am:#d29922;--amb:rgba(210,153,34,.1);--rd:#f85149;--rdb:rgba(248,81,73,.1);--pu:#bc8cff;--pub:rgba(188,140,255,.1);--fn:'Noto Sans TC',sans-serif;--mo:'DM Mono',monospace;--r:8px;--r2:12px}
@@ -271,6 +271,7 @@ tr.hr.sel td{background:rgba(63,185,80,.14)}
     <div class="logo"><span class="logo-dot"></span>股東會紀念品追蹤器</div>
     <span class="hbadge">2026 ／ 零股寶資料</span>
     <span id="update-time" style="font-size:11px;font-family:var(--mo);color:var(--tx3)">更新時間：2026/03/20 (共存取 120 筆)</span>
+    <span id="cloud-status" style="font-size:11px;font-family:var(--mo);color:var(--tx3);margin-left:8px;padding:2px 6px;border:1px solid var(--br);border-radius:4px;display:none;"></span>
     <a class="hlink" href="https://stockgift.tw/STOCK/Stock/Info" target="_blank">
 前往零股寶
     </a>
@@ -611,46 +612,114 @@ let WORKER_URL = 'https://round-mountain-c25d.cindypc33.workers.dev';
 const PS=20;
 const ACCT_COLORS=['#3fb950','#58a6ff','#d29922','#f85149','#bc8cff','#39d353','#79c0ff','#ffa657'];
 
-// ── localStorage 持久化 ──────────────────────────────────────
-function saveData(){
+// ── localStorage 與雲端持久化同步 ──────────────────────────────────────
+async function saveData(){
+  const dataObj = {
+    all: ALL,
+    accounts: accounts,
+    updateDate: document.getElementById('update-time')?.textContent || '',
+    lastCount: ALL.length.toString(),
+    rem: rem
+  };
+
+  // 1. 本地儲存備用
   try{
     localStorage.setItem('sg_all', JSON.stringify(ALL));
     localStorage.setItem('sg_accounts', JSON.stringify(accounts));
-    localStorage.setItem('sg_updateDate', document.getElementById('update-time')?.textContent||'');
-    localStorage.setItem('sg_lastCount', ALL.length.toString());
+    localStorage.setItem('sg_updateDate', dataObj.updateDate);
+    localStorage.setItem('sg_lastCount', dataObj.lastCount);
     localStorage.setItem('sg_rem', JSON.stringify(rem));
   }catch(e){}
-}
-function loadData(){
-  try{
-    const saved=localStorage.getItem('sg_all');
-    if(saved){
-      const arr=JSON.parse(saved);
-      if(Array.isArray(arr)&&arr.length>0){
-        ALL.length=0;
-        arr.forEach(s=>ALL.push(s));
+
+  // 2. 雲端同步儲存
+  const cs = document.getElementById('cloud-status');
+  if(cs) { cs.style.display = 'inline-block'; cs.textContent = '☁️ 同步中...'; cs.style.color = 'var(--am)'; }
+  
+  if(WORKER_URL) {
+    try {
+      const res = await fetch(WORKER_URL + '?action=save', {
+        method: 'POST',
+        body: JSON.stringify(dataObj)
+      });
+      if(res.ok && cs) { 
+        cs.textContent = '☁️ 已同步'; 
+        cs.style.color = 'var(--gn)'; 
+        setTimeout(() => { cs.style.display = 'none'; }, 3000);
       }
+    } catch(e) {
+      if(cs) { cs.textContent = '☁️ 同步失敗'; cs.style.color = 'var(--rd)'; }
     }
-    const savedAccts=localStorage.getItem('sg_accounts');
-    if(savedAccts){
-      const arr=JSON.parse(savedAccts);
-      if(Array.isArray(arr)&&arr.length>0) accounts=arr;
+  }
+}
+
+async function loadData(){
+  const cs = document.getElementById('cloud-status');
+  if(cs) { cs.style.display = 'inline-block'; cs.textContent = '☁️ 讀取雲端中...'; cs.style.color = 'var(--am)'; }
+  
+  let cloudSuccess = false;
+
+  // 嘗試從雲端讀取
+  if(WORKER_URL) {
+    try {
+      const res = await fetch(WORKER_URL + '?action=load');
+      const data = await res.json();
+      if (data && data.accounts) { // 驗證資料有效性
+         ALL.length = 0;
+         if(data.all) data.all.forEach(s=>ALL.push(s));
+         accounts = data.accounts;
+         rem = data.rem || {};
+         const ut = document.getElementById('update-time');
+         if(ut && data.updateDate) ut.textContent = data.updateDate;
+         
+         if(cs) { 
+            cs.textContent = '☁️ 雲端載入成功'; 
+            cs.style.color = 'var(--gn)'; 
+            setTimeout(() => { cs.style.display = 'none'; }, 3000);
+         }
+         cloudSuccess = true;
+      }
+    } catch(e) {
+       console.error("Cloud load failed", e);
     }
-    const savedDate=localStorage.getItem('sg_updateDate');
-    if(savedDate){
-      const ut=document.getElementById('update-time');
-      if(ut) ut.textContent=savedDate;
-    }
-    const savedRem=localStorage.getItem('sg_rem');
-    if(savedRem){
-      const obj=JSON.parse(savedRem);
-      if(obj && typeof obj === 'object') rem = obj;
-    }
-    const lastCount = localStorage.getItem('sg_lastCount');
-    if(lastCount) {
-       console.log('系統已載入，上次存取的最後筆數為: ' + lastCount);
-    }
-  }catch(e){}
+  }
+
+  // 若雲端讀取失敗或無設定，回退使用本地資料庫
+  if(!cloudSuccess) {
+      try{
+        const saved=localStorage.getItem('sg_all');
+        if(saved){
+          const arr=JSON.parse(saved);
+          if(Array.isArray(arr)&&arr.length>0){
+            ALL.length=0;
+            arr.forEach(s=>ALL.push(s));
+          }
+        }
+        const savedAccts=localStorage.getItem('sg_accounts');
+        if(savedAccts){
+          const arr=JSON.parse(savedAccts);
+          if(Array.isArray(arr)&&arr.length>0) accounts=arr;
+        }
+        const savedDate=localStorage.getItem('sg_updateDate');
+        if(savedDate){
+          const ut=document.getElementById('update-time');
+          if(ut) ut.textContent=savedDate;
+        }
+        const savedRem=localStorage.getItem('sg_rem');
+        if(savedRem){
+          const obj=JSON.parse(savedRem);
+          if(obj && typeof obj === 'object') rem = obj;
+        }
+      }catch(e){}
+      
+      if(cs) { 
+        cs.textContent = '💻 使用本機資料'; 
+        cs.style.color = 'var(--tx3)'; 
+        setTimeout(() => { cs.style.display = 'none'; }, 3000);
+      }
+  }
+
+  rHoldings();
+  rFull();
 }
 // ────────────────────────────────────────────────────────────
 
@@ -1408,9 +1477,11 @@ document.getElementById('add-name').addEventListener('keydown', e => {
   if(e.key === 'Enter') addH();
 });
 
-loadData();
-rHoldings();
-rFull();
+// 網頁開啟時的初始化執行
+(async function init() {
+  await loadData(); // 會自動包含 rHoldings() 與 rFull()
+})();
+
 </script>
 </body>
 </html>
