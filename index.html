@@ -1149,4 +1149,198 @@ function parseStockgift(html){
 
   trs.forEach(tr=>{
     const tds = tr.querySelectorAll('td');
-    if
+    if(tds.length < 8) return;
+
+    // 零股寶欄位順序:
+    // 0:持有 1:股號 2:股名 3:股價 4:最後買進日 5:股東會日期
+    // 6:委託截止 7:紀念品 8:收購價 9:代領費 10:新增日 11:備註 12:note 13:性質 ...
+    const code = stripTags(tds[1].innerHTML).replace(/\s+\d+\s*$/,'').trim();
+    if(!/^\d{4,5}$/.test(code)) return;
+
+    const name     = stripTags(tds[2].innerHTML).replace(/\s+\d+\s*$/,'').trim();
+    const price    = parseFloat(stripTags(tds[3].innerHTML)) || 0;
+    const lbo      = parseD(stripTags(tds[4].innerHTML));
+    const meet     = parseD(stripTags(tds[5].innerHTML));
+    if(!lbo || !meet) return;
+
+    // 紀念品：取 td[7] 的文字（可能有 <a> 包住）
+    const gift = stripTags(tds[7].innerHTML)
+      .replace(/\([^)]*紀念品[^)]*\)/g,'')
+      .replace(/\([^)]*數量[^)]*\)/g,'')
+      .trim();
+    if(!gift || gift.length < 2) return;
+
+    // 平台收購價：td[8]，"近期決定" 代表尚未公布
+    const buyRaw = stripTags((tds[8]||{innerHTML:''}).innerHTML).trim();
+    const buyPrice = buyRaw && !/近期|決定|尚未/.test(buyRaw) ? parseFloat(buyRaw)||0 : 0;
+
+    // 備註：td[11] 含領取條件
+    const condRaw = stripTags(tds[11].innerHTML) + ' ' + stripTags((tds[12]||{innerHTML:''}).innerHTML);
+    let cond = '';
+    if(condRaw.includes('電子投票'))               cond += 'ev,';
+    if(/身分證|健保卡|駕照/.test(condRaw))          cond += 'id,';
+    if(/雲林|台南|新竹|桃園|高雄|地點/.test(condRaw)) cond += 'loc,';
+    cond = cond.replace(/,$/,'');
+
+    const isEgift = egiftKw.some(k=>gift.includes(k)) ? 1 : 0;
+    const entry = {code, name, price, gift, lbo, meet, cond};
+    if(isEgift){ entry.egift=1; entry.os=1; }
+    if(buyPrice>0){ entry.buyPrice=buyPrice; }
+
+    total++;
+    if(existCodes.has(code)){
+      const idx = ALL.findIndex(s=>s.code===code);
+      if(idx>=0){
+        ALL[idx].price=price; ALL[idx].gift=gift;
+        ALL[idx].lbo=lbo; ALL[idx].meet=meet; ALL[idx].cond=cond;
+        if(buyPrice>0) ALL[idx].buyPrice=buyPrice;
+        updated++;
+      }
+    } else {
+      ALL.push(entry); existCodes.add(code); added++;
+    }
+  });
+  return {added, updated, total};
+}
+
+
+document.addEventListener('click',e=>{
+  // Filter tabs
+  const ft=e.target.closest('.ft[data-etab]');
+  if(ft){document.querySelectorAll('.ft').forEach(t=>t.classList.remove('on'));ft.classList.add('on');etab=ft.dataset.etab;rEG();return;}
+  // Tab nav
+  const tn=e.target.closest('.tn[data-tab]');
+  if(tn){document.querySelectorAll('.tn').forEach(t=>t.classList.remove('on'));document.querySelectorAll('.tp').forEach(p=>p.classList.remove('on'));tn.classList.add('on');document.getElementById('tab-'+tn.dataset.tab).classList.add('on');return;}
+  // eGift overall analysis
+  if(e.target.id==='btn-eg-all'){
+    const p=document.getElementById('peg');p.style.display='block';
+    document.getElementById('teg').innerHTML=fmt(
+      'eGift 零股整體分析\n\n'+
+      '• 幾乎所有 eGift 標的都需要電子投票截圖才能領取\n'+
+      '• 部分需加上身分證正本：浩鼎、普誠、點序、旭軟等\n'+
+      '• 你的持股中，大同(2371) 零股可領且支援 eGift\n'+
+      '• 尚未截止：日馳(1526) 最後買進日4/22、永虹先進(6618) 4/28\n\n'+
+      '操作流程：\n1. 完成股東會電子投票並截圖存好\n2. 前往集保e股利APP或指定平台領取\n3. 需身分證者請帶原件正本'
+    );
+    p.scrollIntoView({behavior:'smooth',block:'nearest'});return;
+  }
+  // eGift card
+  const ei=e.target.closest('[data-ei]');
+  if(ei){
+    const eg=ALL.filter(s=>s.egift);
+    let list=eg;
+    if(etab==='os')list=eg.filter(s=>s.os);
+    else if(etab==='full')list=eg.filter(s=>!s.os);
+    showStock(list[+ei.dataset.ei]);return;
+  }
+  // Hot card
+  const hi=e.target.closest('[data-hcode]');
+  if(hi){
+    const s=ALL.find(x=>x.code===hi.dataset.hcode);
+    if(s){
+      const h=HEAT[s.code]||{analysis:s.name+'('+s.code+')\n• '+s.gift};
+      const p=document.getElementById('phot');p.style.display='block';
+      document.getElementById('thot').innerHTML=fmt(
+        '<strong style="font-size:14px;color:var(--tx);font-family:var(--mo)">'+s.name+' ('+s.code+')</strong>'+
+        (isH(s.code)?' <span class="tag hd">你的持股</span>':'')+
+        '<br><br>'+h.analysis
+      );
+      p.scrollIntoView({behavior:'smooth',block:'nearest'});
+    }
+    return;
+  }
+  // Add holding
+  if(e.target.id==='btn-add'){addH();return;}
+  // Mine account filter
+  const mafBtn=e.target.closest('[data-maf]');
+  if(mafBtn){mineFilter=mafBtn.dataset.maf;rFull();return;}
+  // Account tab switch
+  const aidBtn=e.target.closest('[data-aid]');
+  if(aidBtn&&!e.target.closest('[data-adel]')){curAcct=aidBtn.dataset.aid;rHoldings();return;}
+  // Account delete
+  const adelBtn=e.target.closest('[data-adel]');
+  if(adelBtn){delAcct(adelBtn.dataset.adel);return;}
+  // New account
+  if(e.target.id==='btn-new-acct'){addAcct();return;}
+  // Rename account
+  if(e.target.id==='btn-rename'){
+    const v=document.getElementById('acct-name-input').value.trim();
+    if(v){
+      curA().name=v; 
+      saveData(); 
+      window.location.reload(); 
+    }
+    return;
+  }
+  // Color pick
+  const acolor=e.target.closest('[data-acolor]');
+  if(acolor){
+    curA().color=acolor.dataset.acolor; 
+    saveData(); 
+    window.location.reload(); 
+    return;
+  }
+  // Delete holding from current account
+  const del=e.target.closest('[data-del]');
+  if(del){
+    const codeToDelete = del.dataset.del;
+    if(window.confirm('⚠️ 確定要從帳號移除持股「' + codeToDelete + '」嗎？') === false) return;
+    curA().holdings=curA().holdings.filter(h=>h.code!==codeToDelete); 
+    saveData(); 
+    window.location.reload(); 
+    return;
+  }
+  // Edit note
+  const ed=e.target.closest('[data-edit]');
+  if(ed){openMod(ed.dataset.edit);return;}
+  // Table row — click any cell to show detail inline
+  const row=e.target.closest('tr[data-code]');
+  if(row&&!e.target.closest('[data-edit]')){
+    const code=row.dataset.code;
+    if(row.classList.contains('sel') && row.nextElementSibling && row.nextElementSibling.classList.contains('detail-tr')){
+      row.nextElementSibling.remove();
+      row.classList.remove('sel');
+      return;
+    }
+    showStock(ALL.find(x=>x.code===code), row);
+    return;
+  }
+  if(e.target.id==='btn-srch'){aq=document.getElementById('srch').value.toLowerCase().trim();rFull();}
+  if(e.target.id==='btn-refresh'||e.target.closest('#btn-refresh')){doRefresh();return;}
+  if(e.target.id==='btnmc')closeMod();
+  if(e.target.id==='btnms')saveMod();
+  if(e.target===document.getElementById('MOD'))closeMod();
+});
+
+document.getElementById('fu').addEventListener('change',rFull);
+document.getElementById('fc').addEventListener('change',rFull);
+document.getElementById('srch').addEventListener('keydown',e=>{if(e.key==='Enter'){aq=e.target.value.toLowerCase().trim();rFull();}});
+
+// 自動帶入：輸入股號滿 4 碼時，自動帶入股名
+document.getElementById('add-code').addEventListener('input', e => {
+  const val = e.target.value.trim().toUpperCase();
+  if (val.length >= 4) { 
+    const stock = findStockInfo(val, 'code');
+    if (stock && stock.name) document.getElementById('add-name').value = stock.name;
+  }
+});
+document.getElementById('add-code').addEventListener('keydown',e=>{if(e.key==='Enter')addH();});
+
+// 自動帶入：輸入股名滿 2 字時，自動帶入股號
+document.getElementById('add-name').addEventListener('input', e => {
+  const val = e.target.value.trim();
+  if (val.length >= 2) { 
+    const stock = findStockInfo(val, 'name');
+    if (stock && stock.code) document.getElementById('add-code').value = stock.code;
+  }
+});
+document.getElementById('add-name').addEventListener('keydown', e => {
+  if(e.key === 'Enter') addH();
+});
+
+loadData();
+rHoldings();
+rFull();
+</script>
+</body>
+</html>
