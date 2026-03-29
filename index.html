@@ -27,7 +27,7 @@
   --blb: rgba(139, 190, 234, 0.15);
   --am: #f3b562;       /* 蜂蜜橘（烏薩奇色） */
   --amb: rgba(243, 181, 98, 0.15);
-  --rd: #f28b82;       /* 柔和紅（吉伊卡娃粉） */
+  --rd: #f28b82;       /* 柔和紅（吉依卡娃粉） */
   --rdb: rgba(242, 139, 130, 0.15);
   --pu: #cbbadd;       /* 薰衣草紫 */
   --pub: rgba(203, 186, 221, 0.15);
@@ -60,7 +60,7 @@ body::before {
   transform: translate(-50%, -50%);
   width: 500px;
   height: 500px;
-  background-image: url('chiikawa.png'); /* 這裡呼叫您的圖片 */
+  background-image: url('https://raw.githubusercontent.com/cindypc33/stock-gift11/main/chiikawa.png'); /* GitHub直連網址 */
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -171,7 +171,7 @@ body::before {
 .tbar{display:flex;gap:12px;margin-bottom:14px;align-items:center}
 .sg{display:flex;flex:2;min-width:0}
 .sg input{flex:1;min-width:0;background:var(--bg2);border:2px solid var(--br);border-right:none;border-radius:var(--r) 0 0 var(--r);padding:0 16px;height:44px;font-size:15px;font-weight:800;color:var(--tx);outline:none;font-family:var(--fn)}
-.sg input::placeholder{color:var(--tx3);font-weight:700}
+.sg input::placeholder{color:var(--tx3);font-weight:800}
 .sg input:focus{border-color:var(--bl)}
 .sqb{height:44px;padding:0 20px;font-size:15px;font-weight:900;font-family:var(--mo);border:2px solid var(--bl);border-left:none;border-radius:0 var(--r) var(--r) 0;background:var(--bl);color:#fff;cursor:pointer;transition:.2s}
 .sqb:hover{background:#77aadd;border-color:#77aadd}
@@ -528,7 +528,7 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
   </tr></thead><tbody id="TB-mine"></tbody></table></div>
   <div class="pgn" id="pg-mine"></div>
   <div id="no-match" style="display:none;padding:3rem;text-align:center;font-size:16px;font-weight:900;font-family:var(--mo);color:var(--tx3)">
-    <img src="chiikawa.png" style="width:140px; border-radius:24px; margin-bottom:16px; border:3px dashed var(--br2); opacity:0.8"><br>
+    <img src="https://raw.githubusercontent.com/cindypc33/stock-gift11/main/chiikawa.png" style="width:140px; border-radius:24px; margin-bottom:16px; border:3px dashed var(--br2); opacity:0.8"><br>
     你的持股中目前尚無已公告紀念品的股票...<br>吉依卡娃都要哭了 嗚嗚 ( ߹꒳߹ )
   </div>
 </div>
@@ -574,7 +574,7 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
 <!-- 🌸 吉依卡娃實體浮動精靈 🌸 -->
 <div class="chiikawa-float" id="c-float">
   <div class="speech-bubble" id="c-msg">呀哈！<br>有什麼可以幫忙的嗎？</div>
-  <img src="chiikawa.png" alt="吉依卡娃小隊" class="chiikawa-img" onerror="this.style.display='none'; document.getElementById('c-msg').innerHTML='圖片讀取失敗 🥲<br>請確認檔名為 chiikawa.png';">
+  <img src="https://raw.githubusercontent.com/cindypc33/stock-gift11/main/chiikawa.png" alt="吉依卡娃小隊" class="chiikawa-img" onerror="this.style.display='none'; document.getElementById('c-msg').innerHTML='圖片讀取失敗 🥲';">
 </div>
 
 <script>
@@ -1265,6 +1265,173 @@ function showStock(s, clickedRow){
   }
 }
 
+async function doRefresh(){
+  const btn    = document.getElementById('btn-refresh');
+  const status = document.getElementById('refresh-status');
+
+  if(!WORKER_URL){
+    showWorkerSetup();
+    return;
+  }
+
+  btn.classList.remove('done','err');
+  btn.classList.add('loading');
+  btn.innerHTML = '<span class="spin">↻</span> 抓取中...';
+  status.textContent = '連線零股寶...';
+  status.style.color = 'var(--tx3)';
+
+  try {
+    const ac = new AbortController();
+    const tm = setTimeout(()=>ac.abort(), 20000);
+    let res;
+    try {
+      res = await fetch(WORKER_URL, { signal: ac.signal });
+    } finally {
+      clearTimeout(tm);
+    }
+
+    if(!res.ok) throw new Error('Worker 回應 ' + res.status);
+    const html = await res.text();
+    if(!html || html.length < 2000) throw new Error('回傳內容太短，可能 Worker 未正確部署');
+    if(!html.includes('股東會') && !html.includes('stockgift')) throw new Error('非預期的回傳內容');
+
+    const result = parseStockgift(html);
+    const svgIcon = '<svg width="16" height="16" viewBox="0 0 13 13" fill="none"><path d="M11.5 6.5A5 5 0 1 1 9 2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M9 2.1V0M9 2.1H7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+
+    btn.classList.remove('loading');
+    if(result.total > 0){
+      btn.classList.add('done');
+      btn.innerHTML = svgIcon + ' 重整資料';
+      const now = new Date().toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'});
+      status.textContent = '✓ 共 '+result.total+' 筆，新增 '+result.added+'・更新 '+result.updated+'・'+now;
+      status.style.color = 'var(--gn)';
+      
+      const today = new Date();
+      const dateStr = today.getFullYear()+'/'
+        +String(today.getMonth()+1).padStart(2,'0')+'/'
+        +String(today.getDate()).padStart(2,'0');
+      const ut = document.getElementById('update-time');
+      if(ut) ut.textContent = `更新時間：${dateStr} (共存取 ${ALL.length} 筆)`;
+      
+      rFull();
+      saveData();
+      setTimeout(()=>{ btn.classList.remove('done'); status.textContent=''; }, 5000);
+    } else {
+      throw new Error('解析到 0 筆，請確認 Worker 是否正確回傳零股寶內容');
+    }
+  } catch(err){
+    const svgIcon = '<svg width="16" height="16" viewBox="0 0 13 13" fill="none"><path d="M11.5 6.5A5 5 0 1 1 9 2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M9 2.1V0M9 2.1H7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+    btn.classList.remove('loading');
+    btn.classList.add('err');
+    btn.innerHTML = svgIcon + ' 重整資料';
+    const msg = err.name === 'AbortError' ? 'Timeout（超過 20 秒）' : err.message;
+    status.textContent = '✗ ' + msg;
+    status.style.color = 'var(--rd)';
+    setTimeout(()=>{ btn.classList.remove('err'); }, 6000);
+  }
+}
+
+function showWorkerSetup(){
+  const existing = document.getElementById('worker-setup');
+  if(existing){ existing.remove(); return; }
+
+  const panel = document.createElement('div');
+  panel.id = 'worker-setup';
+  panel.style.cssText = 'background:var(--bg2);border:2px solid var(--br2);border-radius:var(--r2);padding:24px 28px;margin-bottom:20px;box-shadow:0 10px 25px rgba(255,182,185,.2)';
+  panel.innerHTML = `
+    <div style="font-size:16px;font-weight:900;font-family:var(--mo);color:var(--tx);margin-bottom:10px">✨ 設定 Cloudflare Worker URL</div>
+    <div style="font-size:14px;font-weight:800;color:var(--tx3);margin-bottom:16px;line-height:1.6">
+      需要先部署 <code style="background:var(--bg3);padding:2px 8px;border-radius:8px;font-family:var(--mo);color:var(--bl)">stockgift-worker.js</code>（已下載），然後把 Worker URL 填入下方喔 🐰<br>
+      部署教學：<a href="https://workers.cloudflare.com" target="_blank" style="color:var(--bl);font-weight:900">workers.cloudflare.com</a> → 新建 Worker → 貼上程式碼 → Save & Deploy → 複製 URL
+    </div>
+    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+      <input id="worker-url-input" type="text"
+        placeholder="https://stockgift-proxy.你的帳號.workers.dev"
+        value="${WORKER_URL}"
+        style="flex:1;min-width:280px;font-size:15px;font-weight:800;font-family:var(--mo);padding:0 16px;height:46px;border:2px solid var(--br2);border-radius:16px;background:var(--bg);color:var(--tx);outline:none">
+      <button id="btn-save-worker" style="height:46px;padding:0 24px;font-size:15px;font-weight:900;font-family:var(--mo);border:none;border-radius:16px;background:var(--gn);color:#fff;cursor:pointer">儲存並重整 ✨</button>
+      <button id="btn-cancel-worker" style="height:46px;padding:0 20px;font-size:15px;font-weight:900;font-family:var(--mo);border:2px solid var(--br);border-radius:16px;background:transparent;color:var(--tx2);cursor:pointer">取消</button>
+    </div>
+    <div id="worker-err" style="font-size:14px;font-weight:900;font-family:var(--mo);color:var(--rd);margin-top:10px;min-height:20px"></div>
+  `;
+
+  const tbar = document.querySelector('#tab-all .tbar');
+  tbar.parentNode.insertBefore(panel, tbar);
+
+  document.getElementById('btn-save-worker').addEventListener('click', ()=>{
+    const val = document.getElementById('worker-url-input').value.trim().replace(/\/$/,'');
+    if(!val || !val.startsWith('http')){ document.getElementById('worker-err').textContent='請輸入有效的 URL 💦'; return; }
+    WORKER_URL = val;
+    localStorage.setItem('workerUrl', val);
+    panel.remove();
+    doRefresh();
+  });
+  document.getElementById('btn-cancel-worker').addEventListener('click', ()=>panel.remove());
+  document.getElementById('worker-url-input').addEventListener('keydown', e=>{ if(e.key==='Enter') document.getElementById('btn-save-worker').click(); });
+  document.getElementById('worker-url-input').focus();
+}
+
+function parseStockgift(html){
+  const existCodes = new Set(ALL.map(s=>s.code));
+  const egiftKw = ['商品卡','禮物卡','咖啡券','禮券','消費券','購物金','抵用券','兌換券'];
+  let added=0, updated=0, total=0;
+
+  const doc = new DOMParser().parseFromString(html,'text/html');
+  const trs = doc.querySelectorAll('tr');
+
+  const parseD = s=>{ const p=(s||'').match(/(\d{2})\/(\d{2})\/(\d{2})/); return p?'20'+p[1]+'-'+p[2]+'-'+p[3]:null; };
+  const stripTags = s=>(s||'').replace(/<[^>]+>/g,'').trim();
+
+  trs.forEach(tr=>{
+    const tds = tr.querySelectorAll('td');
+    if(tds.length < 8) return;
+
+    const code = stripTags(tds[1].innerHTML).replace(/\s+\d+\s*$/,'').trim();
+    if(!/^\d{4,5}$/.test(code)) return;
+
+    const name     = stripTags(tds[2].innerHTML).replace(/\s+\d+\s*$/,'').trim();
+    const price    = parseFloat(stripTags(tds[3].innerHTML)) || 0;
+    const lbo      = parseD(stripTags(tds[4].innerHTML));
+    const meet     = parseD(stripTags(tds[5].innerHTML));
+    if(!lbo || !meet) return;
+
+    const gift = stripTags(tds[7].innerHTML)
+      .replace(/\([^)]*紀念品[^)]*\)/g,'')
+      .replace(/\([^)]*數量[^)]*\)/g,'')
+      .trim();
+    if(!gift || gift.length < 2) return;
+
+    const buyRaw = stripTags((tds[8]||{innerHTML:''}).innerHTML).trim();
+    const buyPrice = buyRaw && !/近期|決定|尚未/.test(buyRaw) ? parseFloat(buyRaw)||0 : 0;
+
+    const condRaw = stripTags(tds[11].innerHTML) + ' ' + stripTags((tds[12]||{innerHTML:''}).innerHTML);
+    let cond = '';
+    if(condRaw.includes('電子投票'))               cond += 'ev,';
+    if(/身分證|健保卡|駕照/.test(condRaw))          cond += 'id,';
+    if(/雲林|台南|新竹|桃園|高雄|地點/.test(condRaw)) cond += 'loc,';
+    cond = cond.replace(/,$/,'');
+
+    const isEgift = egiftKw.some(k=>gift.includes(k)) ? 1 : 0;
+    const entry = {code, name, price, gift, lbo, meet, cond};
+    if(isEgift){ entry.egift=1; entry.os=1; }
+    if(buyPrice>0){ entry.buyPrice=buyPrice; }
+
+    total++;
+    if(existCodes.has(code)){
+      const idx = ALL.findIndex(s=>s.code===code);
+      if(idx>=0){
+        ALL[idx].price=price; ALL[idx].gift=gift;
+        ALL[idx].lbo=lbo; ALL[idx].meet=meet; ALL[idx].cond=cond;
+        if(buyPrice>0) ALL[idx].buyPrice=buyPrice;
+        updated++;
+      }
+    } else {
+      ALL.push(entry); existCodes.add(code); added++;
+    }
+  });
+  return {added, updated, total};
+}
+
 document.addEventListener('click',e=>{
   const ft=e.target.closest('.ft[data-etab]');
   if(ft){document.querySelectorAll('.ft').forEach(t=>t.classList.remove('on'));ft.classList.add('on');etab=ft.dataset.etab;rEG();return;}
@@ -1398,7 +1565,8 @@ const chiikawaQuotes = [
   "快點買進！<br>要來不及了 💦",
   "哇...<br>好多紀念品 🤩",
   "烏薩奇大推！🐰",
-  "記得要電子投票喔 📱"
+  "記得要電子投票喔 📱",
+  "嗚嗚 ( ߹꒳߹ )"
 ];
 document.getElementById('c-float').addEventListener('click', () => {
   cMsg.innerHTML = chiikawaQuotes[Math.floor(Math.random() * chiikawaQuotes.length)];
