@@ -36,26 +36,34 @@
   --mo: 'Nunito', sans-serif;
   --r: 16px;           
   --r2: 24px;          
+  
+  /* 🌸 圖片變數 (直接讀取 GitHub 圖床) */
+  --img-chii: url('https://raw.githubusercontent.com/cindypc33/stock-gift11/main/image_32ec9e.png');
+  --img-hachi: url('https://raw.githubusercontent.com/cindypc33/stock-gift11/main/image_32e9f1.png');
+  --img-usagi: url('https://raw.githubusercontent.com/cindypc33/stock-gift11/main/image_32e9b4.png');
+  --img-main: url('https://raw.githubusercontent.com/cindypc33/stock-gift11/main/image_32e5d9.png');
+  --img-og: url('https://raw.githubusercontent.com/cindypc33/stock-gift11/main/chiikawa.png'); /* 保留原本的經典圖 */
 }
 *{box-sizing:border-box;margin:0;padding:0}
 
-/* 🌸 吉依卡娃專屬動態圖標 (替換 Emoji) 🌸 */
+/* 🌸 吉伊卡哇專屬動態圖標 (替換為上傳的實體圖片) 🌸 */
 .ico-chii {
   display: inline-block;
-  width: 1.4em;
-  height: 1.4em;
-  vertical-align: -0.25em;
+  width: 1.6em;
+  height: 1.6em;
+  vertical-align: -0.35em;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }
-.ico-chii.chii { background-image: url('https://media.tenor.com/lM5qBq4E-1QAAAAi/chiikawa.gif'); }
-.ico-chii.hachi { background-image: url('https://media.tenor.com/6U8X-49Qy5gAAAAi/hachiware-chiikawa.gif'); }
-.ico-chii.usagi { background-image: url('https://media.tenor.com/zWz2J_s1vVEAAAAi/usagi-chiikawa.gif'); }
+.ico-chii.chii { background-image: var(--img-chii); }
+.ico-chii.hachi { background-image: var(--img-hachi); }
+.ico-chii.usagi { background-image: var(--img-usagi); }
+/* 保留原本的動態 GIF 增加豐富度 */
 .ico-chii.cry { background-image: url('https://media.tenor.com/XqU0_yN5G1cAAAAi/chiikawa-crying.gif'); }
 .ico-chii.sparkle { background-image: url('https://media.tenor.com/71s8L5pA57wAAAAi/chiikawa-happy.gif'); }
 
-/* 🌸 吉依卡娃浮水印與點點背景 🌸 */
+/* 🌸 吉伊卡哇浮水印與點點背景 🌸 */
 body{
   background-color: var(--bg);
   background-image: radial-gradient(var(--br) 1.5px, transparent 1.5px);
@@ -67,20 +75,20 @@ body{
   min-height: 100vh;
   position: relative;
 }
-/* 超微美浮水印效果 (GitHub 直連網址) */
+/* 超微美浮水印效果 (三隻畫畫圖) */
 body::before {
   content: '';
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 500px;
-  height: 500px;
-  background-image: url('https://raw.githubusercontent.com/cindypc33/stock-gift11/main/chiikawa.png'); 
+  width: 600px;
+  height: 400px;
+  background-image: var(--img-main); 
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  opacity: 0.04; /* 極低透明度，不影響閱讀 */
+  opacity: 0.05; /* 極低透明度，不影響閱讀 */
   pointer-events: none;
   z-index: 0;
 }
@@ -317,7 +325,7 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
 @keyframes spin{to{transform:rotate(360deg)}}
 .refresh-status{font-size:13px;font-weight:900;font-family:var(--mo);color:var(--tx3);margin-left:8px}
 
-/* 🌸 吉依卡娃實體浮動小圖 🌸 */
+/* 🌸 吉伊卡哇實體浮動小圖 🌸 */
 .chiikawa-float {
   position: fixed;
   bottom: 24px;
@@ -331,7 +339,7 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
   cursor: pointer;
 }
 .chiikawa-img {
-  width: 150px;
+  width: 180px; /* 稍微放大讓三隻都看得很清楚 */
   height: auto;
   border-radius: 28px;
   border: 4px solid var(--bg2);
@@ -377,55 +385,80 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
   50% { transform: translateY(-12px); }
 }
 
-/* Responsive */
+/* 📱 響應式排版 (RWD) 完美升級版 */
+@media(max-width:1024px){
+  .mets{grid-template-columns:repeat(2,1fr);gap:16px}
+  .tbar{flex-wrap:wrap}
+  .sg{flex:1 1 100%;order:-1;margin-bottom:8px} /* 搜尋框在平板獨立拉出到上方 */
+}
+
 @media(max-width:768px){
-  .hdr{padding:0 16px}
-  .hdr-in{height:54px;gap:8px}
-  .logo{font-size:16px}
-  .hlink{padding:6px 12px;font-size:13px}
-  .main{padding:16px; padding-bottom:140px;} /* 給浮動圖片更多空間 */
-  .mets{grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px}
-  .met{padding:16px}
-  .met-v{font-size:28px}
+  .hdr{padding:8px 16px}
+  .hdr-in{height:auto;flex-wrap:wrap;justify-content:space-between;gap:8px;padding:4px 0}
+  .logo{font-size:16px;flex:1 1 auto}
+  .hlink{padding:6px 12px;font-size:13px;margin-left:0;order:2}
+  #update-time{width:100%;margin-left:0;order:3;font-size:12px}
+  #cloud-status{order:4;margin-left:0}
+  
+  .main{padding:16px;padding-bottom:140px}
+  .mets{gap:12px;margin-bottom:20px}
+  .met{padding:14px}
+  .met-v{font-size:26px}
   .met-l{font-size:12px}
   .dv{margin:24px 0}
+  
+  /* 標題與按鈕自適應 */
+  .sh{flex-direction:column;gap:12px;align-items:flex-start}
+  #btn-eg-all{width:100%;text-align:center;justify-content:center}
   .st{font-size:16px}
   .ssub{font-size:12px}
-  .sh{flex-wrap:wrap;gap:12px}
-  .hgg{grid-template-columns:1fr 1fr;gap:12px}
-  .egg{grid-template-columns:1fr 1fr;gap:12px}
-  .egc,.hc{padding:16px}
-  .tnav{overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
+  
+  /* Grid 自動適配 */
+  .egg, .hgg{grid-template-columns:repeat(auto-fill, minmax(min(100%, 220px), 1fr));gap:12px}
+  .egc, .hc{padding:16px}
+  
+  /* 分頁籤可平滑橫向滑動 */
+  .tnav{overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;padding-bottom:2px}
   .tn{font-size:15px;padding:10px 18px}
-  .tbar{flex-wrap:wrap}
-  .sg{flex:none;width:100%;order:0}
-  .tbar select{flex:1;min-width:0;order:1;font-size:14px;height:40px}
-  .refresh-btn{order:2;font-size:13px;padding:0 14px;height:40px}
-  table{font-size:13px}
+  
+  /* 工具列配置，放大點擊範圍 */
+  .tbar select{flex:1 1 45%;height:42px;font-size:14px}
+  .refresh-btn{flex:1 1 100%;height:44px;justify-content:center;margin-top:4px}
+  
+  /* 表格優化：保持所有欄位，開啟水平滑動，維持資訊完整性 */
+  .tw{-webkit-overflow-scrolling:touch;border-radius:12px}
+  table{font-size:13px;min-width:850px} /* 強制最小寬度以觸發優雅滑動 */
   th,td{padding:12px 10px}
-  th:nth-child(6),td:nth-child(6),
-  th:nth-child(8),td:nth-child(8){display:none}
-  .pgn{flex-direction:column;align-items:flex-start;gap:8px}
-  .har{flex-wrap:wrap}
-  .hcode,.hname{width:calc(50% - 5px);flex:none}
-  .hadd{width:100%;margin-top:6px}
-  .acct-bar{overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;padding-bottom:8px}
+  
+  .pgn{flex-direction:column;align-items:center;gap:12px}
+  .pgi{text-align:center;width:100%}
+  .pgbs{justify-content:center}
+  
+  /* 帳號管理配置垂直化 */
+  .har{flex-direction:column;align-items:stretch;gap:8px}
+  .hcode, .hname, .hadd{width:100%;flex:none;height:44px}
+  .acct-bar{overflow-x:auto;flex-wrap:nowrap;padding-bottom:10px;-webkit-overflow-scrolling:touch}
   .acct-tab{white-space:nowrap;flex-shrink:0}
+  .acct-name-row{flex-wrap:wrap}
+  .acct-name-row input{width:100%;margin:8px 0}
+  .acct-rename{width:100%}
+  
   .detail-inner{font-size:14px}
   .ipnl{padding:16px}
   .refresh-status{font-size:12px;display:block;margin-top:6px}
   
-  /* 手機版縮小圖片 */
-  .chiikawa-float { bottom: 16px; right: 16px; gap: 8px;}
-  .chiikawa-img { width: 90px; border-width: 3px; border-radius: 20px;}
-  .chiikawa-float .speech-bubble { font-size: 12px; padding: 6px 12px; }
-  body::before { width: 300px; height: 300px; }
+  /* 手機版縮小浮動精靈 */
+  .chiikawa-float{bottom:16px;right:16px;gap:8px}
+  .chiikawa-img{width:130px;border-width:3px;border-radius:20px}
+  .chiikawa-float .speech-bubble{font-size:12px;padding:6px 12px}
+  body::before{width:350px;height:250px}
 }
+
+/* 迷你手機尺寸 (480px 以下) */
 @media(max-width:480px){
-  .hgg,.egg{grid-template-columns:1fr}
-  .mets{grid-template-columns:repeat(2,1fr)}
-  .met-v{font-size:26px}
-  th:nth-child(3),td:nth-child(3){display:none}
+  .mets{grid-template-columns:1fr} /* 四大指標垂直排列 */
+  .tbar select{flex:1 1 100%}      /* 下拉選單垂直排列 */
+  .mod{padding:24px 20px}          /* 彈出視窗縮小內距 */
 }
 </style>
 </head>
@@ -442,7 +475,7 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
 <main class="main">
 
 <div class="mets">
-  <div class="met g"><div class="met-l">我的持股有紀念品</div><div class="met-v" id="m2">—</div><div class="met-s">吉依卡娃陪你領 <i class="ico-chii chii"></i></div></div>
+  <div class="met g"><div class="met-l">我的持股有紀念品</div><div class="met-v" id="m2">—</div><div class="met-s">吉伊卡哇陪你領 <i class="ico-chii chii"></i></div></div>
   <div class="met b"><div class="met-l">已公告清單</div><div class="met-v" id="m1">—</div><div class="met-s">小巴幫你查 <i class="ico-chii hachi"></i></div></div>
   <div class="met a"><div class="met-l">需身分證正本</div><div class="met-v" id="m3">—</div><div class="met-s">烏薩奇提醒你 <i class="ico-chii usagi"></i></div></div>
   <div class="met p"><div class="met-l">eGift 線上領</div><div class="met-v" id="m4">—</div><div class="met-s">檔可線上領取 <i class="ico-chii sparkle"></i></div></div>
@@ -468,7 +501,7 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
           <div class="st"><i class="ico-chii hachi"></i> 小巴最愛！eGift 電子化專區</div>
           <div class="ssub">藍框=零股可領 · 橘框=需持滿1張 · 點擊卡片查看詳情</div>
         </div>
-        <button class="secbtn" id="btn-eg-all"><i class="ico-chii sparkle"></i> 點我看整體分析</button>
+        <button class="secbtn" id="btn-eg-all"><i class="ico-chii sparkle"></i> 點我看整體分析 📝</button>
       </div>
       <!-- eGift整體分析區塊 -->
       <div class="ipnl" id="peg" style="display:none;">
@@ -544,8 +577,8 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
   </tr></thead><tbody id="TB-mine"></tbody></table></div>
   <div class="pgn" id="pg-mine"></div>
   <div id="no-match" style="display:none;padding:3rem;text-align:center;font-size:16px;font-weight:900;font-family:var(--mo);color:var(--tx3)">
-    <img src="https://raw.githubusercontent.com/cindypc33/stock-gift11/main/chiikawa.png" style="width:140px; border-radius:24px; margin-bottom:16px; border:3px dashed var(--br2); opacity:0.8"><br>
-    你的持股中目前尚無已公告紀念品的股票...<br>吉依卡娃都要哭了 嗚嗚 <br><i class="ico-chii cry" style="width:3em;height:3em"></i>
+    <img src="https://raw.githubusercontent.com/cindypc33/stock-gift11/main/image_32e5d9.png" style="width:200px; border-radius:24px; margin-bottom:16px; border:3px dashed var(--br2); opacity:0.8; background:var(--bg2)"><br>
+    你的持股中目前尚無已公告紀念品的股票...<br>吉伊卡哇都要哭了 嗚嗚 <br><i class="ico-chii cry" style="width:3em;height:3em"></i>
   </div>
 </div>
 
@@ -587,13 +620,14 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
   </div>
 </div>
 
-<!-- 🌸 吉依卡娃實體浮動精靈 🌸 -->
+<!-- 🌸 吉伊卡哇實體浮動精靈 🌸 -->
 <div class="chiikawa-float" id="c-float">
   <div class="speech-bubble" id="c-msg">呀哈！<br>有什麼可以幫忙的嗎？</div>
-  <img src="https://raw.githubusercontent.com/cindypc33/stock-gift11/main/chiikawa.png" alt="吉依卡娃小隊" class="chiikawa-img" onerror="this.style.display='none'; document.getElementById('c-msg').innerHTML='圖片讀取失敗 <i class=\'ico-chii cry\'></i>';">
+  <img src="https://raw.githubusercontent.com/cindypc33/stock-gift11/main/chiikawa.png" alt="吉伊卡哇小隊" class="chiikawa-img">
 </div>
 
 <script>
+// 完整股東會資料清單
 const ALL=[
 {code:'6229',name:'研通',price:21.65,gift:'捲尺',lbo:'2026-04-28',meet:'2026-06-30',cond:'ev'},
 {code:'6618',name:'永虹先進',price:0,gift:'超商50元商品卡',lbo:'2026-04-28',meet:'2026-06-29',cond:'ev',egift:1,os:1},
@@ -721,7 +755,7 @@ const ALL=[
 {code:'9917',name:'中保科',price:114.5,gift:'超商100元商品卡',lbo:'2026-03-26',meet:'2026-05-29',cond:'ev',egift:1,os:1},
 {code:'9919',name:'康那香',price:15.6,gift:'口罩',lbo:'2026-04-09',meet:'2026-06-12',cond:'ev'},
 {code:'3322',name:'建舜電',price:13.55,gift:'統一超商35元商品卡',lbo:'2026-04-09',meet:'2026-06-12',cond:'ev',egift:1,os:1},
-{code:'4142',name:'國光生',price:18.15,gift:'氣密保鮮罐',lbo:'2026-03-31',meet:'2026-06-04',cond:'ev'},
+{code:'4142',name:'國光生',price:18.15,gift:'氣密保鮮罐',lbo:'2026-03-31',meet:'2026-06-04',cond:'ev'}
 ];
 
 const HEAT={
@@ -732,7 +766,7 @@ const HEAT={
   '1708':{heat:6900,restrict:'零股可領，需電投截圖',analysis:'東鹼(1708) <i class="ico-chii hachi"></i>\n• 小蘇打粉清潔組，居家好幫手\n• 零股可以領，需電子投票截圖'},
   '4102':{heat:6200,restrict:'零股可領，需電投截圖',analysis:'永日(4102) <i class="ico-chii chii"></i>\n• 送益生菌（市價880元），CP值超級高！\n• 零股可以領，需電子投票截圖'},
   '2002':{heat:5800,restrict:'待公告，需電投截圖',analysis:'中鋼(2002) <i class="ico-chii usagi"></i>\n• 歷年紀念品都會造成熱烈搶兌\n• 今年品項待公告，記得先買進並準備電投！'},
-  '3714':{heat:5200,restrict:'零股可領，需電投截圖',analysis:'富采(3714) <i class="ico-chii hachi"></i>\n• 送黃阿瑪後宮生活聯名雙層碗，超可愛！\n• 零股可以領，需電子投票截圖'},
+  '3714':{heat:5200,restrict:'零股可領，需電投截圖',analysis:'富采(3714) <i class="ico-chii hachi"></i>\n• 送黃阿瑪後宮生活聯名雙層碗，超可愛！\n• 零股可以領，需電子投票截圖'}
 };
 
 const HOT=[
@@ -743,12 +777,10 @@ const HOT=[
   {code:'1708',name:'東鹼'},
   {code:'4102',name:'永日'},
   {code:'2002',name:'中鋼'},
-  {code:'3714',name:'富采'},
+  {code:'3714',name:'富采'}
 ];
 
-function getHOT(){
-  return HOT.map(h=>ALL.find(s=>s.code===h.code)||null).filter(Boolean);
-}
+function getHOT(){ return HOT.map(h=>ALL.find(s=>s.code===h.code)||null).filter(Boolean); }
 
 const INIT=[
 {code:'1101',name:'台泥'},{code:'1103',name:'嘉泥'},{code:'1201',name:'味全'},
@@ -783,13 +815,11 @@ const ACCT_COLORS=['#62b1b0', '#8bbeea', '#f3b562', '#f28b82', '#cbbadd', '#a3d9
 
 async function saveData(){
   const dataObj = {
-    all: ALL,
-    accounts: accounts,
+    all: ALL, accounts: accounts,
     updateDate: document.getElementById('update-time')?.textContent || '',
     lastCount: ALL.length.toString(),
     rem: rem
   };
-
   try{
     localStorage.setItem('sg_all', JSON.stringify(ALL));
     localStorage.setItem('sg_accounts', JSON.stringify(accounts));
@@ -797,33 +827,20 @@ async function saveData(){
     localStorage.setItem('sg_lastCount', dataObj.lastCount);
     localStorage.setItem('sg_rem', JSON.stringify(rem));
   }catch(e){}
-
   const cs = document.getElementById('cloud-status');
   if(cs) { cs.style.display = 'inline-block'; cs.textContent = '☁️ 同步中...'; cs.style.color = 'var(--am)'; }
-  
   if(WORKER_URL) {
     try {
-      const res = await fetch(WORKER_URL + '?action=save', {
-        method: 'POST',
-        body: JSON.stringify(dataObj)
-      });
-      if(res.ok && cs) { 
-        cs.textContent = '☁️ 已同步'; 
-        cs.style.color = 'var(--gn)'; 
-        setTimeout(() => { cs.style.display = 'none'; }, 3000);
-      }
-    } catch(e) {
-      if(cs) { cs.textContent = '☁️ 同步失敗'; cs.style.color = 'var(--rd)'; }
-    }
+      const res = await fetch(WORKER_URL + '?action=save', { method: 'POST', body: JSON.stringify(dataObj) });
+      if(res.ok && cs) { cs.textContent = '☁️ 已同步'; cs.style.color = 'var(--gn)'; setTimeout(() => { cs.style.display = 'none'; }, 3000); }
+    } catch(e) { if(cs) { cs.textContent = '☁️ 同步失敗'; cs.style.color = 'var(--rd)'; } }
   }
 }
 
 async function loadData(){
   const cs = document.getElementById('cloud-status');
   if(cs) { cs.style.display = 'inline-block'; cs.textContent = '☁️ 讀取雲端中...'; cs.style.color = 'var(--am)'; }
-  
   let cloudSuccess = false;
-
   if(WORKER_URL) {
     try {
       const res = await fetch(WORKER_URL + '?action=load');
@@ -831,57 +848,28 @@ async function loadData(){
       if (data && data.accounts) {
          ALL.length = 0;
          if(data.all) data.all.forEach(s=>ALL.push(s));
-         accounts = data.accounts;
-         rem = data.rem || {};
+         accounts = data.accounts; rem = data.rem || {};
          const ut = document.getElementById('update-time');
          if(ut && data.updateDate) ut.textContent = data.updateDate;
-         
-         if(cs) { 
-            cs.textContent = '☁️ 雲端載入成功'; 
-            cs.style.color = 'var(--gn)'; 
-            setTimeout(() => { cs.style.display = 'none'; }, 3000);
-         }
+         if(cs) { cs.textContent = '☁️ 雲端載入成功'; cs.style.color = 'var(--gn)'; setTimeout(() => { cs.style.display = 'none'; }, 3000); }
          cloudSuccess = true;
       }
     } catch(e) {}
   }
-
   if(!cloudSuccess) {
       try{
         const saved=localStorage.getItem('sg_all');
-        if(saved){
-          const arr=JSON.parse(saved);
-          if(Array.isArray(arr)&&arr.length>0){
-            ALL.length=0;
-            arr.forEach(s=>ALL.push(s));
-          }
-        }
+        if(saved){ const arr=JSON.parse(saved); if(Array.isArray(arr)&&arr.length>0){ ALL.length=0; arr.forEach(s=>ALL.push(s)); } }
         const savedAccts=localStorage.getItem('sg_accounts');
-        if(savedAccts){
-          const arr=JSON.parse(savedAccts);
-          if(Array.isArray(arr)&&arr.length>0) accounts=arr;
-        }
+        if(savedAccts){ const arr=JSON.parse(savedAccts); if(Array.isArray(arr)&&arr.length>0) accounts=arr; }
         const savedDate=localStorage.getItem('sg_updateDate');
-        if(savedDate){
-          const ut=document.getElementById('update-time');
-          if(ut) ut.textContent=savedDate;
-        }
+        if(savedDate){ const ut=document.getElementById('update-time'); if(ut) ut.textContent=savedDate; }
         const savedRem=localStorage.getItem('sg_rem');
-        if(savedRem){
-          const obj=JSON.parse(savedRem);
-          if(obj && typeof obj === 'object') rem = obj;
-        }
+        if(savedRem){ const obj=JSON.parse(savedRem); if(obj && typeof obj === 'object') rem = obj; }
       }catch(e){}
-      
-      if(cs) { 
-        cs.textContent = '💻 使用本機資料'; 
-        cs.style.color = 'var(--tx3)'; 
-        setTimeout(() => { cs.style.display = 'none'; }, 3000);
-      }
+      if(cs) { cs.textContent = '💻 使用本機資料'; cs.style.color = 'var(--tx3)'; setTimeout(() => { cs.style.display = 'none'; }, 3000); }
   }
-
-  rHoldings();
-  rFull();
+  rHoldings(); rFull();
 }
 
 let accounts=[{id:'a1',name:'帳號一',color:'#f3b562',holdings:[...INIT]}];
@@ -890,7 +878,6 @@ let mineFilter='all';
 let rem={},ec=null,aq='',etab='all',pa=1,pm=1,fa=[],fm=[];
 
 const days=s=>Math.ceil((new Date(s.lbo)-new Date(new Date().toDateString()))/864e5);
-
 const acctsWith=c=>accounts.filter(a=>a.holdings.some(h=>h.code===c));
 const isH=c=>accounts.some(a=>a.holdings.some(h=>h.code===c));
 const gF=c=>ALL.find(s=>s.code===c);
@@ -907,15 +894,15 @@ const badge=d=>{
 };
 
 function ct(s){
-  let t='';const c=s.cond||'';
-  if(c.includes('ev'))t+=`<span class="tag ev">電投截圖</span>`;
-  if(c.includes('id'))t+=`<span class="tag id">需身分證</span>`;
+  let t='';const c=s.cond||''; const r=rem[s.code]||{};
+  if(r.nofrac)t+=`<span class="tag" style="background:var(--rdb);color:var(--rd);border:2px solid rgba(242,139,130,.3)">零股不發</span>`;
+  if(c.includes('ev')||r.evote)t+=`<span class="tag ev">電投截圖</span>`;
+  if(c.includes('id')||r.id)t+=`<span class="tag id">需身分證</span>`;
   if(c.includes('loc'))t+=`<span class="tag lc" title="${s.note||''}">地點限制</span>`;
-  if(s.egift)t+=`<span class="tag eg">eGift</span>`;
+  if(s.egift||r.egift)t+=`<span class="tag eg">eGift</span>`;
   if(s.cp)t+=`<span class="tag cp">高CP值</span>`;
   if(s.ip)t+=`<span class="tag" style="background:var(--pub);color:var(--pu);border:2px solid rgba(203,186,221,.3)">${s.ip}</span>`;
-  const r=rem[s.code];
-  if(r&&r.custom)t+=`<span class="tag" style="background:var(--bg3);color:var(--tx2);border:2px solid var(--br)" title="${r.custom}">${r.custom.slice(0,8)}</span>`;
+  if(r.custom)t+=`<span class="tag" style="background:var(--bg3);color:var(--tx2);border:2px solid var(--br)" title="${r.custom}">${r.custom.slice(0,8)}</span>`;
   return t||`<span style="font-size:11px;font-family:var(--mo);color:var(--tx3)">—</span>`;
 }
 const esvg=()=>`<svg class="ei" viewBox="0 0 16 16" fill="none"><path d="M11 2.5L13.5 5L5.5 13H3V10.5L11 2.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
@@ -948,9 +935,7 @@ function buildPg(total,cur,pgId,cb){
     if(tp>7){
       if(i===1||i===tp||(i>=cur-1&&i<=cur+1))b+=`<button class="pgb${i===cur?' on':''}" data-p="${i}">${i}</button>`;
       else if(i===cur-2||i===cur+2)b+=`<span class="pgdots">…</span>`;
-    } else {
-      b+=`<button class="pgb${i===cur?' on':''}" data-p="${i}">${i}</button>`;
-    }
+    } else { b+=`<button class="pgb${i===cur?' on':''}" data-p="${i}">${i}</button>`; }
   }
   b+=`<button class="pgb" data-p="next" ${cur===tp?'disabled':''}>›</button>`;
   document.getElementById(pgId).innerHTML=`<span class="pgi">${s}–${e} / 共 ${total} 筆</span><div class="pgbs">${b}</div>`;
@@ -973,19 +958,12 @@ function rEG(){
   document.getElementById('EG').innerHTML=list.map((s,i)=>{
     const d=days(s),c=ch(),up=parseFloat(c)>=0,sg=up?'+':'';
     return`<div class="egc ${s.os?'os':'fl'}" data-ei="${i}">
-      <div class="egt">
-        <span class="tag eg">eGift</span>
-        ${s.os?'<span class="tag os">1股可領</span>':'<span class="tag fl">需滿1張</span>'}
-        ${s.cp?'<span class="tag cp">高CP</span>':''}
-        ${isH(s.code)?'<span class="tag hd">持有</span>':''}
-      </div>
+      <div class="egt"><span class="tag eg">eGift</span>${s.os?'<span class="tag os">1股可領</span>':'<span class="tag fl">需滿1張</span>'}
+      ${s.cp?'<span class="tag cp">高CP</span>':''}${isH(s.code)?'<span class="tag hd">持有</span>':''}</div>
       <div style="margin-top:8px"><span class="ec">${s.code}</span><span class="en">${s.name}</span></div>
       <div class="egft">${s.gift}</div>
       <div class="eghw">${(s.cond||'').includes('ev')?'需電投截圖':''}${(s.cond||'').includes('id')?' + 身分證':''}</div>
-      <div class="egbt">
-        <span class="${up?'pu':'pd'}">${s.price||'—'} <small style="font-size:13px;font-weight:900">${sg}${c}%</small></span>
-        ${badge(d)}
-      </div>
+      <div class="egbt"><span class="${up?'pu':'pd'}">${s.price||'—'} <small style="font-size:13px;font-weight:900">${sg}${c}%</small></span>${badge(d)}</div>
     </div>`;
   }).join('');
 }
@@ -994,50 +972,29 @@ function rHot(){
   const rks=['r1','r2','r3'];
   const hot=getHOT();
   const maxHeat=12400;
-
   document.getElementById('HG').innerHTML=hot.map((s,i)=>{
     const d=days(s),c=ch(),up=parseFloat(c)>=0,sg=up?'+':'';
     const h=HEAT[s.code]||{heat:3000,restrict:'需電投截圖',analysis:s.name+'('+s.code+')\n• '+s.gift};
     const pct=Math.round(h.heat/maxHeat*100);
     return`<div class="hc" data-hcode="${s.code}">
-      <div class="hht">
-        <span class="rk ${rks[i]||'rn'}">${i===0?'#1 <i class="ico-chii sparkle" style="width:1em;height:1em"></i>':`#${i+1}`}</span>
-        <span style="font-size:13px;font-family:var(--mo);font-weight:800;color:var(--tx3)">${h.heat.toLocaleString()} <i class="ico-chii usagi" style="width:1.2em;height:1.2em"></i></span>
-      </div>
-      <div style="margin-top:10px">
-        <span class="cf">${s.code}</span>
-        <span style="font-size:16px;font-weight:900;color:var(--tx);margin-left:6px">${s.name}</span>
-        ${s.egift?'<span class="tag eg" style="margin-left:4px">eGift</span>':''}
-        ${isH(s.code)?'<span class="tag hd" style="margin-left:4px">持有</span>':''}
-      </div>
+      <div class="hht"><span class="rk ${rks[i]||'rn'}">${i===0?'#1 <i class="ico-chii sparkle" style="width:1em;height:1em"></i>':`#${i+1}`}</span>
+      <span style="font-size:13px;font-family:var(--mo);font-weight:800;color:var(--tx3)">${h.heat.toLocaleString()} <i class="ico-chii usagi" style="width:1.2em;height:1.2em"></i></span></div>
+      <div style="margin-top:10px"><span class="cf">${s.code}</span><span style="font-size:16px;font-weight:900;color:var(--tx);margin-left:6px">${s.name}</span>
+      ${s.egift?'<span class="tag eg" style="margin-left:4px">eGift</span>':''}${isH(s.code)?'<span class="tag hd" style="margin-left:4px">持有</span>':''}</div>
       <div class="hgft">${s.gift}</div>
       <div style="font-size:13px;color:var(--tx3);font-family:var(--mo);font-weight:800">${h.restrict}</div>
       <div class="hbr"><div class="hbf" style="width:${pct}%"></div></div>
-      <div class="hbt">
-        <span class="${up?'pu':'pd'}">${s.price||'—'} <small style="font-size:13px;font-weight:900">${sg}${c}%</small></span>
-        ${badge(d)}
-      </div>
-      
-      <!-- 熱門零股展開的分析區塊 (直接在卡片內部) -->
-      <div class="h-detail">
-        ${fmt(h.analysis)}
-      </div>
+      <div class="hbt"><span class="${up?'pu':'pd'}">${s.price||'—'} <small style="font-size:13px;font-weight:900">${sg}${c}%</small></span>${badge(d)}</div>
+      <div class="h-detail">${fmt(h.analysis)}</div>
     </div>`;
   }).join('');
 }
 
-// 每日動態排序邏輯：只要過期的（剩餘天數 < 0）絕對推到最底部
 function smartSort(a,b){
   const da=days(a), db=days(b);
-  const aExp = da < 0;
-  const bExp = db < 0;
-  
-  if(aExp && !bExp) return 1;    // a 過期了，丟到後面
-  if(!aExp && bExp) return -1;   // b 過期了，丟到後面
-  if(aExp && bExp) return db-da; // 如果兩者都過期，把最近過期的排在比較上面
-  
-  // 都沒過期的話，剩餘天數少的（即將到期）排在最前面
-  return da-db;
+  const aExp = da < 0, bExp = db < 0;
+  if(aExp && !bExp) return 1; if(!aExp && bExp) return -1;
+  if(aExp && bExp) return db-da; return da-db;
 }
 
 function rFull(){
@@ -1046,11 +1003,7 @@ function rFull(){
     const d=days(s),u=urg(d),c=s.cond||'';
     const mq=!q||s.code.includes(q)||s.name.includes(q)||s.gift.toLowerCase().includes(q);
     const mu=fu==='all'||u===fu;
-    const mc=fc==='all'
-      ||(fc==='mine'&&isH(s.code))
-      ||(fc==='egift'&&s.egift)
-      ||(fc==='id'&&c.includes('id'))
-      ||(fc==='noev'&&!c.includes('ev'));
+    const mc=fc==='all'||(fc==='mine'&&isH(s.code))||(fc==='egift'&&s.egift)||(fc==='id'&&c.includes('id'))||(fc==='noev'&&!c.includes('ev'));
     return mq&&mu&&mc;
   }).sort(smartSort);
 
@@ -1074,18 +1027,14 @@ function rFull(){
   if(fm.length){
     document.getElementById('TB-mine').innerHTML=fm.slice(0,PS).map(rRow).join('');
     buildPg(fm.length,1,'pg-mine',goMine);
-    document.getElementById('no-match').style.display='none';
-    document.getElementById('TB-mine').closest('.tw').style.display='';
+    document.getElementById('no-match').style.display='none'; document.getElementById('TB-mine').closest('.tw').style.display='';
   } else {
-    document.getElementById('TB-mine').closest('.tw').style.display='none';
-    document.getElementById('no-match').style.display='block';
+    document.getElementById('TB-mine').closest('.tw').style.display='none'; document.getElementById('no-match').style.display='block';
   }
 
   const ma=ALL.filter(s=>isH(s.code));
-  document.getElementById('m1').textContent=ALL.length;
-  document.getElementById('m2').textContent=ma.length;
-  document.getElementById('m3').textContent=ALL.filter(s=>(s.cond||'').includes('id')).length;
-  document.getElementById('m4').textContent=ALL.filter(s=>s.egift).length;
+  document.getElementById('m1').textContent=ALL.length; document.getElementById('m2').textContent=ma.length;
+  document.getElementById('m3').textContent=ALL.filter(s=>(s.cond||'').includes('id')).length; document.getElementById('m4').textContent=ALL.filter(s=>s.egift).length;
   rEG();rHot();
 }
 
@@ -1101,497 +1050,236 @@ function rHoldings(){
     bar.innerHTML=accounts.map(a=>{
       const on=a.id===curAcct;
       return'<button class="acct-tab'+(on?' on':'')+'" data-aid="'+a.id+'" style="'+(on?'background:'+a.color+'15;color:'+a.color+';border-color:'+a.color+'55':'')+'">'+
-        '<span style="width:10px;height:10px;border-radius:50%;background:'+a.color+';display:inline-block;flex-shrink:0"></span>'+
-        a.name+
-        '<span class="acct-del" data-adel="'+a.id+'">✕</span>'+
-      '</button>';
-    }).join('')+
-    '<button class="acct-add" id="btn-new-acct"><i class="ico-chii sparkle"></i> 新增帳號</button>';
+        '<span style="width:10px;height:10px;border-radius:50%;background:'+a.color+';display:inline-block;flex-shrink:0"></span>'+a.name+
+        '<span class="acct-del" data-adel="'+a.id+'">✕</span></button>';
+    }).join('')+'<button class="acct-add" id="btn-new-acct"><i class="ico-chii sparkle"></i> 新增帳號</button>';
   }
-  const ni=document.getElementById('acct-name-input');
-  if(ni)ni.value=curA().name;
+  const ni=document.getElementById('acct-name-input'); if(ni)ni.value=curA().name;
   const cp=document.getElementById('color-picks');
-  if(cp){
-    cp.innerHTML='<span style="font-size:14px;font-weight:900;font-family:var(--mo);color:var(--tx2);margin-right:4px">選個顏色吧 <i class="ico-chii hachi"></i>：</span>'+
-      ACCT_COLORS.map(c=>'<div class="acct-color'+(curA().color===c?' sel':'')+'" data-acolor="'+c+'" style="background:'+c+'"></div>').join('');
-  }
+  if(cp){ cp.innerHTML='<span style="font-size:14px;font-weight:900;font-family:var(--mo);color:var(--tx2);margin-right:4px">選個顏色吧 <i class="ico-chii hachi"></i>：</span>'+
+      ACCT_COLORS.map(c=>'<div class="acct-color'+(curA().color===c?' sel':'')+'" data-acolor="'+c+'" style="background:'+c+'"></div>').join(''); }
 }
 
 function findStockInfo(query, type) {
   const allKnown = [...ALL, ...INIT, ...allHoldings()];
   if (type === 'code') return allKnown.find(s => s.code === query);
-  if (type === 'name') return allKnown.find(s => s.name === query);
-  return null;
+  if (type === 'name') return allKnown.find(s => s.name === query); return null;
 }
 
 async function searchYahoo(query) {
   if(!query) return null;
   try {
-    const yUrl = `https://tw.stock.yahoo.com/_td-stock/api/resource/AutocompleteService;limit=5;query=${encodeURIComponent(query)}`;
-    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(yUrl)}`;
-    const res = await fetch(proxyUrl);
-    const rawData = await res.json();
-    const data = JSON.parse(rawData.contents);
-    if(data && data.ResultSet && data.ResultSet.Result && data.ResultSet.Result.length > 0) {
-      const match = data.ResultSet.Result.find(item => item.exch === 'TWS' || item.exch === 'TWO' || (item.symbol && item.symbol.includes('.TW')));
-      if(match) {
-        return { code: match.symbol.split('.')[0], name: match.name };
-      }
+    const res = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://tw.stock.yahoo.com/_td-stock/api/resource/AutocompleteService;limit=5;query=${encodeURIComponent(query)}`)}`);
+    const data = JSON.parse((await res.json()).contents);
+    if(data?.ResultSet?.Result?.length > 0) {
+      const match = data.ResultSet.Result.find(i => i.exch === 'TWS' || i.exch === 'TWO' || i.symbol?.includes('.TW'));
+      if(match) return { code: match.symbol.split('.')[0], name: match.name };
     }
   } catch(e) {}
   return null;
 }
 
 async function addH(){
-  let code = document.getElementById('add-code').value.trim().toUpperCase();
-  let name = document.getElementById('add-name').value.trim();
-  const err = document.getElementById('add-err');
-  const btn = document.getElementById('btn-add');
-  
-  btn.disabled = true;
-  btn.textContent = '搜尋中...';
-  err.textContent = '';
+  let code = document.getElementById('add-code').value.trim().toUpperCase(), name = document.getElementById('add-name').value.trim();
+  const err = document.getElementById('add-err'), btn = document.getElementById('btn-add');
+  btn.disabled = true; btn.textContent = '搜尋中...'; err.textContent = '';
   
   try {
-      if(!code && name) {
-          let stock = findStockInfo(name, 'name');
-          if(!stock) stock = await searchYahoo(name);
-          if(stock) { code = stock.code; name = stock.name; }
-      }
-      
+      if(!code && name) { let s = findStockInfo(name, 'name') || await searchYahoo(name); if(s) { code = s.code; name = s.name; } }
       if(!code) { err.textContent='請輸入股票代號（或系統無法識別該股名）'; return; }
+      const a = curA(); if(a.holdings.some(h => h.code === code)) { err.textContent = code + ' 已在此帳號中囉'; return; }
       
-      const a = curA();
-      if(a.holdings.some(h => h.code === code)) { err.textContent = code + ' 已在此帳號中囉'; return; }
-      
-      let trueStock = findStockInfo(code, 'code');
-      if(!trueStock) trueStock = await searchYahoo(code);
-
+      let trueStock = findStockInfo(code, 'code') || await searchYahoo(code);
       let finalName = name;
-      if (trueStock) {
-          if (!name || !name.includes(trueStock.name)) {
-              finalName = trueStock.name;
-          }
-      } else if (!finalName) {
-          finalName = '';
-      }
+      if (trueStock) { if (!name || !name.includes(trueStock.name)) finalName = trueStock.name; } else if (!finalName) finalName = '';
       
       a.holdings.push({code: code, name: finalName});
-      document.getElementById('add-code').value='';
-      document.getElementById('add-name').value='';
-      
-      rHoldings();
-      rFull();
-      saveData();
-      
-  } finally {
-      btn.disabled = false;
-      btn.innerHTML = '<i class="ico-chii sparkle" style="width:1em;height:1em"></i> 新增';
-  }
+      document.getElementById('add-code').value=''; document.getElementById('add-name').value='';
+      rHoldings(); rFull(); saveData();
+  } finally { btn.disabled = false; btn.innerHTML = '<i class="ico-chii sparkle" style="width:1em;height:1em"></i> 新增'; }
 }
 
 function addAcct(){
-  const id='a'+(Date.now()%1e8);
-  const colors=ACCT_COLORS.filter(c=>!accounts.some(a=>a.color===c));
-  const col=colors.length?colors[0]:ACCT_COLORS[accounts.length%ACCT_COLORS.length];
-  accounts.push({id,name:'帳號'+(accounts.length+1),color:col,holdings:[]});
-  curAcct=id;
-  
-  rHoldings();
-  rFull();
-  saveData();
+  const id='a'+(Date.now()%1e8); const colors=ACCT_COLORS.filter(c=>!accounts.some(a=>a.color===c));
+  accounts.push({id,name:'帳號'+(accounts.length+1),color:colors.length?colors[0]:ACCT_COLORS[accounts.length%ACCT_COLORS.length],holdings:[]});
+  curAcct=id; rHoldings(); rFull(); saveData();
 }
 
 function delAcct(id){
   if(accounts.length<=1){alert('至少需保留一個帳號喔！');return;}
   const targetAcct = accounts.find(a => a.id === id);
-  const acctName = targetAcct ? targetAcct.name : '此帳號';
-  if(window.confirm('⚠️ 確定要刪除「' + acctName + '」嗎？\n刪除後，該帳號內的持股紀錄將無法復原喔！') === false) { return; }
-  
-  accounts=accounts.filter(a=>a.id!==id);
-  if(curAcct===id)curAcct=accounts[0].id;
-  
+  if(window.confirm('⚠️ 確定要刪除「' + (targetAcct ? targetAcct.name : '此帳號') + '」嗎？\n刪除後，該帳號內的持股紀錄將無法復原喔！') === false) return;
+  accounts=accounts.filter(a=>a.id!==id); if(curAcct===id)curAcct=accounts[0].id;
   rHoldings(); rFull(); saveData();
 }
 
 function openMod(code){
-  ec=code;
-  const s=ALL.find(x=>x.code===code)||allHoldings().find(x=>x.code===code)||{name:'',code};
+  ec=code; const s=ALL.find(x=>x.code===code)||allHoldings().find(x=>x.code===code)||{name:'',code};
   document.getElementById('modtitle').innerHTML=`備註 <i class="ico-chii hachi"></i> ／ ${s.name} (${code})`;
   const r=rem[code]||{};
-  document.getElementById('ck1').checked=!!r.nofrac;
-  document.getElementById('ck2').checked=!!r.id;
-  document.getElementById('ck3').checked=!!r.evote;
-  document.getElementById('ck4').checked=!!r.egift;
-  document.getElementById('note').value=r.custom||'';
-  document.getElementById('MOD').classList.add('open');
+  document.getElementById('ck1').checked=!!r.nofrac; document.getElementById('ck2').checked=!!r.id;
+  document.getElementById('ck3').checked=!!r.evote; document.getElementById('ck4').checked=!!r.egift;
+  document.getElementById('note').value=r.custom||''; document.getElementById('MOD').classList.add('open');
 }
 function closeMod(){document.getElementById('MOD').classList.remove('open');ec=null;}
 function saveMod(){
   if(!ec)return;
-  const nofrac=document.getElementById('ck1').checked;
-  const id=document.getElementById('ck2').checked;
-  const evote=document.getElementById('ck3').checked;
-  const egift=document.getElementById('ck4').checked;
-  const custom=document.getElementById('note').value.trim();
-  if(nofrac||id||evote||egift||custom)rem[ec]={nofrac,id,evote,egift,custom};
-  else delete rem[ec];
-  
+  const nofrac=document.getElementById('ck1').checked, id=document.getElementById('ck2').checked, evote=document.getElementById('ck3').checked, egift=document.getElementById('ck4').checked, custom=document.getElementById('note').value.trim();
+  if(nofrac||id||evote||egift||custom)rem[ec]={nofrac,id,evote,egift,custom}; else delete rem[ec];
   closeMod(); rFull(); saveData();
 }
 
 function showStock(s, clickedRow){
   if(!s) return;
-  document.querySelectorAll('.detail-tr').forEach(r=>r.remove());
-  document.querySelectorAll('tr[data-code]').forEach(r=>r.classList.remove('sel'));
+  document.querySelectorAll('.detail-tr').forEach(r=>r.remove()); document.querySelectorAll('tr[data-code]').forEach(r=>r.classList.remove('sel'));
 
   if(clickedRow){
     clickedRow.classList.add('sel');
-    const d=days(s), c=s.cond||'';
+    const d=days(s), c=s.cond||''; const r=rem[s.code]||{};
     const holdTag=isH(s.code)?' <span class="tag hd" style="font-size:12px">你的持股</span>':'';
     const cpTag=s.cp?' <span class="tag cp" style="font-size:12px">高CP值</span>':'';
     const ipTag=s.ip?' <span style="color:var(--pu)">['+s.ip+']</span>':'';
     const urgTag=d<0?' <span style="color:var(--tx3)">(已截止)</span>':d<=7?' <span style="color:var(--rd)">⚠ 緊急！'+d+'天</span>':'';
-    const evColor=c.includes('ev')?'var(--am)':'var(--gn)';
-    const idColor=c.includes('id')?'var(--rd)':'var(--gn)';
-    const egLine=s.egift?'<span class="di-label"><i class="ico-chii hachi" style="width:1.2em;height:1.2em"></i> eGift 線上領取：</span><span style="color:var(--gn)">支援</span>（零股'+(s.os?'可':'不可')+'領）<br>':'';
-
-    const colSpan=clickedRow.querySelectorAll('td').length||9;
-    const detailTr=document.createElement('tr');
-    detailTr.className='detail-tr';
-    detailTr.innerHTML='<td colspan="'+colSpan+'">'+
-      '<div class="detail-inner">'+
-        '<button class="detail-close" id="btn-close-detail">✕ 關閉</button>'+
+    const noFracTag = r.nofrac ? '<br><span class="di-label"><i class="ico-chii usagi" style="width:1.2em;height:1.2em"></i> 零股領取：</span><span style="color:var(--rd)">不可領取</span>' : '';
+    const detailTr=document.createElement('tr'); detailTr.className='detail-tr';
+    detailTr.innerHTML='<td colspan="'+(clickedRow.querySelectorAll('td').length||9)+'">'+
+      '<div class="detail-inner"><button class="detail-close" id="btn-close-detail">✕ 關閉</button>'+
         '<strong>'+s.name+' ('+s.code+')</strong>'+holdTag+'<br>'+
         '<span class="di-label"><i class="ico-chii chii" style="width:1.2em;height:1.2em"></i> 股價：</span><span style="font-family:var(--mo);font-weight:900">'+(s.price||'—')+'</span> 元<br>'+
         '<span class="di-label"><i class="ico-chii hachi" style="width:1.2em;height:1.2em"></i> 紀念品：</span>'+s.gift+cpTag+ipTag+'<br>'+
         '<span class="di-label"><i class="ico-chii usagi" style="width:1.2em;height:1.2em"></i> 最後買進日：</span><span style="font-family:var(--mo);font-weight:900">'+lbs(s)+'</span>'+urgTag+'<br>'+
         '<span class="di-label"><i class="ico-chii chii" style="width:1.2em;height:1.2em"></i> 股東會日：</span><span style="font-family:var(--mo);font-weight:900">'+ms(s.meet)+'</span><br>'+
-        '<span class="di-label"><i class="ico-chii usagi" style="width:1.2em;height:1.2em"></i> 電子投票截圖：</span><span style="color:'+evColor+'">'+(c.includes('ev')?'需要':'不需要')+'</span><br>'+
-        '<span class="di-label"><i class="ico-chii hachi" style="width:1.2em;height:1.2em"></i> 身分證正本：</span><span style="color:'+idColor+'">'+(c.includes('id')?'需要':'不需要')+'</span><br>'+
-        egLine+
-      '</div>'+
-    '</td>';
-
+        '<span class="di-label"><i class="ico-chii usagi" style="width:1.2em;height:1.2em"></i> 電子投票截圖：</span><span style="color:'+((c.includes('ev')||r.evote)?'var(--am)':'var(--gn)')+'">'+((c.includes('ev')||r.evote)?'需要':'不需要')+'</span><br>'+
+        '<span class="di-label"><i class="ico-chii hachi" style="width:1.2em;height:1.2em"></i> 身分證正本：</span><span style="color:'+((c.includes('id')||r.id)?'var(--rd)':'var(--gn)')+'">'+((c.includes('id')||r.id)?'需要':'不需要')+'</span>'+
+        noFracTag +
+        ((s.egift||r.egift)?'<br><span class="di-label"><i class="ico-chii hachi" style="width:1.2em;height:1.2em"></i> eGift 線上領取：</span><span style="color:var(--gn)">支援</span>（零股'+((s.os && !r.nofrac)?'可':'不可')+'領）':'')+
+      '</div></td>';
     clickedRow.insertAdjacentElement('afterend', detailTr);
     detailTr.scrollIntoView({behavior:'smooth', block:'nearest'});
-    document.getElementById('btn-close-detail').addEventListener('click', ()=>{
-      detailTr.remove();
-      clickedRow.classList.remove('sel');
-    });
+    document.getElementById('btn-close-detail').addEventListener('click', ()=>{ detailTr.remove(); clickedRow.classList.remove('sel'); });
   }
 }
 
 async function doRefresh(){
-  const btn    = document.getElementById('btn-refresh');
-  const status = document.getElementById('refresh-status');
-
-  if(!WORKER_URL){
-    showWorkerSetup();
-    return;
-  }
-
-  btn.classList.remove('done','err');
-  btn.classList.add('loading');
-  btn.innerHTML = '<span class="spin">↻</span> 抓取中...';
-  status.textContent = '連線零股寶...';
-  status.style.color = 'var(--tx3)';
-
+  const btn=document.getElementById('btn-refresh'), status=document.getElementById('refresh-status');
+  if(!WORKER_URL){ showWorkerSetup(); return; }
+  btn.classList.remove('done','err'); btn.classList.add('loading'); btn.innerHTML='<span class="spin">↻</span> 抓取中...'; status.textContent='連線零股寶...'; status.style.color='var(--tx3)';
   try {
-    const ac = new AbortController();
-    const tm = setTimeout(()=>ac.abort(), 20000);
-    let res;
-    try {
-      res = await fetch(WORKER_URL, { signal: ac.signal });
-    } finally {
-      clearTimeout(tm);
-    }
-
+    const ac = new AbortController(); const tm = setTimeout(()=>ac.abort(), 20000);
+    let res; try { res = await fetch(WORKER_URL, { signal: ac.signal }); } finally { clearTimeout(tm); }
     if(!res.ok) throw new Error('Worker 回應 ' + res.status);
     const html = await res.text();
-    if(!html || html.length < 2000) throw new Error('回傳內容太短，可能 Worker 未正確部署');
+    if(!html || html.length < 2000) throw new Error('回傳內容太短');
     if(!html.includes('股東會') && !html.includes('stockgift')) throw new Error('非預期的回傳內容');
 
     const result = parseStockgift(html);
-    const svgIcon = '<svg width="16" height="16" viewBox="0 0 13 13" fill="none"><path d="M11.5 6.5A5 5 0 1 1 9 2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M9 2.1V0M9 2.1H7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
-
     btn.classList.remove('loading');
     if(result.total > 0){
-      btn.classList.add('done');
-      btn.innerHTML = svgIcon + ' 重整資料';
-      const now = new Date().toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'});
-      status.textContent = '✓ 共 '+result.total+' 筆，新增 '+result.added+'・更新 '+result.updated+'・'+now;
-      status.style.color = 'var(--gn)';
-      
-      const today = new Date();
-      const dateStr = today.getFullYear()+'/'
-        +String(today.getMonth()+1).padStart(2,'0')+'/'
-        +String(today.getDate()).padStart(2,'0');
-      const ut = document.getElementById('update-time');
-      if(ut) ut.textContent = `更新時間：${dateStr} (共存取 ${ALL.length} 筆)`;
-      
-      rFull();
-      saveData();
-      setTimeout(()=>{ btn.classList.remove('done'); status.textContent=''; }, 5000);
-    } else {
-      throw new Error('解析到 0 筆，請確認 Worker 是否正確回傳零股寶內容');
-    }
+      btn.classList.add('done'); btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 13 13" fill="none"><path d="M11.5 6.5A5 5 0 1 1 9 2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M9 2.1V0M9 2.1H7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> 重整資料';
+      status.textContent = '✓ 共 '+result.total+' 筆，新增 '+result.added+'・更新 '+result.updated+'・'+new Date().toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'}); status.style.color = 'var(--gn)';
+      const ut = document.getElementById('update-time'); if(ut) ut.textContent = `更新時間：${new Date().getFullYear()}/${String(new Date().getMonth()+1).padStart(2,'0')}/${String(new Date().getDate()).padStart(2,'0')} (共存取 ${ALL.length} 筆)`;
+      rFull(); saveData(); setTimeout(()=>{ btn.classList.remove('done'); status.textContent=''; }, 5000);
+    } else throw new Error('解析到 0 筆');
   } catch(err){
-    const svgIcon = '<svg width="16" height="16" viewBox="0 0 13 13" fill="none"><path d="M11.5 6.5A5 5 0 1 1 9 2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M9 2.1V0M9 2.1H7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
-    btn.classList.remove('loading');
-    btn.classList.add('err');
-    btn.innerHTML = svgIcon + ' 重整資料';
-    const msg = err.name === 'AbortError' ? 'Timeout（超過 20 秒）' : err.message;
-    status.textContent = '✗ ' + msg;
-    status.style.color = 'var(--rd)';
+    btn.classList.remove('loading'); btn.classList.add('err'); btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 13 13" fill="none"><path d="M11.5 6.5A5 5 0 1 1 9 2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M9 2.1V0M9 2.1H7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> 重整資料';
+    status.textContent = '✗ ' + (err.name === 'AbortError' ? 'Timeout' : err.message); status.style.color = 'var(--rd)';
     setTimeout(()=>{ btn.classList.remove('err'); }, 6000);
   }
 }
 
 function showWorkerSetup(){
-  const existing = document.getElementById('worker-setup');
-  if(existing){ existing.remove(); return; }
-
-  const panel = document.createElement('div');
-  panel.id = 'worker-setup';
+  if(document.getElementById('worker-setup')) return;
+  const panel = document.createElement('div'); panel.id = 'worker-setup';
   panel.style.cssText = 'background:var(--bg2);border:2px solid var(--br2);border-radius:var(--r2);padding:24px 28px;margin-bottom:20px;box-shadow:0 10px 25px rgba(255,182,185,.2)';
-  panel.innerHTML = `
-    <div style="font-size:16px;font-weight:900;font-family:var(--mo);color:var(--tx);margin-bottom:10px"><i class="ico-chii sparkle"></i> 設定 Cloudflare Worker URL</div>
-    <div style="font-size:14px;font-weight:800;color:var(--tx3);margin-bottom:16px;line-height:1.6">
-      需要先部署 <code style="background:var(--bg3);padding:2px 8px;border-radius:8px;font-family:var(--mo);color:var(--bl)">stockgift-worker.js</code>（已下載），然後把 Worker URL 填入下方喔 <i class="ico-chii usagi"></i><br>
-      部署教學：<a href="https://workers.cloudflare.com" target="_blank" style="color:var(--bl);font-weight:900">workers.cloudflare.com</a> → 新建 Worker → 貼上程式碼 → Save & Deploy → 複製 URL
-    </div>
-    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
-      <input id="worker-url-input" type="text"
-        placeholder="https://stockgift-proxy.你的帳號.workers.dev"
-        value="${WORKER_URL}"
-        style="flex:1;min-width:280px;font-size:15px;font-weight:800;font-family:var(--mo);padding:0 16px;height:46px;border:2px solid var(--br2);border-radius:16px;background:var(--bg);color:var(--tx);outline:none">
-      <button id="btn-save-worker" style="height:46px;padding:0 24px;font-size:15px;font-weight:900;font-family:var(--mo);border:none;border-radius:16px;background:var(--gn);color:#fff;cursor:pointer">儲存並重整 <i class="ico-chii sparkle"></i></button>
-      <button id="btn-cancel-worker" style="height:46px;padding:0 20px;font-size:15px;font-weight:900;font-family:var(--mo);border:2px solid var(--br);border-radius:16px;background:transparent;color:var(--tx2);cursor:pointer">取消</button>
-    </div>
-    <div id="worker-err" style="font-size:14px;font-weight:900;font-family:var(--mo);color:var(--rd);margin-top:10px;min-height:20px"></div>
-  `;
-
-  const tbar = document.querySelector('#tab-all .tbar');
-  tbar.parentNode.insertBefore(panel, tbar);
-
+  panel.innerHTML = `<div style="font-size:16px;font-weight:900;font-family:var(--mo);color:var(--tx);margin-bottom:10px"><i class="ico-chii sparkle"></i> 設定 Cloudflare Worker URL</div>
+    <div style="font-size:14px;font-weight:800;color:var(--tx3);margin-bottom:16px;line-height:1.6">需要先部署 <code style="background:var(--bg3);padding:2px 8px;border-radius:8px;font-family:var(--mo);color:var(--bl)">stockgift-worker.js</code>（已下載），然後把 Worker URL 填入下方喔 <i class="ico-chii usagi"></i></div>
+    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"><input id="worker-url-input" type="text" placeholder="https://stockgift-proxy.你的帳號.workers.dev" value="${WORKER_URL}" style="flex:1;min-width:280px;font-size:15px;font-weight:800;font-family:var(--mo);padding:0 16px;height:46px;border:2px solid var(--br2);border-radius:16px;background:var(--bg);color:var(--tx);outline:none">
+    <button id="btn-save-worker" style="height:46px;padding:0 24px;font-size:15px;font-weight:900;font-family:var(--mo);border:none;border-radius:16px;background:var(--gn);color:#fff;cursor:pointer">儲存並重整 <i class="ico-chii sparkle"></i></button>
+    <button id="btn-cancel-worker" style="height:46px;padding:0 20px;font-size:15px;font-weight:900;font-family:var(--mo);border:2px solid var(--br);border-radius:16px;background:transparent;color:var(--tx2);cursor:pointer">取消</button></div><div id="worker-err" style="font-size:14px;font-weight:900;font-family:var(--mo);color:var(--rd);margin-top:10px;min-height:20px"></div>`;
+  document.querySelector('#tab-all .tbar').parentNode.insertBefore(panel, document.querySelector('#tab-all .tbar'));
   document.getElementById('btn-save-worker').addEventListener('click', ()=>{
     const val = document.getElementById('worker-url-input').value.trim().replace(/\/$/,'');
     if(!val || !val.startsWith('http')){ document.getElementById('worker-err').innerHTML='請輸入有效的 URL <i class="ico-chii cry"></i>'; return; }
-    WORKER_URL = val;
-    localStorage.setItem('workerUrl', val);
-    panel.remove();
-    doRefresh();
+    WORKER_URL = val; localStorage.setItem('workerUrl', val); panel.remove(); doRefresh();
   });
   document.getElementById('btn-cancel-worker').addEventListener('click', ()=>panel.remove());
   document.getElementById('worker-url-input').addEventListener('keydown', e=>{ if(e.key==='Enter') document.getElementById('btn-save-worker').click(); });
-  document.getElementById('worker-url-input').focus();
 }
 
 function parseStockgift(html){
-  const existCodes = new Set(ALL.map(s=>s.code));
-  const egiftKw = ['商品卡','禮物卡','咖啡券','禮券','消費券','購物金','抵用券','兌換券'];
+  const existCodes = new Set(ALL.map(s=>s.code)), egiftKw = ['商品卡','禮物卡','咖啡券','禮券','消費券','購物金','抵用券','兌換券'];
   let added=0, updated=0, total=0;
-
-  const doc = new DOMParser().parseFromString(html,'text/html');
-  const trs = doc.querySelectorAll('tr');
-
+  const trs = new DOMParser().parseFromString(html,'text/html').querySelectorAll('tr');
   const parseD = s=>{ const p=(s||'').match(/(\d{2})\/(\d{2})\/(\d{2})/); return p?'20'+p[1]+'-'+p[2]+'-'+p[3]:null; };
   const stripTags = s=>(s||'').replace(/<[^>]+>/g,'').trim();
 
   trs.forEach(tr=>{
-    const tds = tr.querySelectorAll('td');
-    if(tds.length < 8) return;
+    const tds = tr.querySelectorAll('td'); if(tds.length < 8) return;
+    const code = stripTags(tds[1].innerHTML).replace(/\s+\d+\s*$/,'').trim(); if(!/^\d{4,5}$/.test(code)) return;
+    const lbo = parseD(stripTags(tds[4].innerHTML)), meet = parseD(stripTags(tds[5].innerHTML)); if(!lbo || !meet) return;
+    const gift = stripTags(tds[7].innerHTML).replace(/\([^)]*紀念品[^)]*\)/g,'').replace(/\([^)]*數量[^)]*\)/g,'').trim(); if(!gift || gift.length < 2) return;
 
-    const code = stripTags(tds[1].innerHTML).replace(/\s+\d+\s*$/,'').trim();
-    if(!/^\d{4,5}$/.test(code)) return;
-
-    const name     = stripTags(tds[2].innerHTML).replace(/\s+\d+\s*$/,'').trim();
-    const price    = parseFloat(stripTags(tds[3].innerHTML)) || 0;
-    const lbo      = parseD(stripTags(tds[4].innerHTML));
-    const meet     = parseD(stripTags(tds[5].innerHTML));
-    if(!lbo || !meet) return;
-
-    const gift = stripTags(tds[7].innerHTML)
-      .replace(/\([^)]*紀念品[^)]*\)/g,'')
-      .replace(/\([^)]*數量[^)]*\)/g,'')
-      .trim();
-    if(!gift || gift.length < 2) return;
-
-    const buyRaw = stripTags((tds[8]||{innerHTML:''}).innerHTML).trim();
-    const buyPrice = buyRaw && !/近期|決定|尚未/.test(buyRaw) ? parseFloat(buyRaw)||0 : 0;
-
+    const price = parseFloat(stripTags(tds[3].innerHTML)) || 0, name = stripTags(tds[2].innerHTML).replace(/\s+\d+\s*$/,'').trim();
     const condRaw = stripTags(tds[11].innerHTML) + ' ' + stripTags((tds[12]||{innerHTML:''}).innerHTML);
     let cond = '';
-    if(condRaw.includes('電子投票'))               cond += 'ev,';
-    if(/身分證|健保卡|駕照/.test(condRaw))          cond += 'id,';
-    if(/雲林|台南|新竹|桃園|高雄|地點/.test(condRaw)) cond += 'loc,';
-    cond = cond.replace(/,$/,'');
-
-    const isEgift = egiftKw.some(k=>gift.includes(k)) ? 1 : 0;
+    if(condRaw.includes('電子投票')) cond += 'ev,'; if(/身分證|健保卡|駕照/.test(condRaw)) cond += 'id,'; if(/雲林|台南|新竹|桃園|高雄|地點/.test(condRaw)) cond += 'loc,'; cond = cond.replace(/,$/,'');
     const entry = {code, name, price, gift, lbo, meet, cond};
-    if(isEgift){ entry.egift=1; entry.os=1; }
-    if(buyPrice>0){ entry.buyPrice=buyPrice; }
-
+    if(egiftKw.some(k=>gift.includes(k))){ entry.egift=1; entry.os=1; }
+    
     total++;
     if(existCodes.has(code)){
       const idx = ALL.findIndex(s=>s.code===code);
-      if(idx>=0){
-        ALL[idx].price=price; ALL[idx].gift=gift;
-        ALL[idx].lbo=lbo; ALL[idx].meet=meet; ALL[idx].cond=cond;
-        if(buyPrice>0) ALL[idx].buyPrice=buyPrice;
-        updated++;
-      }
-    } else {
-      ALL.push(entry); existCodes.add(code); added++;
-    }
+      if(idx>=0){ ALL[idx] = {...ALL[idx], price, gift, lbo, meet, cond}; updated++; }
+    } else { ALL.push(entry); existCodes.add(code); added++; }
   });
   return {added, updated, total};
 }
 
 document.addEventListener('click',e=>{
-  const ft=e.target.closest('.ft[data-etab]');
-  if(ft){document.querySelectorAll('.ft').forEach(t=>t.classList.remove('on'));ft.classList.add('on');etab=ft.dataset.etab;rEG();return;}
-  
-  const tn=e.target.closest('.tn[data-tab]');
-  if(tn){document.querySelectorAll('.tn').forEach(t=>t.classList.remove('on'));document.querySelectorAll('.tp').forEach(p=>p.classList.remove('on'));tn.classList.add('on');document.getElementById('tab-'+tn.dataset.tab).classList.add('on');return;}
-  
+  const ft=e.target.closest('.ft[data-etab]'); if(ft){document.querySelectorAll('.ft').forEach(t=>t.classList.remove('on'));ft.classList.add('on');etab=ft.dataset.etab;rEG();return;}
+  const tn=e.target.closest('.tn[data-tab]'); if(tn){document.querySelectorAll('.tn').forEach(t=>t.classList.remove('on'));document.querySelectorAll('.tp').forEach(p=>p.classList.remove('on'));tn.classList.add('on');document.getElementById('tab-'+tn.dataset.tab).classList.add('on');return;}
   if(e.target.id==='btn-eg-all'){
     const p=document.getElementById('peg');
     if(p.style.display==='none' || p.style.display==='') {
       p.style.display='block';
-      document.getElementById('teg').innerHTML=fmt(
-        '<i class="ico-chii sparkle"></i> 幾乎所有 eGift 標的都需要電子投票截圖才能領取喔！\n'+
-        '<i class="ico-chii chii"></i> 部分需加上身分證正本：浩鼎、普誠、點序、旭軟等\n'+
-        '<i class="ico-chii hachi"></i> 你的持股中，大同(2371) 零股可領且支援 eGift\n'+
-        '<i class="ico-chii usagi"></i> 尚未截止：日馳(1526) 最後買進日4/22、永虹先進(6618) 4/28\n\n'+
-        '<i class="ico-chii sparkle"></i> 操作小撇步\n1. 完成股東會電子投票並截圖存好\n2. 前往集保e股利APP或指定平台領取\n3. 需身分證者請帶原件正本'
-      );
-    } else {
-      p.style.display='none';
-    }
+      document.getElementById('teg').innerHTML=fmt('<i class="ico-chii sparkle"></i> 幾乎所有 eGift 標的都需要電子投票截圖才能領取喔！\n<i class="ico-chii chii"></i> 部分需加上身分證正本：浩鼎、普誠、點序、旭軟等\n<i class="ico-chii hachi"></i> 你的持股中，大同(2371) 零股可領且支援 eGift\n<i class="ico-chii usagi"></i> 尚未截止：日馳(1526) 最後買進日4/22、永虹先進(6618) 4/28\n\n<i class="ico-chii sparkle"></i> 操作小撇步\n1. 完成股東會電子投票並截圖存好\n2. 前往集保e股利APP或指定平台領取\n3. 需身分證者請帶原件正本');
+    } else p.style.display='none';
     return;
   }
-  
-  const ei=e.target.closest('[data-ei]');
-  if(ei){
-    const eg=ALL.filter(s=>s.egift);
-    let list=eg;
-    if(etab==='os')list=eg.filter(s=>s.os);
-    else if(etab==='full')list=eg.filter(s=>!s.os);
-    showStock(list[+ei.dataset.ei]);return;
-  }
-  
-  const hi=e.target.closest('.hc[data-hcode]');
-  if(hi){
-    hi.classList.toggle('open');
-    const hd = hi.querySelector('.h-detail');
-    if(hd) {
-      if(hi.classList.contains('open')) { hd.style.display = 'block'; } 
-      else { hd.style.display = 'none'; }
-    }
-    return;
-  }
-  
+  const ei=e.target.closest('[data-ei]'); if(ei){ const eg=ALL.filter(s=>s.egift); let list=eg; if(etab==='os')list=eg.filter(s=>s.os); else if(etab==='full')list=eg.filter(s=>!s.os); showStock(list[+ei.dataset.ei]);return; }
+  const hi=e.target.closest('.hc[data-hcode]'); if(hi){ hi.classList.toggle('open'); const hd = hi.querySelector('.h-detail'); if(hd) { hd.style.display = hi.classList.contains('open') ? 'block' : 'none'; } return; }
   if(e.target.id==='btn-add'){addH();return;}
-  const mafBtn=e.target.closest('[data-maf]');
-  if(mafBtn){mineFilter=mafBtn.dataset.maf;rFull();return;}
-  const aidBtn=e.target.closest('[data-aid]');
-  if(aidBtn&&!e.target.closest('[data-adel]')){curAcct=aidBtn.dataset.aid;rHoldings();return;}
-  const adelBtn=e.target.closest('[data-adel]');
-  if(adelBtn){delAcct(adelBtn.dataset.adel);return;}
+  const mafBtn=e.target.closest('[data-maf]'); if(mafBtn){mineFilter=mafBtn.dataset.maf;rFull();return;}
+  const aidBtn=e.target.closest('[data-aid]'); if(aidBtn&&!e.target.closest('[data-adel]')){curAcct=aidBtn.dataset.aid;rHoldings();return;}
+  const adelBtn=e.target.closest('[data-adel]'); if(adelBtn){delAcct(adelBtn.dataset.adel);return;}
   if(e.target.id==='btn-new-acct'){addAcct();return;}
-  if(e.target.id==='btn-rename'){
-    const v=document.getElementById('acct-name-input').value.trim();
-    if(v){ curA().name=v; rHoldings(); rFull(); saveData(); }
-    return;
-  }
-  const acolor=e.target.closest('[data-acolor]');
-  if(acolor){ curA().color=acolor.dataset.acolor; rHoldings(); rFull(); saveData(); return; }
-  const del=e.target.closest('[data-del]');
-  if(del){
-    const codeToDelete = del.dataset.del;
-    curA().holdings=curA().holdings.filter(h=>h.code!==codeToDelete); 
-    rHoldings(); rFull(); saveData(); return;
-  }
-  const ed=e.target.closest('[data-edit]');
-  if(ed){openMod(ed.dataset.edit);return;}
+  if(e.target.id==='btn-rename'){ const v=document.getElementById('acct-name-input').value.trim(); if(v){ curA().name=v; rHoldings(); rFull(); saveData(); } return; }
+  const acolor=e.target.closest('[data-acolor]'); if(acolor){ curA().color=acolor.dataset.acolor; rHoldings(); rFull(); saveData(); return; }
+  const del=e.target.closest('[data-del]'); if(del){ curA().holdings=curA().holdings.filter(h=>h.code!==del.dataset.del); rHoldings(); rFull(); saveData(); return; }
+  const ed=e.target.closest('[data-edit]'); if(ed){openMod(ed.dataset.edit);return;}
   const row=e.target.closest('tr[data-code]');
   if(row&&!e.target.closest('[data-edit]')){
-    const code=row.dataset.code;
-    if(row.classList.contains('sel') && row.nextElementSibling && row.nextElementSibling.classList.contains('detail-tr')){
-      row.nextElementSibling.remove();
-      row.classList.remove('sel');
-      return;
-    }
-    showStock(ALL.find(x=>x.code===code), row);
-    return;
+    if(row.classList.contains('sel') && row.nextElementSibling && row.nextElementSibling.classList.contains('detail-tr')){ row.nextElementSibling.remove(); row.classList.remove('sel'); return; }
+    showStock(ALL.find(x=>x.code===row.dataset.code), row); return;
   }
   if(e.target.id==='btn-srch'){aq=document.getElementById('srch').value.toLowerCase().trim();rFull();}
   if(e.target.id==='btn-refresh'||e.target.closest('#btn-refresh')){doRefresh();return;}
-  if(e.target.id==='btnmc')closeMod();
-  if(e.target.id==='btnms')saveMod();
-  if(e.target===document.getElementById('MOD'))closeMod();
+  if(e.target.id==='btnmc'||e.target===document.getElementById('MOD'))closeMod(); if(e.target.id==='btnms')saveMod();
 });
 
-document.getElementById('fu').addEventListener('change',rFull);
-document.getElementById('fc').addEventListener('change',rFull);
+document.getElementById('fu').addEventListener('change',rFull); document.getElementById('fc').addEventListener('change',rFull);
 document.getElementById('srch').addEventListener('keydown',e=>{if(e.key==='Enter'){aq=e.target.value.toLowerCase().trim();rFull();}});
 
 let searchTimer = null;
-document.getElementById('add-code').addEventListener('input', e => {
-  clearTimeout(searchTimer);
-  const val = e.target.value.trim().toUpperCase();
-  if (val.length >= 4) { 
-    searchTimer = setTimeout(async () => {
-      let stock = findStockInfo(val, 'code');
-      if (!stock) stock = await searchYahoo(val);
-      if (stock && stock.name && document.getElementById('add-code').value.trim().toUpperCase() === val) {
-        document.getElementById('add-name').value = stock.name;
-      }
-    }, 400);
-  }
-});
+document.getElementById('add-code').addEventListener('input', e => { clearTimeout(searchTimer); const val = e.target.value.trim().toUpperCase(); if (val.length >= 4) { searchTimer = setTimeout(async () => { let stock = findStockInfo(val, 'code') || await searchYahoo(val); if (stock?.name && document.getElementById('add-code').value.trim().toUpperCase() === val) { document.getElementById('add-name').value = stock.name; } }, 400); } });
 document.getElementById('add-code').addEventListener('keydown',e=>{if(e.key==='Enter')addH();});
+document.getElementById('add-name').addEventListener('input', e => { clearTimeout(searchTimer); const val = e.target.value.trim(); if (val.length >= 2) { searchTimer = setTimeout(async () => { let stock = findStockInfo(val, 'name') || await searchYahoo(val); if (stock?.code && document.getElementById('add-name').value.trim() === val) { document.getElementById('add-code').value = stock.code; } }, 400); } });
+document.getElementById('add-name').addEventListener('keydown', e => { if(e.key === 'Enter') addH(); });
 
-document.getElementById('add-name').addEventListener('input', e => {
-  clearTimeout(searchTimer);
-  const val = e.target.value.trim();
-  if (val.length >= 2) { 
-    searchTimer = setTimeout(async () => {
-      let stock = findStockInfo(val, 'name');
-      if (!stock) stock = await searchYahoo(val);
-      if (stock && stock.code && document.getElementById('add-name').value.trim() === val) {
-        document.getElementById('add-code').value = stock.code;
-      }
-    }, 400);
-  }
-});
-document.getElementById('add-name').addEventListener('keydown', e => {
-  if(e.key === 'Enter') addH();
-});
+const cMsg = document.getElementById('c-msg'), chiikawaQuotes = ["呀哈！<br>有什麼可以幫忙的嗎？", "總會有辦法的！ <i class='ico-chii hachi'></i>", "一起吃糰子吧 <i class='ico-chii chii'></i>", "噗嚕嚕嚕... <i class='ico-chii usagi'></i>", "股東會紀念品讚啦！", "快點買進！<br>要來不及了 <i class='ico-chii cry'></i>", "哇...<br>好多紀念品 <i class='ico-chii sparkle'></i>", "烏薩奇大推！<i class='ico-chii usagi'></i>", "記得要電子投票喔 <i class='ico-chii hachi'></i>"];
+document.getElementById('c-float').addEventListener('click', () => { cMsg.innerHTML = chiikawaQuotes[Math.floor(Math.random() * chiikawaQuotes.length)]; });
 
-// 🌸 隨機對話框邏輯
-const cMsg = document.getElementById('c-msg');
-const chiikawaQuotes = [
-  "呀哈！<br>有什麼可以幫忙的嗎？",
-  "總會有辦法的！ <i class='ico-chii hachi'></i>",
-  "一起吃糰子吧 <i class='ico-chii chii'></i>",
-  "噗嚕嚕嚕... <i class='ico-chii usagi'></i>",
-  "股東會紀念品讚啦！",
-  "快點買進！<br>要來不及了 <i class='ico-chii cry'></i>",
-  "哇...<br>好多紀念品 <i class='ico-chii sparkle'></i>",
-  "烏薩奇大推！<i class='ico-chii usagi'></i>",
-  "記得要電子投票喔 <i class='ico-chii hachi'></i>"
-];
-document.getElementById('c-float').addEventListener('click', () => {
-  cMsg.innerHTML = chiikawaQuotes[Math.floor(Math.random() * chiikawaQuotes.length)];
-});
-
-(async function init() {
-  await loadData();
-})();
-
+(async function init() { await loadData(); })();
 </script>
 </body>
 </html>
