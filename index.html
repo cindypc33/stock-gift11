@@ -27,7 +27,7 @@
   --blb: rgba(139, 190, 234, 0.15);
   --am: #f3b562;       /* 蜂蜜橘（烏薩奇色） */
   --amb: rgba(243, 181, 98, 0.15);
-  --rd: #f28b82;       /* 柔和紅（吉依卡娃粉） */
+  --rd: #f28b82;       /* 柔和紅（吉伊卡娃粉） */
   --rdb: rgba(242, 139, 130, 0.15);
   --pu: #cbbadd;       /* 薰衣草紫 */
   --pub: rgba(203, 186, 221, 0.15);
@@ -38,6 +38,22 @@
   --r2: 24px;          
 }
 *{box-sizing:border-box;margin:0;padding:0}
+
+/* 🌸 吉依卡娃專屬動態圖標 (替換 Emoji) 🌸 */
+.ico-chii {
+  display: inline-block;
+  width: 1.4em;
+  height: 1.4em;
+  vertical-align: -0.25em;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.ico-chii.chii { background-image: url('https://media.tenor.com/lM5qBq4E-1QAAAAi/chiikawa.gif'); }
+.ico-chii.hachi { background-image: url('https://media.tenor.com/6U8X-49Qy5gAAAAi/hachiware-chiikawa.gif'); }
+.ico-chii.usagi { background-image: url('https://media.tenor.com/zWz2J_s1vVEAAAAi/usagi-chiikawa.gif'); }
+.ico-chii.cry { background-image: url('https://media.tenor.com/XqU0_yN5G1cAAAAi/chiikawa-crying.gif'); }
+.ico-chii.sparkle { background-image: url('https://media.tenor.com/71s8L5pA57wAAAAi/chiikawa-happy.gif'); }
 
 /* 🌸 吉依卡娃浮水印與點點背景 🌸 */
 body{
@@ -51,7 +67,7 @@ body{
   min-height: 100vh;
   position: relative;
 }
-/* 超微美浮水印效果 */
+/* 超微美浮水印效果 (GitHub 直連網址) */
 body::before {
   content: '';
   position: fixed;
@@ -60,7 +76,7 @@ body::before {
   transform: translate(-50%, -50%);
   width: 500px;
   height: 500px;
-  background-image: url('https://raw.githubusercontent.com/cindypc33/stock-gift11/main/chiikawa.png'); /* GitHub直連網址 */
+  background-image: url('https://raw.githubusercontent.com/cindypc33/stock-gift11/main/chiikawa.png'); 
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -202,11 +218,11 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
 .badge.soon{background:var(--amb);color:var(--am);border:2px solid rgba(243,181,98,.4)}
 .badge.ok{background:var(--gnb);color:var(--gn);border:2px solid rgba(98,177,176,.4)}
 .badge.passed{
-  background: #705b63; /* 深灰咖啡底色 */
-  color: #ffffff;      /* 白色字體 */
+  background: #705b63; 
+  color: #ffffff;      
   border: 2px solid #4a3b40;
-  box-shadow: 2px 2px 0px rgba(0,0,0,0.15); /* 強烈立體感 */
-  transform: rotate(-3deg); /* 蓋章的歪斜感 */
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.15); 
+  transform: rotate(-3deg); 
   letter-spacing: 0.5px;
 }
 
@@ -227,7 +243,7 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
 .har{display:flex;gap:10px;align-items:center;margin-bottom:14px}
 .har input{font-size:15px;font-weight:800;font-family:var(--mo);padding:0 14px;height:44px;border:2px solid var(--br);border-radius:var(--r);background:var(--bg);color:var(--tx);outline:none}
 .har input:focus{border-color:var(--br2)}
-.har input::placeholder{color:var(--tx3);font-weight:700}
+.har input::placeholder{color:var(--tx3);font-weight:800}
 .hcode{width:110px}.hname{width:130px}
 .hadd{height:44px;padding:0 18px;font-size:15px;font-weight:900;font-family:var(--mo);border:2px solid var(--gn);border-radius:var(--r);background:var(--gn);color:#fff;cursor:pointer;transition:.2s;flex-shrink:0}
 .hadd:hover{background:#4d9a99;border-color:#4d9a99}
@@ -416,27 +432,27 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
 <body>
 <header class="hdr">
   <div class="hdr-in">
-    <div class="logo">🌸 股東會紀念品追蹤器 ૮( ⸝⸝´ ꒳ `⸝⸝ )ა</div>
+    <div class="logo"><i class="ico-chii sparkle"></i> 股東會紀念品追蹤器 <i class="ico-chii chii"></i></div>
     <span id="update-time" style="font-size:13px;font-weight:900;font-family:var(--mo);color:var(--tx3);margin-left:12px">更新時間：2026/03/20 (共存取 120 筆)</span>
     <span id="cloud-status" style="font-size:13px;font-weight:900;font-family:var(--mo);color:var(--tx3);margin-left:10px;padding:4px 10px;border:2px dashed var(--br);border-radius:12px;display:none;"></span>
-    <a class="hlink" href="https://stockgift.tw/STOCK/Stock/Info" target="_blank">前往零股寶 🐥</a>
+    <a class="hlink" href="https://stockgift.tw/STOCK/Stock/Info" target="_blank">前往零股寶 <i class="ico-chii hachi"></i></a>
   </div>
 </header>
 
 <main class="main">
 
 <div class="mets">
-  <div class="met g"><div class="met-l">我的持股有紀念品</div><div class="met-v" id="m2">—</div><div class="met-s">吉依卡娃陪你領 🐹</div></div>
-  <div class="met b"><div class="met-l">已公告清單</div><div class="met-v" id="m1">—</div><div class="met-s">小巴幫你查 🐱</div></div>
-  <div class="met a"><div class="met-l">需身分證正本</div><div class="met-v" id="m3">—</div><div class="met-s">烏薩奇提醒你 🐰</div></div>
-  <div class="met p"><div class="met-l">eGift 線上領</div><div class="met-v" id="m4">—</div><div class="met-s">檔可線上領取 ✨</div></div>
+  <div class="met g"><div class="met-l">我的持股有紀念品</div><div class="met-v" id="m2">—</div><div class="met-s">吉依卡娃陪你領 <i class="ico-chii chii"></i></div></div>
+  <div class="met b"><div class="met-l">已公告清單</div><div class="met-v" id="m1">—</div><div class="met-s">小巴幫你查 <i class="ico-chii hachi"></i></div></div>
+  <div class="met a"><div class="met-l">需身分證正本</div><div class="met-v" id="m3">—</div><div class="met-s">烏薩奇提醒你 <i class="ico-chii usagi"></i></div></div>
+  <div class="met p"><div class="met-l">eGift 線上領</div><div class="met-v" id="m4">—</div><div class="met-s">檔可線上領取 <i class="ico-chii sparkle"></i></div></div>
 </div>
 
 <section>
   <div class="sh">
     <div>
-      <div class="st">🔥 烏薩奇大推！熱門零股專區 🐰</div>
-      <div class="ssub">市場最熱議 · 依討論熱度排名 · 點擊卡片會自動展開分析喔 🐰</div>
+      <div class="st"><i class="ico-chii usagi"></i> 烏薩奇大推！熱門零股專區</div>
+      <div class="ssub">市場最熱議 · 依討論熱度排名 · 點擊卡片會自動展開分析喔 <i class="ico-chii usagi" style="width:1.2em;height:1.2em"></i></div>
     </div>
   </div>
   <div class="hgg" id="HG"></div>
@@ -449,14 +465,14 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
     <div style="width:100%">
       <div style="display:flex; justify-content:space-between; align-items:center;">
         <div>
-          <div class="st">🎁 小巴最愛！eGift 電子化專區 🐱</div>
+          <div class="st"><i class="ico-chii hachi"></i> 小巴最愛！eGift 電子化專區</div>
           <div class="ssub">藍框=零股可領 · 橘框=需持滿1張 · 點擊卡片查看詳情</div>
         </div>
-        <button class="secbtn" id="btn-eg-all">📝 點我看整體分析</button>
+        <button class="secbtn" id="btn-eg-all"><i class="ico-chii sparkle"></i> 點我看整體分析</button>
       </div>
       <!-- eGift整體分析區塊 -->
       <div class="ipnl" id="peg" style="display:none;">
-        <div class="iphd">✨ eGift 整體分析 ૮ ˶ᵔ ᵕ ᵔ˶ ა</div>
+        <div class="iphd"><i class="ico-chii sparkle"></i> eGift 整體分析 <i class="ico-chii chii"></i></div>
         <div class="ipbd" id="teg"></div>
       </div>
     </div>
@@ -480,7 +496,7 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
 
 <div class="tp on" id="tab-all">
   <div class="tbar">
-    <div class="sg"><input type="text" id="srch" placeholder="輸入股號、股名... 烏薩奇幫你找 🐰🔍"><button class="sqb" id="btn-srch">搜尋</button></div>
+    <div class="sg"><input type="text" id="srch" placeholder="輸入股號、股名... (烏薩奇幫你找！)"><button class="sqb" id="btn-srch">搜尋</button></div>
     <select id="fu">
       <option value="all">全部狀態</option>
       <option value="u">緊急(7天內)</option>
@@ -529,7 +545,7 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
   <div class="pgn" id="pg-mine"></div>
   <div id="no-match" style="display:none;padding:3rem;text-align:center;font-size:16px;font-weight:900;font-family:var(--mo);color:var(--tx3)">
     <img src="https://raw.githubusercontent.com/cindypc33/stock-gift11/main/chiikawa.png" style="width:140px; border-radius:24px; margin-bottom:16px; border:3px dashed var(--br2); opacity:0.8"><br>
-    你的持股中目前尚無已公告紀念品的股票...<br>吉依卡娃都要哭了 嗚嗚 ( ߹꒳߹ )
+    你的持股中目前尚無已公告紀念品的股票...<br>吉依卡娃都要哭了 嗚嗚 <br><i class="ico-chii cry" style="width:3em;height:3em"></i>
   </div>
 </div>
 
@@ -544,14 +560,14 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
     </div>
     <div class="color-picks" id="color-picks"></div>
     <div class="hp" style="margin-bottom:0">
-      <div class="hpt">✨ 吉依卡娃的持股小本本 🐹</div>
+      <div class="hpt"><i class="ico-chii chii"></i> 吉依卡娃的持股小本本</div>
       <div class="har">
         <input type="text" class="hcode" id="add-code" placeholder="股票代號" maxlength="6">
         <input type="text" class="hname" id="add-name" placeholder="股名（選填）">
-        <button class="hadd" id="btn-add">➕ 新增</button>
+        <button class="hadd" id="btn-add"><i class="ico-chii sparkle" style="width:1em;height:1em"></i> 新增</button>
       </div>
       <div class="errmsg" id="add-err"></div>
-      <div class="hpm">此帳號持股 <span id="holding-count" style="font-weight:900;color:var(--tx)">0</span> 檔　· 綠色 = 已有紀念品公告 🌸</div>
+      <div class="hpm">此帳號持股 <span id="holding-count" style="font-weight:900;color:var(--tx)">0</span> 檔　· 綠色 = 已有紀念品公告 <i class="ico-chii sparkle"></i></div>
       <div class="cr" id="holding-grid"></div>
     </div>
   </div>
@@ -560,12 +576,12 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
 <div class="modw" id="MOD">
   <div class="mod">
     <h3 id="modtitle">備註</h3>
-    <div class="modl">快速標籤 🔖</div>
+    <div class="modl">快速標籤 <i class="ico-chii hachi"></i></div>
     <label class="ckr"><input type="checkbox" id="ck1"> 零股不能領取</label>
     <label class="ckr"><input type="checkbox" id="ck2"> 需攜帶身分證</label>
     <label class="ckr"><input type="checkbox" id="ck3"> 需完成電子投票</label>
     <label class="ckr"><input type="checkbox" id="ck4"> 支援 eGift 線上領取</label>
-    <div class="modl" style="margin-top:16px">自訂備註 📝</div>
+    <div class="modl" style="margin-top:16px">自訂備註 <i class="ico-chii usagi"></i></div>
     <textarea class="nin" id="note" placeholder="例：1股可領、需APP認證..."></textarea>
     <div class="mac"><button class="bc" id="btnmc">取消</button><button class="bs2" id="btnms">儲存</button></div>
   </div>
@@ -574,7 +590,7 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
 <!-- 🌸 吉依卡娃實體浮動精靈 🌸 -->
 <div class="chiikawa-float" id="c-float">
   <div class="speech-bubble" id="c-msg">呀哈！<br>有什麼可以幫忙的嗎？</div>
-  <img src="https://raw.githubusercontent.com/cindypc33/stock-gift11/main/chiikawa.png" alt="吉依卡娃小隊" class="chiikawa-img" onerror="this.style.display='none'; document.getElementById('c-msg').innerHTML='圖片讀取失敗 🥲';">
+  <img src="https://raw.githubusercontent.com/cindypc33/stock-gift11/main/chiikawa.png" alt="吉依卡娃小隊" class="chiikawa-img" onerror="this.style.display='none'; document.getElementById('c-msg').innerHTML='圖片讀取失敗 <i class=\'ico-chii cry\'></i>';">
 </div>
 
 <script>
@@ -709,14 +725,14 @@ const ALL=[
 ];
 
 const HEAT={
-  '1432':{heat:12400,restrict:'零股可領，電投截圖，eGift線上領',analysis:'大魯閣(1432) ⚾\n• 18.5元→4,200元消費券，CP值全場最高！\n• eGift完全線上領，需電子投票截圖喔'},
-  '2303':{heat:10850,restrict:'零股不能領取，需電投截圖',analysis:'聯電(2303) 🐶\n• 這次是可愛的 Snoopy 聯名保溫瓶！\n• 零股不能領取 🥲\n• 需持滿1張（1000股）+電投截圖'},
-  '1101':{heat:8200,restrict:'零股可領，需電投截圖',analysis:'台泥(1101) 🌿\n• 環保又實用的折疊提包\n• 零股可以領喔，記得完成電子投票截圖！'},
-  '2614':{heat:7800,restrict:'零股可領，需電投截圖',analysis:'東森(2614) ✨\n• 保濕潔面霜市價近 2,000 元，CP值極高\n• 零股可以領，需電子投票截圖'},
-  '1708':{heat:6900,restrict:'零股可領，需電投截圖',analysis:'東鹼(1708) 🧼\n• 小蘇打粉清潔組，居家好幫手\n• 零股可以領，需電子投票截圖'},
-  '4102':{heat:6200,restrict:'零股可領，需電投截圖',analysis:'永日(4102) 💊\n• 送益生菌（市價880元），CP值超級高！\n• 零股可以領，需電子投票截圖'},
-  '2002':{heat:5800,restrict:'待公告，需電投截圖',analysis:'中鋼(2002) ⚙️\n• 歷年紀念品都會造成熱烈搶兌\n• 今年品項待公告，記得先買進並準備電投！'},
-  '3714':{heat:5200,restrict:'零股可領，需電投截圖',analysis:'富采(3714) 🐱\n• 送黃阿瑪後宮生活聯名雙層碗，超可愛！\n• 零股可以領，需電子投票截圖'},
+  '1432':{heat:12400,restrict:'零股可領，電投截圖，eGift線上領',analysis:'大魯閣(1432) <i class="ico-chii usagi"></i>\n• 18.5元→4,200元消費券，CP值全場最高！\n• eGift完全線上領，需電子投票截圖喔'},
+  '2303':{heat:10850,restrict:'零股不能領取，需電投截圖',analysis:'聯電(2303) <i class="ico-chii hachi"></i>\n• 這次是可愛的 Snoopy 聯名保溫瓶！\n• 零股不能領取 <i class="ico-chii cry"></i>\n• 需持滿1張（1000股）+電投截圖'},
+  '1101':{heat:8200,restrict:'零股可領，需電投截圖',analysis:'台泥(1101) <i class="ico-chii chii"></i>\n• 環保又實用的折疊提包\n• 零股可以領喔，記得完成電子投票截圖！'},
+  '2614':{heat:7800,restrict:'零股可領，需電投截圖',analysis:'東森(2614) <i class="ico-chii sparkle"></i>\n• 保濕潔面霜市價近 2,000 元，CP值極高\n• 零股可以領，需電子投票截圖'},
+  '1708':{heat:6900,restrict:'零股可領，需電投截圖',analysis:'東鹼(1708) <i class="ico-chii hachi"></i>\n• 小蘇打粉清潔組，居家好幫手\n• 零股可以領，需電子投票截圖'},
+  '4102':{heat:6200,restrict:'零股可領，需電投截圖',analysis:'永日(4102) <i class="ico-chii chii"></i>\n• 送益生菌（市價880元），CP值超級高！\n• 零股可以領，需電子投票截圖'},
+  '2002':{heat:5800,restrict:'待公告，需電投截圖',analysis:'中鋼(2002) <i class="ico-chii usagi"></i>\n• 歷年紀念品都會造成熱烈搶兌\n• 今年品項待公告，記得先買進並準備電投！'},
+  '3714':{heat:5200,restrict:'零股可領，需電投截圖',analysis:'富采(3714) <i class="ico-chii hachi"></i>\n• 送黃阿瑪後宮生活聯名雙層碗，超可愛！\n• 零股可以領，需電子投票截圖'},
 };
 
 const HOT=[
@@ -904,7 +920,7 @@ function ct(s){
 }
 const esvg=()=>`<svg class="ei" viewBox="0 0 16 16" fill="none"><path d="M11 2.5L13.5 5L5.5 13H3V10.5L11 2.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 const ch=()=>((Math.random()-0.47)*2.8).toFixed(2);
-const fmt=t=>t.replace(/\n/g,'<br>').replace(/•/g,'<span style="color:var(--gn);font-weight:900">🌸</span>');
+const fmt=t=>t.replace(/\n/g,'<br>').replace(/•/g,'<i class="ico-chii sparkle" style="width:1em;height:1em"></i>');
 
 function rRow(s){
   const d=days(s),c=ch(),up=parseFloat(c)>=0,sg=up?'+':'';
@@ -985,8 +1001,8 @@ function rHot(){
     const pct=Math.round(h.heat/maxHeat*100);
     return`<div class="hc" data-hcode="${s.code}">
       <div class="hht">
-        <span class="rk ${rks[i]||'rn'}">${i===0?'#1 🌟':`#${i+1}`}</span>
-        <span style="font-size:13px;font-family:var(--mo);font-weight:800;color:var(--tx3)">${h.heat.toLocaleString()} 🔥</span>
+        <span class="rk ${rks[i]||'rn'}">${i===0?'#1 <i class="ico-chii sparkle" style="width:1em;height:1em"></i>':`#${i+1}`}</span>
+        <span style="font-size:13px;font-family:var(--mo);font-weight:800;color:var(--tx3)">${h.heat.toLocaleString()} <i class="ico-chii usagi" style="width:1.2em;height:1.2em"></i></span>
       </div>
       <div style="margin-top:10px">
         <span class="cf">${s.code}</span>
@@ -1010,6 +1026,7 @@ function rHot(){
   }).join('');
 }
 
+// 每日動態排序邏輯：只要過期的（剩餘天數 < 0）絕對推到最底部
 function smartSort(a,b){
   const da=days(a), db=days(b);
   const aExp = da < 0;
@@ -1046,7 +1063,7 @@ function rFull(){
   buildPg(fa.length,1,'pg-all',goAll);
 
   const acctLabel=mineFilter==='all'?'所有帳號':(accounts.find(a=>a.id===mineFilter)||{name:'?'}).name;
-  document.getElementById('mine-hint').textContent=acctLabel+'・持股中有 '+fm.length+' 檔已公告紀念品 🐰';
+  document.getElementById('mine-hint').textContent=acctLabel+'・持股中有 '+fm.length+' 檔已公告紀念品 <i class="ico-chii usagi"></i>';
   const maf=document.getElementById('mine-acct-filter');
   if(maf){maf.innerHTML=['all',...accounts.map(a=>a.id)].map(id=>{
     const label=id==='all'?'全部帳號':(accounts.find(a=>a.id===id)||{name:'?'}).name;
@@ -1089,13 +1106,13 @@ function rHoldings(){
         '<span class="acct-del" data-adel="'+a.id+'">✕</span>'+
       '</button>';
     }).join('')+
-    '<button class="acct-add" id="btn-new-acct">➕ 新增帳號</button>';
+    '<button class="acct-add" id="btn-new-acct"><i class="ico-chii sparkle"></i> 新增帳號</button>';
   }
   const ni=document.getElementById('acct-name-input');
   if(ni)ni.value=curA().name;
   const cp=document.getElementById('color-picks');
   if(cp){
-    cp.innerHTML='<span style="font-size:14px;font-weight:900;font-family:var(--mo);color:var(--tx2);margin-right:4px">選個顏色吧 🎨：</span>'+
+    cp.innerHTML='<span style="font-size:14px;font-weight:900;font-family:var(--mo);color:var(--tx2);margin-right:4px">選個顏色吧 <i class="ico-chii hachi"></i>：</span>'+
       ACCT_COLORS.map(c=>'<div class="acct-color'+(curA().color===c?' sel':'')+'" data-acolor="'+c+'" style="background:'+c+'"></div>').join('');
   }
 }
@@ -1132,7 +1149,7 @@ async function addH(){
   const btn = document.getElementById('btn-add');
   
   btn.disabled = true;
-  btn.textContent = '搜尋中... 🔍';
+  btn.textContent = '搜尋中...';
   err.textContent = '';
   
   try {
@@ -1142,10 +1159,10 @@ async function addH(){
           if(stock) { code = stock.code; name = stock.name; }
       }
       
-      if(!code) { err.textContent='請輸入股票代號（或系統無法識別該股名）💦'; return; }
+      if(!code) { err.textContent='請輸入股票代號（或系統無法識別該股名）'; return; }
       
       const a = curA();
-      if(a.holdings.some(h => h.code === code)) { err.textContent = code + ' 已在此帳號中囉 🐰'; return; }
+      if(a.holdings.some(h => h.code === code)) { err.textContent = code + ' 已在此帳號中囉'; return; }
       
       let trueStock = findStockInfo(code, 'code');
       if(!trueStock) trueStock = await searchYahoo(code);
@@ -1169,7 +1186,7 @@ async function addH(){
       
   } finally {
       btn.disabled = false;
-      btn.textContent = '➕ 新增';
+      btn.innerHTML = '<i class="ico-chii sparkle" style="width:1em;height:1em"></i> 新增';
   }
 }
 
@@ -1186,7 +1203,7 @@ function addAcct(){
 }
 
 function delAcct(id){
-  if(accounts.length<=1){alert('至少需保留一個帳號 💦');return;}
+  if(accounts.length<=1){alert('至少需保留一個帳號喔！');return;}
   const targetAcct = accounts.find(a => a.id === id);
   const acctName = targetAcct ? targetAcct.name : '此帳號';
   if(window.confirm('⚠️ 確定要刪除「' + acctName + '」嗎？\n刪除後，該帳號內的持股紀錄將無法復原喔！') === false) { return; }
@@ -1200,7 +1217,7 @@ function delAcct(id){
 function openMod(code){
   ec=code;
   const s=ALL.find(x=>x.code===code)||allHoldings().find(x=>x.code===code)||{name:'',code};
-  document.getElementById('modtitle').textContent=`備註 📝 ／ ${s.name} (${code})`;
+  document.getElementById('modtitle').innerHTML=`備註 <i class="ico-chii hachi"></i> ／ ${s.name} (${code})`;
   const r=rem[code]||{};
   document.getElementById('ck1').checked=!!r.nofrac;
   document.getElementById('ck2').checked=!!r.id;
@@ -1237,7 +1254,7 @@ function showStock(s, clickedRow){
     const urgTag=d<0?' <span style="color:var(--tx3)">(已截止)</span>':d<=7?' <span style="color:var(--rd)">⚠ 緊急！'+d+'天</span>':'';
     const evColor=c.includes('ev')?'var(--am)':'var(--gn)';
     const idColor=c.includes('id')?'var(--rd)':'var(--gn)';
-    const egLine=s.egift?'<span class="di-label">🌸 eGift 線上領取：</span><span style="color:var(--gn)">支援</span>（零股'+(s.os?'可':'不可')+'領）<br>':'';
+    const egLine=s.egift?'<span class="di-label"><i class="ico-chii hachi" style="width:1.2em;height:1.2em"></i> eGift 線上領取：</span><span style="color:var(--gn)">支援</span>（零股'+(s.os?'可':'不可')+'領）<br>':'';
 
     const colSpan=clickedRow.querySelectorAll('td').length||9;
     const detailTr=document.createElement('tr');
@@ -1246,12 +1263,12 @@ function showStock(s, clickedRow){
       '<div class="detail-inner">'+
         '<button class="detail-close" id="btn-close-detail">✕ 關閉</button>'+
         '<strong>'+s.name+' ('+s.code+')</strong>'+holdTag+'<br>'+
-        '<span class="di-label">🌸 股價：</span><span style="font-family:var(--mo);font-weight:900">'+(s.price||'—')+'</span> 元<br>'+
-        '<span class="di-label">🌸 紀念品：</span>'+s.gift+cpTag+ipTag+'<br>'+
-        '<span class="di-label">🌸 最後買進日：</span><span style="font-family:var(--mo);font-weight:900">'+lbs(s)+'</span>'+urgTag+'<br>'+
-        '<span class="di-label">🌸 股東會日：</span><span style="font-family:var(--mo);font-weight:900">'+ms(s.meet)+'</span><br>'+
-        '<span class="di-label">🌸 電子投票截圖：</span><span style="color:'+evColor+'">'+(c.includes('ev')?'需要':'不需要')+'</span><br>'+
-        '<span class="di-label">🌸 身分證正本：</span><span style="color:'+idColor+'">'+(c.includes('id')?'需要':'不需要')+'</span><br>'+
+        '<span class="di-label"><i class="ico-chii chii" style="width:1.2em;height:1.2em"></i> 股價：</span><span style="font-family:var(--mo);font-weight:900">'+(s.price||'—')+'</span> 元<br>'+
+        '<span class="di-label"><i class="ico-chii hachi" style="width:1.2em;height:1.2em"></i> 紀念品：</span>'+s.gift+cpTag+ipTag+'<br>'+
+        '<span class="di-label"><i class="ico-chii usagi" style="width:1.2em;height:1.2em"></i> 最後買進日：</span><span style="font-family:var(--mo);font-weight:900">'+lbs(s)+'</span>'+urgTag+'<br>'+
+        '<span class="di-label"><i class="ico-chii chii" style="width:1.2em;height:1.2em"></i> 股東會日：</span><span style="font-family:var(--mo);font-weight:900">'+ms(s.meet)+'</span><br>'+
+        '<span class="di-label"><i class="ico-chii usagi" style="width:1.2em;height:1.2em"></i> 電子投票截圖：</span><span style="color:'+evColor+'">'+(c.includes('ev')?'需要':'不需要')+'</span><br>'+
+        '<span class="di-label"><i class="ico-chii hachi" style="width:1.2em;height:1.2em"></i> 身分證正本：</span><span style="color:'+idColor+'">'+(c.includes('id')?'需要':'不需要')+'</span><br>'+
         egLine+
       '</div>'+
     '</td>';
@@ -1339,9 +1356,9 @@ function showWorkerSetup(){
   panel.id = 'worker-setup';
   panel.style.cssText = 'background:var(--bg2);border:2px solid var(--br2);border-radius:var(--r2);padding:24px 28px;margin-bottom:20px;box-shadow:0 10px 25px rgba(255,182,185,.2)';
   panel.innerHTML = `
-    <div style="font-size:16px;font-weight:900;font-family:var(--mo);color:var(--tx);margin-bottom:10px">✨ 設定 Cloudflare Worker URL</div>
+    <div style="font-size:16px;font-weight:900;font-family:var(--mo);color:var(--tx);margin-bottom:10px"><i class="ico-chii sparkle"></i> 設定 Cloudflare Worker URL</div>
     <div style="font-size:14px;font-weight:800;color:var(--tx3);margin-bottom:16px;line-height:1.6">
-      需要先部署 <code style="background:var(--bg3);padding:2px 8px;border-radius:8px;font-family:var(--mo);color:var(--bl)">stockgift-worker.js</code>（已下載），然後把 Worker URL 填入下方喔 🐰<br>
+      需要先部署 <code style="background:var(--bg3);padding:2px 8px;border-radius:8px;font-family:var(--mo);color:var(--bl)">stockgift-worker.js</code>（已下載），然後把 Worker URL 填入下方喔 <i class="ico-chii usagi"></i><br>
       部署教學：<a href="https://workers.cloudflare.com" target="_blank" style="color:var(--bl);font-weight:900">workers.cloudflare.com</a> → 新建 Worker → 貼上程式碼 → Save & Deploy → 複製 URL
     </div>
     <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
@@ -1349,7 +1366,7 @@ function showWorkerSetup(){
         placeholder="https://stockgift-proxy.你的帳號.workers.dev"
         value="${WORKER_URL}"
         style="flex:1;min-width:280px;font-size:15px;font-weight:800;font-family:var(--mo);padding:0 16px;height:46px;border:2px solid var(--br2);border-radius:16px;background:var(--bg);color:var(--tx);outline:none">
-      <button id="btn-save-worker" style="height:46px;padding:0 24px;font-size:15px;font-weight:900;font-family:var(--mo);border:none;border-radius:16px;background:var(--gn);color:#fff;cursor:pointer">儲存並重整 ✨</button>
+      <button id="btn-save-worker" style="height:46px;padding:0 24px;font-size:15px;font-weight:900;font-family:var(--mo);border:none;border-radius:16px;background:var(--gn);color:#fff;cursor:pointer">儲存並重整 <i class="ico-chii sparkle"></i></button>
       <button id="btn-cancel-worker" style="height:46px;padding:0 20px;font-size:15px;font-weight:900;font-family:var(--mo);border:2px solid var(--br);border-radius:16px;background:transparent;color:var(--tx2);cursor:pointer">取消</button>
     </div>
     <div id="worker-err" style="font-size:14px;font-weight:900;font-family:var(--mo);color:var(--rd);margin-top:10px;min-height:20px"></div>
@@ -1360,7 +1377,7 @@ function showWorkerSetup(){
 
   document.getElementById('btn-save-worker').addEventListener('click', ()=>{
     const val = document.getElementById('worker-url-input').value.trim().replace(/\/$/,'');
-    if(!val || !val.startsWith('http')){ document.getElementById('worker-err').textContent='請輸入有效的 URL 💦'; return; }
+    if(!val || !val.startsWith('http')){ document.getElementById('worker-err').innerHTML='請輸入有效的 URL <i class="ico-chii cry"></i>'; return; }
     WORKER_URL = val;
     localStorage.setItem('workerUrl', val);
     panel.remove();
@@ -1444,11 +1461,11 @@ document.addEventListener('click',e=>{
     if(p.style.display==='none' || p.style.display==='') {
       p.style.display='block';
       document.getElementById('teg').innerHTML=fmt(
-        '🌸 幾乎所有 eGift 標的都需要電子投票截圖才能領取喔！\n'+
-        '🌸 部分需加上身分證正本：浩鼎、普誠、點序、旭軟等\n'+
-        '🌸 你的持股中，大同(2371) 零股可領且支援 eGift\n'+
-        '🌸 尚未截止：日馳(1526) 最後買進日4/22、永虹先進(6618) 4/28\n\n'+
-        '✨ 操作小撇步 ✨\n1. 完成股東會電子投票並截圖存好 📱\n2. 前往集保e股利APP或指定平台領取\n3. 需身分證者請帶原件正本 💳'
+        '<i class="ico-chii sparkle"></i> 幾乎所有 eGift 標的都需要電子投票截圖才能領取喔！\n'+
+        '<i class="ico-chii chii"></i> 部分需加上身分證正本：浩鼎、普誠、點序、旭軟等\n'+
+        '<i class="ico-chii hachi"></i> 你的持股中，大同(2371) 零股可領且支援 eGift\n'+
+        '<i class="ico-chii usagi"></i> 尚未截止：日馳(1526) 最後買進日4/22、永虹先進(6618) 4/28\n\n'+
+        '<i class="ico-chii sparkle"></i> 操作小撇步\n1. 完成股東會電子投票並截圖存好\n2. 前往集保e股利APP或指定平台領取\n3. 需身分證者請帶原件正本'
       );
     } else {
       p.style.display='none';
@@ -1558,15 +1575,14 @@ document.getElementById('add-name').addEventListener('keydown', e => {
 const cMsg = document.getElementById('c-msg');
 const chiikawaQuotes = [
   "呀哈！<br>有什麼可以幫忙的嗎？",
-  "總會有辦法的！",
-  "一起吃糰子吧 🍡",
-  "噗嚕嚕嚕...",
+  "總會有辦法的！ <i class='ico-chii hachi'></i>",
+  "一起吃糰子吧 <i class='ico-chii chii'></i>",
+  "噗嚕嚕嚕... <i class='ico-chii usagi'></i>",
   "股東會紀念品讚啦！",
-  "快點買進！<br>要來不及了 💦",
-  "哇...<br>好多紀念品 🤩",
-  "烏薩奇大推！🐰",
-  "記得要電子投票喔 📱",
-  "嗚嗚 ( ߹꒳߹ )"
+  "快點買進！<br>要來不及了 <i class='ico-chii cry'></i>",
+  "哇...<br>好多紀念品 <i class='ico-chii sparkle'></i>",
+  "烏薩奇大推！<i class='ico-chii usagi'></i>",
+  "記得要電子投票喔 <i class='ico-chii hachi'></i>"
 ];
 document.getElementById('c-float').addEventListener('click', () => {
   cMsg.innerHTML = chiikawaQuotes[Math.floor(Math.random() * chiikawaQuotes.length)];
