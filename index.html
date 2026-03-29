@@ -13,7 +13,7 @@
   --bg2: #ffffff;      /* 卡片背景：純白 */
   --bg3: #fff5f5;      /* 次要背景：淡淡的櫻花粉 */
   --br: #f2e3d5;       /* 邊框：暖卡其色 */
-  --br2: #ffb6b9;      /* Hover邊框：吉伊卡娃粉 */
+  --br2: #ffb6b9;      /* Hover邊框：吉依卡娃粉 */
   
   /* 📝 溫暖的文字顏色 */
   --tx: #5c4b51;       /* 主要文字：溫暖深咖啡色 */
@@ -27,7 +27,7 @@
   --blb: rgba(139, 190, 234, 0.15);
   --am: #f3b562;       /* 蜂蜜橘（烏薩奇色） */
   --amb: rgba(243, 181, 98, 0.15);
-  --rd: #f28b82;       /* 柔和紅（吉伊卡娃粉） */
+  --rd: #f28b82;       /* 柔和紅（吉依卡娃粉） */
   --rdb: rgba(242, 139, 130, 0.15);
   --pu: #cbbadd;       /* 薰衣草紫 */
   --pub: rgba(203, 186, 221, 0.15);
@@ -39,7 +39,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 
-/* 🌸 吉依卡娃浮水印與點點背景 🌸 */
+/* 點點背景，營造日系手帳感 */
 body{
   background-color: var(--bg);
   background-image: radial-gradient(var(--br) 1.5px, transparent 1.5px);
@@ -49,24 +49,6 @@ body{
   font-size: 14px;
   line-height: 1.6;
   min-height: 100vh;
-  position: relative;
-}
-/* 超微美浮水印效果 */
-body::before {
-  content: '';
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 500px;
-  height: 500px;
-  background-image: url('chiikawa.png'); /* 這裡呼叫您的圖片 */
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  opacity: 0.04; /* 極低透明度，不影響閱讀 */
-  pointer-events: none;
-  z-index: 0;
 }
 
 /* Header */
@@ -77,7 +59,7 @@ body::before {
 .hlink:hover{border-color:var(--bl);background:var(--blb);transform:translateY(-2px)}
 
 /* Main */
-.main{max-width:1400px;margin:0 auto;padding:24px;padding-bottom:120px;position:relative;z-index:1}
+.main{max-width:1400px;margin:0 auto;padding:24px;padding-bottom:100px} /* 下方留白給浮動角色 */
 
 /* Metrics */
 .mets{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px}
@@ -171,7 +153,7 @@ body::before {
 .tbar{display:flex;gap:12px;margin-bottom:14px;align-items:center}
 .sg{display:flex;flex:2;min-width:0}
 .sg input{flex:1;min-width:0;background:var(--bg2);border:2px solid var(--br);border-right:none;border-radius:var(--r) 0 0 var(--r);padding:0 16px;height:44px;font-size:15px;font-weight:800;color:var(--tx);outline:none;font-family:var(--fn)}
-.sg input::placeholder{color:var(--tx3);font-weight:700}
+.sg input::placeholder{color:var(--tx3);font-weight:800}
 .sg input:focus{border-color:var(--bl)}
 .sqb{height:44px;padding:0 20px;font-size:15px;font-weight:900;font-family:var(--mo);border:2px solid var(--bl);border-left:none;border-radius:0 var(--r) var(--r) 0;background:var(--bl);color:#fff;cursor:pointer;transition:.2s}
 .sqb:hover{background:#77aadd;border-color:#77aadd}
@@ -182,7 +164,7 @@ body::before {
 /* Table */
 .tw{overflow-x:auto;border:2px solid var(--br);border-radius:var(--r2);margin-bottom:16px;background:var(--bg2);box-shadow:0 4px 12px rgba(92,75,81,.03)}
 table{width:100%;border-collapse:collapse;font-size:14px}
-th{background:rgba(255,255,255,0.5);color:var(--tx2);font-size:14px;font-family:var(--mo);font-weight:900;padding:14px 16px;text-align:center;border-bottom:2px solid var(--br);white-space:nowrap}
+th{background:var(--bg);color:var(--tx2);font-size:14px;font-family:var(--mo);font-weight:900;padding:14px 16px;text-align:center;border-bottom:2px solid var(--br);white-space:nowrap}
 td{padding:14px 16px;border-bottom:1px dashed var(--br);vertical-align:middle;text-align:center;color:var(--tx);font-weight:800}
 td.tl{text-align:left}
 tr:last-child td{border-bottom:none}
@@ -227,7 +209,7 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
 .har{display:flex;gap:10px;align-items:center;margin-bottom:14px}
 .har input{font-size:15px;font-weight:800;font-family:var(--mo);padding:0 14px;height:44px;border:2px solid var(--br);border-radius:var(--r);background:var(--bg);color:var(--tx);outline:none}
 .har input:focus{border-color:var(--br2)}
-.har input::placeholder{color:var(--tx3);font-weight:700}
+.har input::placeholder{color:var(--tx3);font-weight:800}
 .hcode{width:110px}.hname{width:130px}
 .hadd{height:44px;padding:0 18px;font-size:15px;font-weight:900;font-family:var(--mo);border:2px solid var(--gn);border-radius:var(--r);background:var(--gn);color:#fff;cursor:pointer;transition:.2s;flex-shrink:0}
 .hadd:hover{background:#4d9a99;border-color:#4d9a99}
@@ -301,64 +283,76 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
 @keyframes spin{to{transform:rotate(360deg)}}
 .refresh-status{font-size:13px;font-weight:900;font-family:var(--mo);color:var(--tx3);margin-left:8px}
 
-/* 🌸 吉依卡娃實體浮動小圖 🌸 */
-.chiikawa-float {
+/* 🌸 吉依卡娃浮動好朋友 🌸 */
+.chiikawa-friends {
   position: fixed;
   bottom: 24px;
-  right: 30px;
-  z-index: 1000;
+  right: 24px;
   display: flex;
-  flex-direction: column;
+  gap: 14px;
+  z-index: 1000;
+}
+.friend {
+  background: var(--bg2);
+  border: 3px solid var(--br2);
+  border-radius: 20px;
+  padding: 8px 14px;
+  display: flex;
   align-items: center;
-  gap: 12px;
-  animation: floaty 3s ease-in-out infinite;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--tx);
+  box-shadow: 0 6px 16px rgba(255,182,185,.3);
   cursor: pointer;
+  animation: floaty 3s ease-in-out infinite;
+  position: relative;
+  font-family: var(--fn);
 }
-.chiikawa-img {
-  width: 150px;
-  height: auto;
-  border-radius: 28px;
-  border: 4px solid var(--bg2);
-  box-shadow: 0 10px 30px rgba(255, 182, 185, 0.4);
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  background: var(--bg3);
-}
-.chiikawa-float:hover .chiikawa-img {
-  transform: scale(1.08) rotate(-4deg);
-}
-.chiikawa-float .speech-bubble {
-  background: #ffffff;
-  border: 2px solid var(--br2);
-  padding: 10px 16px;
-  border-radius: 18px;
-  font-size: 14px;
+.friend .fname { font-size: 15px; }
+.friend:nth-child(1) { animation-delay: 0s; border-color: #ffb6b9; }   /* 吉依卡娃粉 */
+.friend:nth-child(2) { animation-delay: 0.3s; border-color: #8bbeea; } /* 小巴藍 */
+.friend:nth-child(3) { animation-delay: 0.6s; border-color: #f3b562; } /* 烏薩奇黃 */
+
+.friend::before {
+  content: attr(data-talk);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  border: 2px solid var(--br);
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 13px;
   font-weight: 900;
   color: var(--tx);
   opacity: 0;
-  transform: translateY(10px);
-  transition: 0.3s;
-  position: relative;
-  text-align: center;
-  box-shadow: 0 6px 16px rgba(255, 182, 185, 0.25);
+  transition: .3s;
   white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
-.chiikawa-float .speech-bubble::after {
+/* 小對話框箭頭 */
+.friend::after {
   content: '';
   position: absolute;
-  bottom: -8px;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
-  border-width: 8px 8px 0 8px;
+  border-width: 6px 6px 0 6px;
   border-style: solid;
-  border-color: var(--br2) transparent transparent transparent;
+  border-color: var(--br) transparent transparent transparent;
+  opacity: 0;
+  transition: .3s;
+  pointer-events: none;
 }
-.chiikawa-float:hover .speech-bubble {
-  opacity: 1;
-  transform: translateY(0);
-}
+.friend:hover::before { opacity: 1; top: -45px; }
+.friend:hover::after  { opacity: 1; top: -14px; }
+
 @keyframes floaty {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+  50% { transform: translateY(-10px); }
 }
 
 /* Responsive */
@@ -367,7 +361,7 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
   .hdr-in{height:54px;gap:8px}
   .logo{font-size:16px}
   .hlink{padding:6px 12px;font-size:13px}
-  .main{padding:16px; padding-bottom:140px;} /* 給浮動圖片更多空間 */
+  .main{padding:16px; padding-bottom:90px;}
   .mets{grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px}
   .met{padding:16px}
   .met-v{font-size:28px}
@@ -399,11 +393,9 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
   .ipnl{padding:16px}
   .refresh-status{font-size:12px;display:block;margin-top:6px}
   
-  /* 手機版縮小圖片 */
-  .chiikawa-float { bottom: 16px; right: 16px; gap: 8px;}
-  .chiikawa-img { width: 90px; border-width: 3px; border-radius: 20px;}
-  .chiikawa-float .speech-bubble { font-size: 12px; padding: 6px 12px; }
-  body::before { width: 300px; height: 300px; }
+  .chiikawa-friends { bottom: 16px; right: 16px; gap: 8px; }
+  .friend { padding: 8px 10px; border-radius: 50%; font-size:22px; }
+  .friend .fname { display: none; }
 }
 @media(max-width:480px){
   .hgg,.egg{grid-template-columns:1fr}
@@ -416,6 +408,7 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
 <body>
 <header class="hdr">
   <div class="hdr-in">
+    <!-- 加入吉依卡娃風格顏文字與 Emoji -->
     <div class="logo">🌸 股東會紀念品追蹤器 ૮( ⸝⸝´ ꒳ `⸝⸝ )ა</div>
     <span id="update-time" style="font-size:13px;font-weight:900;font-family:var(--mo);color:var(--tx3);margin-left:12px">更新時間：2026/03/20 (共存取 120 筆)</span>
     <span id="cloud-status" style="font-size:13px;font-weight:900;font-family:var(--mo);color:var(--tx3);margin-left:10px;padding:4px 10px;border:2px dashed var(--br);border-radius:12px;display:none;"></span>
@@ -454,7 +447,7 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
         </div>
         <button class="secbtn" id="btn-eg-all">📝 點我看整體分析</button>
       </div>
-      <!-- eGift整體分析區塊 -->
+      <!-- eGift整體分析區塊：移至標題正下方，預設隱藏 -->
       <div class="ipnl" id="peg" style="display:none;">
         <div class="iphd">✨ eGift 整體分析 ૮ ˶ᵔ ᵕ ᵔ˶ ა</div>
         <div class="ipbd" id="teg"></div>
@@ -527,10 +520,7 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
     <th style="min-width:190px">領取條件</th>
   </tr></thead><tbody id="TB-mine"></tbody></table></div>
   <div class="pgn" id="pg-mine"></div>
-  <div id="no-match" style="display:none;padding:3rem;text-align:center;font-size:16px;font-weight:900;font-family:var(--mo);color:var(--tx3)">
-    <img src="chiikawa.png" style="width:140px; border-radius:24px; margin-bottom:16px; border:3px dashed var(--br2); opacity:0.8"><br>
-    你的持股中目前尚無已公告紀念品的股票...<br>吉依卡娃都要哭了 嗚嗚 ( ߹꒳߹ )
-  </div>
+  <div id="no-match" style="display:none;padding:3rem;text-align:center;font-size:16px;font-weight:900;font-family:var(--mo);color:var(--tx3)">你的持股中目前尚無已公告紀念品的股票...<br>吉依卡娃都要哭了 嗚嗚 ( ߹꒳߹ )</div>
 </div>
 
 <div class="tp" id="tab-manage">
@@ -571,10 +561,11 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
   </div>
 </div>
 
-<!-- 🌸 吉依卡娃實體浮動精靈 🌸 -->
-<div class="chiikawa-float" id="c-float">
-  <div class="speech-bubble" id="c-msg">呀哈！<br>有什麼可以幫忙的嗎？</div>
-  <img src="chiikawa.png" alt="吉依卡娃小隊" class="chiikawa-img" onerror="this.style.display='none'; document.getElementById('c-msg').innerHTML='圖片讀取失敗 🥲<br>請確認檔名為 chiikawa.png';">
+<!-- 🌸 吉依卡娃浮動好朋友 🌸 -->
+<div class="chiikawa-friends">
+  <div class="friend" data-talk="哇...">🐹<span class="fname">吉依卡娃</span></div>
+  <div class="friend" data-talk="總會有辦法的！">🐱<span class="fname">小巴</span></div>
+  <div class="friend" data-talk="呀哈！">🐰<span class="fname">烏薩奇</span></div>
 </div>
 
 <script>
@@ -708,6 +699,7 @@ const ALL=[
 {code:'4142',name:'國光生',price:18.15,gift:'氣密保鮮罐',lbo:'2026-03-31',meet:'2026-06-04',cond:'ev'},
 ];
 
+// 熱門零股與其分析內容
 const HEAT={
   '1432':{heat:12400,restrict:'零股可領，電投截圖，eGift線上領',analysis:'大魯閣(1432) ⚾\n• 18.5元→4,200元消費券，CP值全場最高！\n• eGift完全線上領，需電子投票截圖喔'},
   '2303':{heat:10850,restrict:'零股不能領取，需電投截圖',analysis:'聯電(2303) 🐶\n• 這次是可愛的 Snoopy 聯名保溫瓶！\n• 零股不能領取 🥲\n• 需持滿1張（1000股）+電投截圖'},
@@ -761,8 +753,11 @@ const INIT=[
 {code:'00929',name:'復華台灣科技優息'}
 ];
 
+// ── 設定你的 Cloudflare Worker URL ──────────────────────────────────────
 let WORKER_URL = 'https://stockgift-api.cindypc33.workers.dev';
+
 const PS=20;
+// 柔和粉彩帳號顏色
 const ACCT_COLORS=['#62b1b0', '#8bbeea', '#f3b562', '#f28b82', '#cbbadd', '#a3d9a5', '#9ab7d3', '#e8a5b2'];
 
 async function saveData(){
@@ -827,7 +822,9 @@ async function loadData(){
          }
          cloudSuccess = true;
       }
-    } catch(e) {}
+    } catch(e) {
+       console.error("Cloud load failed", e);
+    }
   }
 
   if(!cloudSuccess) {
@@ -1010,6 +1007,7 @@ function rHot(){
   }).join('');
 }
 
+// 每日動態排序邏輯：只要過期的（剩餘天數 < 0）絕對推到最底部
 function smartSort(a,b){
   const da=days(a), db=days(b);
   const aExp = da < 0;
@@ -1047,6 +1045,7 @@ function rFull(){
 
   const acctLabel=mineFilter==='all'?'所有帳號':(accounts.find(a=>a.id===mineFilter)||{name:'?'}).name;
   document.getElementById('mine-hint').textContent=acctLabel+'・持股中有 '+fm.length+' 檔已公告紀念品 🐰';
+  // render account filter buttons
   const maf=document.getElementById('mine-acct-filter');
   if(maf){maf.innerHTML=['all',...accounts.map(a=>a.id)].map(id=>{
     const label=id==='all'?'全部帳號':(accounts.find(a=>a.id===id)||{name:'?'}).name;
@@ -1079,6 +1078,7 @@ function rHoldings(){
     const g=gF(h.code);
     return'<div class="hchip'+(g?' hg':'')+'"><span><strong>'+h.code+'</strong> '+h.name+'</span><span class="hdel" data-del="'+h.code+'">✕</span></div>';
   }).join('');
+  // Render account tabs
   const bar=document.getElementById('acct-bar');
   if(bar){
     bar.innerHTML=accounts.map(a=>{
@@ -1091,8 +1091,10 @@ function rHoldings(){
     }).join('')+
     '<button class="acct-add" id="btn-new-acct">➕ 新增帳號</button>';
   }
+  // Update name input
   const ni=document.getElementById('acct-name-input');
   if(ni)ni.value=curA().name;
+  // Render color picks
   const cp=document.getElementById('color-picks');
   if(cp){
     cp.innerHTML='<span style="font-size:14px;font-weight:900;font-family:var(--mo);color:var(--tx2);margin-right:4px">選個顏色吧 🎨：</span>'+
@@ -1187,14 +1189,20 @@ function addAcct(){
 
 function delAcct(id){
   if(accounts.length<=1){alert('至少需保留一個帳號 💦');return;}
+  
   const targetAcct = accounts.find(a => a.id === id);
   const acctName = targetAcct ? targetAcct.name : '此帳號';
-  if(window.confirm('⚠️ 確定要刪除「' + acctName + '」嗎？\n刪除後，該帳號內的持股紀錄將無法復原喔！') === false) { return; }
+  
+  if(window.confirm('⚠️ 確定要刪除「' + acctName + '」嗎？\n刪除後，該帳號內的持股紀錄將無法復原喔！') === false) {
+    return;
+  }
   
   accounts=accounts.filter(a=>a.id!==id);
   if(curAcct===id)curAcct=accounts[0].id;
   
-  rHoldings(); rFull(); saveData();
+  rHoldings();
+  rFull();
+  saveData();
 }
 
 function openMod(code){
@@ -1220,7 +1228,9 @@ function saveMod(){
   if(nofrac||id||evote||egift||custom)rem[ec]={nofrac,id,evote,egift,custom};
   else delete rem[ec];
   
-  closeMod(); rFull(); saveData();
+  closeMod();
+  rFull();
+  saveData();
 }
 
 function showStock(s, clickedRow){
@@ -1265,13 +1275,183 @@ function showStock(s, clickedRow){
   }
 }
 
+async function doRefresh(){
+  const btn    = document.getElementById('btn-refresh');
+  const status = document.getElementById('refresh-status');
+
+  if(!WORKER_URL){
+    showWorkerSetup();
+    return;
+  }
+
+  btn.classList.remove('done','err');
+  btn.classList.add('loading');
+  btn.innerHTML = '<span class="spin">↻</span> 抓取中...';
+  status.textContent = '連線零股寶...';
+  status.style.color = 'var(--tx3)';
+
+  try {
+    const ac = new AbortController();
+    const tm = setTimeout(()=>ac.abort(), 20000);
+    let res;
+    try {
+      res = await fetch(WORKER_URL, { signal: ac.signal });
+    } finally {
+      clearTimeout(tm);
+    }
+
+    if(!res.ok) throw new Error('Worker 回應 ' + res.status);
+    const html = await res.text();
+    if(!html || html.length < 2000) throw new Error('回傳內容太短，可能 Worker 未正確部署');
+    if(!html.includes('股東會') && !html.includes('stockgift')) throw new Error('非預期的回傳內容');
+
+    const result = parseStockgift(html);
+    const svgIcon = '<svg width="16" height="16" viewBox="0 0 13 13" fill="none"><path d="M11.5 6.5A5 5 0 1 1 9 2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M9 2.1V0M9 2.1H7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+
+    btn.classList.remove('loading');
+    if(result.total > 0){
+      btn.classList.add('done');
+      btn.innerHTML = svgIcon + ' 重整資料';
+      const now = new Date().toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'});
+      status.textContent = '✓ 共 '+result.total+' 筆，新增 '+result.added+'・更新 '+result.updated+'・'+now;
+      status.style.color = 'var(--gn)';
+      
+      const today = new Date();
+      const dateStr = today.getFullYear()+'/'
+        +String(today.getMonth()+1).padStart(2,'0')+'/'
+        +String(today.getDate()).padStart(2,'0');
+      const ut = document.getElementById('update-time');
+      if(ut) ut.textContent = `更新時間：${dateStr} (共存取 ${ALL.length} 筆)`;
+      
+      rFull();
+      saveData();
+      setTimeout(()=>{ btn.classList.remove('done'); status.textContent=''; }, 5000);
+    } else {
+      throw new Error('解析到 0 筆，請確認 Worker 是否正確回傳零股寶內容');
+    }
+  } catch(err){
+    const svgIcon = '<svg width="16" height="16" viewBox="0 0 13 13" fill="none"><path d="M11.5 6.5A5 5 0 1 1 9 2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M9 2.1V0M9 2.1H7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+    btn.classList.remove('loading');
+    btn.classList.add('err');
+    btn.innerHTML = svgIcon + ' 重整資料';
+    const msg = err.name === 'AbortError' ? 'Timeout（超過 20 秒）' : err.message;
+    status.textContent = '✗ ' + msg;
+    status.style.color = 'var(--rd)';
+    setTimeout(()=>{ btn.classList.remove('err'); }, 6000);
+  }
+}
+
+function showWorkerSetup(){
+  const existing = document.getElementById('worker-setup');
+  if(existing){ existing.remove(); return; }
+
+  const panel = document.createElement('div');
+  panel.id = 'worker-setup';
+  panel.style.cssText = 'background:var(--bg2);border:2px solid var(--br2);border-radius:var(--r2);padding:24px 28px;margin-bottom:20px;box-shadow:0 10px 25px rgba(255,182,185,.2)';
+  panel.innerHTML = `
+    <div style="font-size:16px;font-weight:900;font-family:var(--mo);color:var(--tx);margin-bottom:10px">✨ 設定 Cloudflare Worker URL</div>
+    <div style="font-size:14px;font-weight:800;color:var(--tx3);margin-bottom:16px;line-height:1.6">
+      需要先部署 <code style="background:var(--bg3);padding:2px 8px;border-radius:8px;font-family:var(--mo);color:var(--bl)">stockgift-worker.js</code>（已下載），然後把 Worker URL 填入下方喔 🐰<br>
+      部署教學：<a href="https://workers.cloudflare.com" target="_blank" style="color:var(--bl);font-weight:900">workers.cloudflare.com</a> → 新建 Worker → 貼上程式碼 → Save & Deploy → 複製 URL
+    </div>
+    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+      <input id="worker-url-input" type="text"
+        placeholder="https://stockgift-proxy.你的帳號.workers.dev"
+        value="${WORKER_URL}"
+        style="flex:1;min-width:280px;font-size:15px;font-weight:800;font-family:var(--mo);padding:0 16px;height:46px;border:2px solid var(--br2);border-radius:16px;background:var(--bg);color:var(--tx);outline:none">
+      <button id="btn-save-worker" style="height:46px;padding:0 24px;font-size:15px;font-weight:900;font-family:var(--mo);border:none;border-radius:16px;background:var(--gn);color:#fff;cursor:pointer">儲存並重整 ✨</button>
+      <button id="btn-cancel-worker" style="height:46px;padding:0 20px;font-size:15px;font-weight:900;font-family:var(--mo);border:2px solid var(--br);border-radius:16px;background:transparent;color:var(--tx2);cursor:pointer">取消</button>
+    </div>
+    <div id="worker-err" style="font-size:14px;font-weight:900;font-family:var(--mo);color:var(--rd);margin-top:10px;min-height:20px"></div>
+  `;
+
+  const tbar = document.querySelector('#tab-all .tbar');
+  tbar.parentNode.insertBefore(panel, tbar);
+
+  document.getElementById('btn-save-worker').addEventListener('click', ()=>{
+    const val = document.getElementById('worker-url-input').value.trim().replace(/\/$/,'');
+    if(!val || !val.startsWith('http')){ document.getElementById('worker-err').textContent='請輸入有效的 URL 💦'; return; }
+    WORKER_URL = val;
+    localStorage.setItem('workerUrl', val);
+    panel.remove();
+    doRefresh();
+  });
+  document.getElementById('btn-cancel-worker').addEventListener('click', ()=>panel.remove());
+  document.getElementById('worker-url-input').addEventListener('keydown', e=>{ if(e.key==='Enter') document.getElementById('btn-save-worker').click(); });
+  document.getElementById('worker-url-input').focus();
+}
+
+function parseStockgift(html){
+  const existCodes = new Set(ALL.map(s=>s.code));
+  const egiftKw = ['商品卡','禮物卡','咖啡券','禮券','消費券','購物金','抵用券','兌換券'];
+  let added=0, updated=0, total=0;
+
+  const doc = new DOMParser().parseFromString(html,'text/html');
+  const trs = doc.querySelectorAll('tr');
+
+  const parseD = s=>{ const p=(s||'').match(/(\d{2})\/(\d{2})\/(\d{2})/); return p?'20'+p[1]+'-'+p[2]+'-'+p[3]:null; };
+  const stripTags = s=>(s||'').replace(/<[^>]+>/g,'').trim();
+
+  trs.forEach(tr=>{
+    const tds = tr.querySelectorAll('td');
+    if(tds.length < 8) return;
+
+    const code = stripTags(tds[1].innerHTML).replace(/\s+\d+\s*$/,'').trim();
+    if(!/^\d{4,5}$/.test(code)) return;
+
+    const name     = stripTags(tds[2].innerHTML).replace(/\s+\d+\s*$/,'').trim();
+    const price    = parseFloat(stripTags(tds[3].innerHTML)) || 0;
+    const lbo      = parseD(stripTags(tds[4].innerHTML));
+    const meet     = parseD(stripTags(tds[5].innerHTML));
+    if(!lbo || !meet) return;
+
+    const gift = stripTags(tds[7].innerHTML)
+      .replace(/\([^)]*紀念品[^)]*\)/g,'')
+      .replace(/\([^)]*數量[^)]*\)/g,'')
+      .trim();
+    if(!gift || gift.length < 2) return;
+
+    const buyRaw = stripTags((tds[8]||{innerHTML:''}).innerHTML).trim();
+    const buyPrice = buyRaw && !/近期|決定|尚未/.test(buyRaw) ? parseFloat(buyRaw)||0 : 0;
+
+    const condRaw = stripTags(tds[11].innerHTML) + ' ' + stripTags((tds[12]||{innerHTML:''}).innerHTML);
+    let cond = '';
+    if(condRaw.includes('電子投票'))               cond += 'ev,';
+    if(/身分證|健保卡|駕照/.test(condRaw))          cond += 'id,';
+    if(/雲林|台南|新竹|桃園|高雄|地點/.test(condRaw)) cond += 'loc,';
+    cond = cond.replace(/,$/,'');
+
+    const isEgift = egiftKw.some(k=>gift.includes(k)) ? 1 : 0;
+    const entry = {code, name, price, gift, lbo, meet, cond};
+    if(isEgift){ entry.egift=1; entry.os=1; }
+    if(buyPrice>0){ entry.buyPrice=buyPrice; }
+
+    total++;
+    if(existCodes.has(code)){
+      const idx = ALL.findIndex(s=>s.code===code);
+      if(idx>=0){
+        ALL[idx].price=price; ALL[idx].gift=gift;
+        ALL[idx].lbo=lbo; ALL[idx].meet=meet; ALL[idx].cond=cond;
+        if(buyPrice>0) ALL[idx].buyPrice=buyPrice;
+        updated++;
+      }
+    } else {
+      ALL.push(entry); existCodes.add(code); added++;
+    }
+  });
+  return {added, updated, total};
+}
+
 document.addEventListener('click',e=>{
+  // Filter tabs
   const ft=e.target.closest('.ft[data-etab]');
   if(ft){document.querySelectorAll('.ft').forEach(t=>t.classList.remove('on'));ft.classList.add('on');etab=ft.dataset.etab;rEG();return;}
   
+  // Tab nav
   const tn=e.target.closest('.tn[data-tab]');
   if(tn){document.querySelectorAll('.tn').forEach(t=>t.classList.remove('on'));document.querySelectorAll('.tp').forEach(p=>p.classList.remove('on'));tn.classList.add('on');document.getElementById('tab-'+tn.dataset.tab).classList.add('on');return;}
   
+  // eGift 展開整體分析
   if(e.target.id==='btn-eg-all'){
     const p=document.getElementById('peg');
     if(p.style.display==='none' || p.style.display==='') {
@@ -1289,6 +1469,7 @@ document.addEventListener('click',e=>{
     return;
   }
   
+  // eGift card (點擊卡片跳出詳細資料)
   const ei=e.target.closest('[data-ei]');
   if(ei){
     const eg=ALL.filter(s=>s.egift);
@@ -1298,40 +1479,54 @@ document.addEventListener('click',e=>{
     showStock(list[+ei.dataset.ei]);return;
   }
   
+  // 🔥 熱門零股卡片 (點擊直接在內部展開)
   const hi=e.target.closest('.hc[data-hcode]');
   if(hi){
     hi.classList.toggle('open');
     const hd = hi.querySelector('.h-detail');
     if(hd) {
-      if(hi.classList.contains('open')) { hd.style.display = 'block'; } 
-      else { hd.style.display = 'none'; }
+      if(hi.classList.contains('open')) {
+        hd.style.display = 'block';
+      } else {
+        hd.style.display = 'none';
+      }
     }
     return;
   }
   
+  // Add holding
   if(e.target.id==='btn-add'){addH();return;}
+  // Mine account filter
   const mafBtn=e.target.closest('[data-maf]');
   if(mafBtn){mineFilter=mafBtn.dataset.maf;rFull();return;}
+  // Account tab switch
   const aidBtn=e.target.closest('[data-aid]');
   if(aidBtn&&!e.target.closest('[data-adel]')){curAcct=aidBtn.dataset.aid;rHoldings();return;}
+  // Account delete
   const adelBtn=e.target.closest('[data-adel]');
   if(adelBtn){delAcct(adelBtn.dataset.adel);return;}
+  // New account
   if(e.target.id==='btn-new-acct'){addAcct();return;}
+  // Rename account
   if(e.target.id==='btn-rename'){
     const v=document.getElementById('acct-name-input').value.trim();
     if(v){ curA().name=v; rHoldings(); rFull(); saveData(); }
     return;
   }
+  // Color pick
   const acolor=e.target.closest('[data-acolor]');
   if(acolor){ curA().color=acolor.dataset.acolor; rHoldings(); rFull(); saveData(); return; }
+  // Delete holding from current account
   const del=e.target.closest('[data-del]');
   if(del){
     const codeToDelete = del.dataset.del;
     curA().holdings=curA().holdings.filter(h=>h.code!==codeToDelete); 
     rHoldings(); rFull(); saveData(); return;
   }
+  // Edit note
   const ed=e.target.closest('[data-edit]');
   if(ed){openMod(ed.dataset.edit);return;}
+  // Table row — click any cell to show detail inline
   const row=e.target.closest('tr[data-code]');
   if(row&&!e.target.closest('[data-edit]')){
     const code=row.dataset.code;
@@ -1385,23 +1580,6 @@ document.getElementById('add-name').addEventListener('input', e => {
 });
 document.getElementById('add-name').addEventListener('keydown', e => {
   if(e.key === 'Enter') addH();
-});
-
-// 🌸 隨機對話框邏輯
-const cMsg = document.getElementById('c-msg');
-const chiikawaQuotes = [
-  "呀哈！<br>有什麼可以幫忙的嗎？",
-  "總會有辦法的！",
-  "一起吃糰子吧 🍡",
-  "噗嚕嚕嚕...",
-  "股東會紀念品讚啦！",
-  "快點買進！<br>要來不及了 💦",
-  "哇...<br>好多紀念品 🤩",
-  "烏薩奇大推！🐰",
-  "記得要電子投票喔 📱"
-];
-document.getElementById('c-float').addEventListener('click', () => {
-  cMsg.innerHTML = chiikawaQuotes[Math.floor(Math.random() * chiikawaQuotes.length)];
 });
 
 (async function init() {
