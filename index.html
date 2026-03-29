@@ -924,8 +924,9 @@ function addH(){
   document.getElementById('add-name').value='';
   err.textContent='';
   
+  rHoldings();
+  rFull();
   saveData();
-  window.location.reload();
 }
 
 function addAcct(){
@@ -935,8 +936,9 @@ function addAcct(){
   accounts.push({id,name:'帳號'+(accounts.length+1),color:col,holdings:[]});
   curAcct=id;
   
+  rHoldings();
+  rFull();
   saveData();
-  window.location.reload();
 }
 
 function delAcct(id){
@@ -953,8 +955,9 @@ function delAcct(id){
   accounts=accounts.filter(a=>a.id!==id);
   if(curAcct===id)curAcct=accounts[0].id;
   
+  rHoldings();
+  rFull();
   saveData();
-  window.location.reload();
 }
 
 function openMod(code){
@@ -980,8 +983,9 @@ function saveMod(){
   if(nofrac||id||evote||egift||custom)rem[ec]={nofrac,id,evote,egift,custom};
   else delete rem[ec];
   
+  closeMod();
+  rFull();
   saveData();
-  window.location.reload();
 }
 
 function showStock(s, clickedRow){
@@ -1267,8 +1271,9 @@ document.addEventListener('click',e=>{
     const v=document.getElementById('acct-name-input').value.trim();
     if(v){
       curA().name=v; 
+      rHoldings();
+      rFull();
       saveData(); 
-      window.location.reload(); 
     }
     return;
   }
@@ -1276,8 +1281,9 @@ document.addEventListener('click',e=>{
   const acolor=e.target.closest('[data-acolor]');
   if(acolor){
     curA().color=acolor.dataset.acolor; 
+    rHoldings();
+    rFull();
     saveData(); 
-    window.location.reload(); 
     return;
   }
   // Delete holding from current account
@@ -1286,8 +1292,9 @@ document.addEventListener('click',e=>{
     const codeToDelete = del.dataset.del;
     if(window.confirm('⚠️ 確定要從帳號移除持股「' + codeToDelete + '」嗎？') === false) return;
     curA().holdings=curA().holdings.filter(h=>h.code!==codeToDelete); 
+    rHoldings();
+    rFull();
     saveData(); 
-    window.location.reload(); 
     return;
   }
   // Edit note
