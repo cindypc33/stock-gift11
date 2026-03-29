@@ -280,7 +280,6 @@ tr.hr.sel td{background:rgba(63,185,80,.14)}
 
 <main class="main">
 
-<!-- Metrics -->
 <div class="mets">
   <div class="met g"><div class="met-l">我的持股有紀念品</div><div class="met-v" id="m2">—</div><div class="met-s">檔已公告可領取</div></div>
   <div class="met b"><div class="met-l">已公告清單</div><div class="met-v" id="m1">—</div><div class="met-s">筆（零股寶資料）</div></div>
@@ -288,7 +287,6 @@ tr.hr.sel td{background:rgba(63,185,80,.14)}
   <div class="met p"><div class="met-l">eGift 線上領</div><div class="met-v" id="m4">—</div><div class="met-s">檔可線上領取</div></div>
 </div>
 
-<!-- Hot Section -->
 <section>
   <div class="sh">
     <div>
@@ -305,7 +303,6 @@ tr.hr.sel td{background:rgba(63,185,80,.14)}
 
 <div class="dv"></div>
 
-<!-- eGift Section -->
 <section>
   <div class="sh">
     <div>
@@ -328,7 +325,6 @@ tr.hr.sel td{background:rgba(63,185,80,.14)}
 
 <div class="dv"></div>
 
-<!-- Table Section -->
 <div class="tnav">
   <button class="tn on" data-tab="all">全部清單</button>
   <button class="tn" data-tab="mine">我的持股</button>
@@ -388,10 +384,8 @@ tr.hr.sel td{background:rgba(63,185,80,.14)}
 </div>
 
 <div class="tp" id="tab-manage">
-  <!-- Account tabs -->
   <div class="acct-bar" id="acct-bar"></div>
 
-  <!-- Account editor -->
   <div class="acct-sect" id="acct-sect">
     <div class="acct-name-row">
       <span class="acct-label">帳號名稱：</span>
@@ -413,7 +407,6 @@ tr.hr.sel td{background:rgba(63,185,80,.14)}
   </div>
 </div>
 
-<!-- Modal -->
 <div class="modw" id="MOD">
   <div class="mod">
     <h3 id="modtitle">備註</h3>
@@ -606,8 +599,8 @@ const INIT=[
 ];
 
 // ── 設定你的 Cloudflare Worker URL ──────────────────────────────────────
-// 部署 stockgift-worker.js 後，把 Worker URL 填在這裡
-let WORKER_URL = 'https://07084ac9-stock-gift11.cindypc33.workers.dev';
+// 已經幫你把全新的、乾淨的 Worker 網址更新上去了！
+let WORKER_URL = 'https://stockgift-api.cindypc33.workers.dev';
 
 const PS=20;
 const ACCT_COLORS=['#3fb950','#58a6ff','#d29922','#f85149','#bc8cff','#39d353','#79c0ff','#ffa657'];
