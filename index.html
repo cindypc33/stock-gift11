@@ -993,7 +993,6 @@ async function searchYahoo(query) {
 
 // 【QC 防呆升級版】新增持股邏輯
 async function addH(){
-  clearTimeout(searchTimer); // 🛑 攔截可能還在倒數的自動帶入計時器，防止幽靈文字出現
   let code = document.getElementById('add-code').value.trim().toUpperCase();
   let name = document.getElementById('add-name').value.trim();
   const err = document.getElementById('add-err');
@@ -1453,7 +1452,8 @@ document.getElementById('add-code').addEventListener('input', e => {
     searchTimer = setTimeout(async () => {
       let stock = findStockInfo(val, 'code');
       if (!stock) stock = await searchYahoo(val);
-      if (stock && stock.name) {
+      // 【終極防護】：如果使用者已經清空欄位（或改掉），就不要把遲來的股名填進去
+      if (stock && stock.name && document.getElementById('add-code').value.trim().toUpperCase() === val) {
         document.getElementById('add-name').value = stock.name;
       }
     }, 400);
@@ -1469,7 +1469,8 @@ document.getElementById('add-name').addEventListener('input', e => {
     searchTimer = setTimeout(async () => {
       let stock = findStockInfo(val, 'name');
       if (!stock) stock = await searchYahoo(val);
-      if (stock && stock.code) {
+      // 【終極防護】
+      if (stock && stock.code && document.getElementById('add-name').value.trim() === val) {
         document.getElementById('add-code').value = stock.code;
       }
     }, 400);
