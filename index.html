@@ -993,6 +993,7 @@ async function searchYahoo(query) {
 
 // 【QC 防呆升級版】新增持股邏輯
 async function addH(){
+  clearTimeout(searchTimer); // 🛑 攔截可能還在倒數的自動帶入計時器，防止幽靈文字出現
   let code = document.getElementById('add-code').value.trim().toUpperCase();
   let name = document.getElementById('add-name').value.trim();
   const err = document.getElementById('add-err');
@@ -1026,7 +1027,6 @@ async function addH(){
       let finalName = name;
       if (trueStock) {
           // 檢查殘留狀態：如果使用者畫面上殘留的名字跟真實股名完全無關，強制覆蓋！
-          // (用 includes 是保留讓你可以打自訂備註，例如 "台積電-存股")
           if (!name || !name.includes(trueStock.name)) {
               finalName = trueStock.name;
           }
