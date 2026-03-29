@@ -3,353 +3,471 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>台股股東會紀念品 2026</title>
-<!-- 引入可愛圓潤的字體：Zen Maru Gothic (中文) 與 Nunito (英文/數字) -->
+<title>台股股東會紀念品 2026 🌸</title>
+<!-- 可愛圓潤字體：Zen Maru Gothic (中/日文) 與 Nunito (英文/數字) -->
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800;900&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  /* 🌊 天空水藍色主題變數 */
-  --bg: #e0f2fe;       
-  --bg2: #ffffff;      
-  --bg3: #f0f9ff;      
-  --br: #bae6fd;       
-  --br2: #7dd3fc;      
+  /* 🍰 文青可愛風 - 奶油與粉彩色系變數 */
+  --bg: #fffbf0;       /* 主背景：奶油淡黃色 */
+  --bg2: #ffffff;      /* 卡片背景：純白 */
+  --bg3: #fff5f5;      /* 次要背景：淡淡的櫻花粉 */
+  --br: #f2e3d5;       /* 邊框：暖卡其色 */
+  --br2: #ffb6b9;      /* Hover邊框：吉伊卡娃粉 */
   
-  /* 📝 文字顏色 */
-  --tx: #0f172a;       
-  --tx2: #334155;      
-  --tx3: #64748b;      
+  /* 📝 溫暖的文字顏色 */
+  --tx: #5c4b51;       /* 主要文字：溫暖深咖啡色 */
+  --tx2: #8c7a80;      /* 次要文字：拿鐵咖啡色 */
+  --tx3: #b0a3a7;      /* 備註：淺灰咖啡色 */
   
-  /* 🎨 狀態與標籤顏色 */
-  --gn: #059669;       
-  --gnb: rgba(5, 150, 105, 0.1);
-  --bl: #0284c7;       
-  --blb: rgba(2, 132, 199, 0.1);
-  --am: #d97706;       
-  --amb: rgba(217, 119, 6, 0.1);
-  --rd: #dc2626;       
-  --rdb: rgba(220, 38, 38, 0.1);
-  --pu: #7c3aed;       
-  --pub: rgba(124, 58, 237, 0.1);
+  /* 🎨 狀態與標籤顏色 (粉彩化) */
+  --gn: #62b1b0;       /* 薄荷綠 */
+  --gnb: rgba(98, 177, 176, 0.15);
+  --bl: #8bbeea;       /* 寶寶藍（小巴色） */
+  --blb: rgba(139, 190, 234, 0.15);
+  --am: #f3b562;       /* 蜂蜜橘（烏薩奇色） */
+  --amb: rgba(243, 181, 98, 0.15);
+  --rd: #f28b82;       /* 柔和紅（吉伊卡娃粉） */
+  --rdb: rgba(242, 139, 130, 0.15);
+  --pu: #cbbadd;       /* 薰衣草紫 */
+  --pub: rgba(203, 186, 221, 0.15);
   
-  /* 🧸 字體與更圓潤的邊角設定 */
   --fn: 'Zen Maru Gothic', 'Nunito', sans-serif;
   --mo: 'Nunito', sans-serif;
-  --r: 12px;           /* 按鈕、輸入框圓角加大 */
-  --r2: 20px;          /* 卡片圓角加大，更可愛 */
+  --r: 16px;           
+  --r2: 24px;          
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--tx);font-family:var(--fn);font-size:14px;line-height:1.6;min-height:100vh}
+
+/* 🌸 吉依卡娃浮水印與點點背景 🌸 */
+body{
+  background-color: var(--bg);
+  background-image: radial-gradient(var(--br) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+  color: var(--tx);
+  font-family: var(--fn);
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+  position: relative;
+}
+/* 超微美浮水印效果 */
+body::before {
+  content: '';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  background-image: url('chiikawa.png'); /* 這裡呼叫您的圖片 */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.04; /* 極低透明度，不影響閱讀 */
+  pointer-events: none;
+  z-index: 0;
+}
+
 /* Header */
-.hdr{background:var(--bg2);border-bottom:1px solid var(--br);padding:0 24px;position:sticky;top:0;z-index:100}
-.hdr-in{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:16px;height:56px}
-.logo{font-size:18px;font-weight:900;display:flex;align-items:center;gap:8px;color:var(--bl)}
-.logo-dot{width:12px;height:12px;border-radius:50%;background:var(--bl);box-shadow:0 0 8px var(--bl);animation:bop 2s infinite}
-@keyframes bop{0%,100%{transform:translateY(0);box-shadow:0 0 8px var(--bl)}50%{transform:translateY(-3px);box-shadow:0 0 16px var(--bl)}}
-.hlink{margin-left:auto;font-size:13px;font-weight:700;color:var(--bl);text-decoration:none;display:flex;align-items:center;gap:5px;padding:6px 14px;border:2px solid var(--br);border-radius:24px;transition:.2s;white-space:nowrap;background:var(--bg3)}
-.hlink:hover{border-color:var(--bl);color:var(--bg2);background:var(--bl)}
+.hdr{background:rgba(255,255,255,0.85);backdrop-filter:blur(8px);border-bottom:2px dashed var(--br);padding:0 24px;position:sticky;top:0;z-index:100}
+.hdr-in{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:16px;height:60px}
+.logo{font-size:18px;font-weight:900;display:flex;align-items:center;gap:8px;color:var(--tx)}
+.hlink{margin-left:auto;font-size:14px;font-weight:800;color:var(--bl);text-decoration:none;display:flex;align-items:center;gap:5px;padding:6px 16px;border:2px solid var(--br);border-radius:24px;transition:.2s;white-space:nowrap;background:var(--bg2)}
+.hlink:hover{border-color:var(--bl);background:var(--blb);transform:translateY(-2px)}
+
 /* Main */
-.main{max-width:1400px;margin:0 auto;padding:24px}
+.main{max-width:1400px;margin:0 auto;padding:24px;padding-bottom:120px;position:relative;z-index:1}
+
 /* Metrics */
 .mets{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px}
-.met{background:var(--bg2);border:2px solid var(--br);border-radius:var(--r2);padding:18px 20px;position:relative;overflow:hidden;transition:.2s;box-shadow:0 4px 10px rgba(0,0,0,.03)}
-.met:hover{border-color:var(--br2);transform:translateY(-2px)}
-.met::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.met{background:var(--bg2);border:2px solid var(--br);border-radius:var(--r2);padding:18px 20px;position:relative;overflow:hidden;transition:.2s;box-shadow:0 4px 12px rgba(92,75,81,.04)}
+.met:hover{border-color:var(--br2);transform:translateY(-3px)}
+.met::before{content:'';position:absolute;top:0;left:0;right:0;height:6px}
 .met.g::before{background:var(--gn)}.met.b::before{background:var(--bl)}.met.a::before{background:var(--am)}.met.p::before{background:var(--pu)}
-.met-l{font-size:12px;font-weight:700;color:var(--tx3);margin-bottom:4px;font-family:var(--mo);letter-spacing:.5px}
-.met-v{font-size:32px;font-weight:900;font-family:var(--mo)}
+.met-l{font-size:13px;font-weight:900;color:var(--tx2);margin-bottom:4px;font-family:var(--mo)}
+.met-v{font-size:34px;font-weight:900;font-family:var(--mo)}
 .met.g .met-v{color:var(--gn)}.met.b .met-v{color:var(--bl)}.met.a .met-v{color:var(--am)}.met.p .met-v{color:var(--pu)}
-.met-s{font-size:12px;font-weight:700;color:var(--tx3);margin-top:2px}
+.met-s{font-size:12px;font-weight:800;color:var(--tx3);margin-top:2px}
+
 /* Divider */
-.dv{border:none;border-top:2px dashed var(--br);margin:28px 0}
+.dv{border:none;border-top:3px dotted var(--br);margin:32px 0}
+
 /* Section header */
-.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-.st{font-size:17px;font-weight:900;display:flex;align-items:center;gap:8px;color:var(--tx)}
-.sdot{width:10px;height:10px;border-radius:50%}
-.sdot.g{background:var(--gn);box-shadow:0 0 6px var(--gn)}.sdot.r{background:var(--rd);box-shadow:0 0 6px var(--rd)}
-.ssub{font-size:13px;font-weight:700;color:var(--tx3);margin-top:3px}
+.sh{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px}
+.st{font-size:18px;font-weight:900;display:flex;align-items:center;gap:8px;color:var(--tx)}
+.ssub{font-size:13px;font-weight:800;color:var(--tx3);margin-top:6px;margin-left:2px}
+
 /* Filter tabs */
 .ftrow{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
-.ft{font-size:13px;font-weight:800;font-family:var(--mo);padding:6px 16px;border-radius:24px;border:2px solid var(--br);background:var(--bg2);color:var(--tx3);cursor:pointer;transition:.2s}
+.ft{font-size:14px;font-weight:800;font-family:var(--mo);padding:6px 18px;border-radius:24px;border:2px solid var(--br);background:var(--bg2);color:var(--tx3);cursor:pointer;transition:.2s}
 .ft.on{background:var(--gnb);color:var(--gn);border-color:var(--gn)}
-.ft:hover:not(.on){border-color:var(--br2);color:var(--bl)}
+.ft:hover:not(.on){border-color:var(--br2);color:var(--tx)}
+
 /* eGift Grid */
-.egg{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-bottom:16px}
-.egc{background:var(--bg2);border:2px solid var(--br);border-radius:var(--r2);padding:16px;cursor:pointer;transition:.2s;position:relative;overflow:hidden;box-shadow:0 4px 10px rgba(0,0,0,.03)}
-.egc.os{border-color:rgba(2,132,199,.3)}.egc.fl{border-color:rgba(217,119,6,.3)}
-.egc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px}
+.egg{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-bottom:16px}
+.egc{background:var(--bg2);border:2px solid var(--br);border-radius:var(--r2);padding:18px;cursor:pointer;transition:.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);position:relative;overflow:hidden;box-shadow:0 4px 12px rgba(92,75,81,.04)}
+.egc.os{border-color:rgba(139,190,234,.4)}.egc.fl{border-color:rgba(243,181,98,.4)}
+.egc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:5px}
 .egc.os::after{background:var(--bl)}.egc.fl::after{background:var(--am)}
-.egc:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(2,132,199,.15);border-color:var(--bl)}
-.egc.fl:hover{box-shadow:0 8px 20px rgba(217,119,6,.15);border-color:var(--am)}
-.egt{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.egc:hover{transform:translateY(-5px);box-shadow:0 10px 25px rgba(139,190,234,.2);border-color:var(--bl)}
+.egc.fl:hover{box-shadow:0 10px 25px rgba(243,181,98,.2);border-color:var(--am)}
+.egt{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+
 /* Tags */
-.tag{font-size:12px;font-family:var(--mo);font-weight:800;padding:4px 10px;border-radius:8px;white-space:nowrap;display:inline-block;letter-spacing:.5px}
-.tag.eg{background:var(--gnb);color:var(--gn);border:1px solid rgba(5,150,105,.3)}
-.tag.os{background:var(--blb);color:var(--bl);border:1px solid rgba(2,132,199,.3)}
-.tag.fl{background:var(--amb);color:var(--am);border:1px solid rgba(217,119,6,.3)}
-.tag.hd{background:var(--pub);color:var(--pu);border:1px solid rgba(124,58,237,.3)}
-.tag.cp{background:var(--gnb);color:var(--gn);border:1px solid rgba(5,150,105,.3)}
-.tag.id{background:var(--rdb);color:var(--rd);border:1px solid rgba(220,38,38,.3)}
-.tag.ev{background:var(--pub);color:var(--pu);border:1px solid rgba(124,58,237,.3)}
-.tag.lc{background:var(--amb);color:var(--am);border:1px solid rgba(217,119,6,.3)}
-.ec{font-size:16px;font-weight:900;font-family:var(--mo);color:var(--tx)}
-.en{font-size:14px;font-weight:800;color:var(--tx2);margin-left:6px}
-.egft{font-size:14px;font-weight:700;margin:8px 0 4px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--tx)}
-.eghw{font-size:12px;font-weight:700;color:var(--tx3)}
-.egbt{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:12px;border-top:2px dashed var(--br)}
+.tag{font-size:12px;font-family:var(--mo);font-weight:900;padding:4px 10px;border-radius:10px;white-space:nowrap;display:inline-block;letter-spacing:.5px}
+.tag.eg{background:var(--gnb);color:var(--gn);border:2px solid rgba(98,177,176,.3)}
+.tag.os{background:var(--blb);color:var(--bl);border:2px solid rgba(139,190,234,.3)}
+.tag.fl{background:var(--amb);color:var(--am);border:2px solid rgba(243,181,98,.3)}
+.tag.hd{background:var(--pub);color:var(--pu);border:2px solid rgba(203,186,221,.3)}
+.tag.cp{background:var(--gnb);color:var(--gn);border:2px solid rgba(98,177,176,.3)}
+.tag.id{background:var(--rdb);color:var(--rd);border:2px solid rgba(242,139,130,.3)}
+.tag.ev{background:var(--pub);color:var(--pu);border:2px solid rgba(203,186,221,.3)}
+.tag.lc{background:var(--amb);color:var(--am);border:2px solid rgba(243,181,98,.3)}
+.ec{font-size:17px;font-weight:900;font-family:var(--mo);color:var(--tx)}
+.en{font-size:15px;font-weight:800;color:var(--tx2);margin-left:6px}
+.egft{font-size:14px;font-weight:800;margin:10px 0 4px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--tx)}
+.eghw{font-size:12px;font-weight:800;color:var(--tx3)}
+.egbt{display:flex;align-items:center;justify-content:space-between;margin-top:14px;padding-top:12px;border-top:2px dashed var(--br)}
+
 /* Hot Grid */
-.hgg{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:12px;margin-bottom:16px}
-.hc{background:var(--bg2);border:2px solid var(--br);border-radius:var(--r2);padding:16px;cursor:pointer;transition:.2s;box-shadow:0 4px 10px rgba(0,0,0,.03)}
-.hc:hover{border-color:var(--bl);transform:translateY(-4px);box-shadow:0 8px 20px rgba(2,132,199,.15)}
+.hgg{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-bottom:16px}
+.hc{background:var(--bg2);border:2px solid var(--br);border-radius:var(--r2);padding:18px;cursor:pointer;transition:.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);box-shadow:0 4px 12px rgba(92,75,81,.04)}
+.hc:hover{border-color:var(--br2);transform:translateY(-3px);box-shadow:0 8px 20px rgba(255,182,185,.2)}
+.hc.open{border-color:var(--br2);background:var(--bg3);transform:none;box-shadow:none}
 .hht{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
 .rk{font-size:12px;font-family:var(--mo);font-weight:900;padding:2px 10px;border-radius:20px}
-.r1{background:var(--amb);color:var(--am);border:2px solid rgba(217,119,6,.3)}
-.r2{background:rgba(100,116,139,.1);color:var(--tx2);border:2px solid var(--br)}
-.r3{background:var(--rdb);color:var(--rd);border:2px solid rgba(220,38,38,.3)}
-.rn{background:var(--bg3);color:var(--tx3);border:2px solid var(--br)}
-.hgft{font-size:14px;font-weight:800;margin:6px 0;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--tx)}
-.hbr{height:4px;background:var(--bg3);border-radius:4px;margin-top:10px;overflow:hidden}
-.hbf{height:4px;background:var(--rd);border-radius:4px}
-.hbt{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+.r1{background:var(--amb);color:var(--am);border:2px solid rgba(243,181,98,.4)}
+.r2{background:var(--br);color:var(--tx2);border:2px solid var(--br)}
+.r3{background:var(--rdb);color:var(--rd);border:2px solid rgba(242,139,130,.4)}
+.rn{background:var(--bg);color:var(--tx3);border:2px solid var(--br)}
+.hgft{font-size:14px;font-weight:800;margin:8px 0;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--tx)}
+.hbr{height:6px;background:var(--bg);border-radius:6px;margin-top:12px;overflow:hidden}
+.hbf{height:6px;background:var(--rd);border-radius:6px}
+.hbt{display:flex;align-items:center;justify-content:space-between;margin-top:12px}
+
+/* Inline Hot Analysis inside card */
+.h-detail{display:none;margin-top:14px;padding-top:14px;border-top:2px dashed var(--br2);font-size:13px;font-weight:800;color:var(--tx);line-height:1.7;animation:fadeDown 0.3s ease forwards;}
+@keyframes fadeDown{ from{opacity:0; transform:translateY(-5px)} to{opacity:1; transform:translateY(0)} }
+
 /* Price */
-.pu{color:var(--rd);font-family:var(--mo);font-size:14px;font-weight:900}
-.pd{color:var(--gn);font-family:var(--mo);font-size:14px;font-weight:900}
-/* Info panel */
-.ipnl{background:var(--bg2);border:2px solid var(--br);border-radius:var(--r2);padding:18px 24px;margin-bottom:20px;border-left:6px solid var(--gn);box-shadow:0 4px 12px rgba(0,0,0,.04)}
-.iphd{font-size:14px;font-family:var(--mo);font-weight:900;color:var(--gn);margin-bottom:10px;display:flex;align-items:center;gap:8px}
-.ipdot{width:8px;height:8px;border-radius:50%;background:var(--gn);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-.ipbd{font-size:14px;font-weight:700;line-height:1.8}
+.pu{color:var(--rd);font-family:var(--mo);font-size:15px;font-weight:900}
+.pd{color:var(--gn);font-family:var(--mo);font-size:15px;font-weight:900}
+
+/* Info panel (Overall Analysis) */
+.ipnl{background:var(--bg3);border:2px solid var(--br2);border-radius:var(--r2);padding:18px 24px;margin-top:12px;box-shadow:0 4px 12px rgba(255,182,185,.15); position:relative}
+.ipnl::before{content:'';position:absolute;top:-8px;left:30px;border-width:0 8px 8px 8px;border-style:solid;border-color:transparent transparent var(--br2) transparent;}
+.iphd{font-size:15px;font-family:var(--mo);font-weight:900;color:var(--tx);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.ipbd{font-size:14px;font-weight:800;line-height:1.8;color:var(--tx)}
+
 /* Tab nav */
-.tnav{display:flex;border-bottom:2px solid var(--br);margin-bottom:16px;gap:8px}
-.tn{font-size:15px;font-weight:800;font-family:var(--mo);padding:10px 20px;border:none;background:transparent;color:var(--tx3);cursor:pointer;border-bottom:4px solid transparent;margin-bottom:-2px;transition:.2s;border-radius:8px 8px 0 0}
-.tn.on{color:var(--bl);border-bottom-color:var(--bl);background:var(--bg2)}
-.tn:hover:not(.on){color:var(--tx2);background:rgba(255,255,255,.5)}
+.tnav{display:flex;border-bottom:3px solid var(--br);margin-bottom:20px;gap:8px}
+.tn{font-size:16px;font-weight:900;font-family:var(--mo);padding:10px 24px;border:none;background:transparent;color:var(--tx3);cursor:pointer;border-bottom:4px solid transparent;margin-bottom:-3px;transition:.2s;border-radius:16px 16px 0 0}
+.tn.on{color:var(--tx);border-bottom-color:var(--tx);background:var(--bg2)}
+.tn:hover:not(.on){color:var(--tx2);background:rgba(255,255,255,.6)}
 .tp{display:none}.tp.on{display:block}
+
 /* Toolbar */
-.tbar{display:flex;gap:10px;margin-bottom:12px;align-items:center}
+.tbar{display:flex;gap:12px;margin-bottom:14px;align-items:center}
 .sg{display:flex;flex:2;min-width:0}
-.sg input{flex:1;min-width:0;background:var(--bg2);border:2px solid var(--br);border-right:none;border-radius:var(--r) 0 0 var(--r);padding:0 16px;height:42px;font-size:14px;font-weight:700;color:var(--tx);outline:none;font-family:var(--fn)}
-.sg input::placeholder{color:var(--tx3);font-weight:500}
+.sg input{flex:1;min-width:0;background:var(--bg2);border:2px solid var(--br);border-right:none;border-radius:var(--r) 0 0 var(--r);padding:0 16px;height:44px;font-size:15px;font-weight:800;color:var(--tx);outline:none;font-family:var(--fn)}
+.sg input::placeholder{color:var(--tx3);font-weight:700}
 .sg input:focus{border-color:var(--bl)}
-.sqb{height:42px;padding:0 18px;font-size:14px;font-weight:800;font-family:var(--mo);border:2px solid var(--bl);border-left:none;border-radius:0 var(--r) var(--r) 0;background:var(--bl);color:#fff;cursor:pointer;transition:.2s}
-.sqb:hover{background:#0369a1;border-color:#0369a1}
-.tbar select{font-size:13px;font-weight:800;font-family:var(--mo);flex:1;min-width:0;height:42px;background:var(--bg2);border:2px solid var(--br);border-radius:var(--r);color:var(--tx2);padding:0 12px;outline:none;cursor:pointer}
+.sqb{height:44px;padding:0 20px;font-size:15px;font-weight:900;font-family:var(--mo);border:2px solid var(--bl);border-left:none;border-radius:0 var(--r) var(--r) 0;background:var(--bl);color:#fff;cursor:pointer;transition:.2s}
+.sqb:hover{background:#77aadd;border-color:#77aadd}
+.tbar select{font-size:14px;font-weight:800;font-family:var(--mo);flex:1;min-width:0;height:44px;background:var(--bg2);border:2px solid var(--br);border-radius:var(--r);color:var(--tx2);padding:0 14px;outline:none;cursor:pointer}
 .tbar select:focus{border-color:var(--bl)}
-.hint{font-size:13px;font-weight:800;font-family:var(--mo);color:var(--tx3);margin-bottom:8px;min-height:18px}
+.hint{font-size:14px;font-weight:800;font-family:var(--mo);color:var(--tx3);margin-bottom:8px;min-height:18px}
+
 /* Table */
-.tw{overflow-x:auto;border:2px solid var(--br);border-radius:var(--r2);margin-bottom:12px;background:var(--bg2);box-shadow:0 4px 12px rgba(0,0,0,.03)}
+.tw{overflow-x:auto;border:2px solid var(--br);border-radius:var(--r2);margin-bottom:16px;background:var(--bg2);box-shadow:0 4px 12px rgba(92,75,81,.03)}
 table{width:100%;border-collapse:collapse;font-size:14px}
-th{background:var(--bg3);color:var(--tx2);font-size:13px;font-family:var(--mo);font-weight:900;letter-spacing:.5px;padding:12px 14px;text-align:center;border-bottom:2px solid var(--br);white-space:nowrap}
-td{padding:12px 14px;border-bottom:1px solid var(--br);vertical-align:middle;text-align:center;color:var(--tx);font-weight:700}
+th{background:rgba(255,255,255,0.5);color:var(--tx2);font-size:14px;font-family:var(--mo);font-weight:900;padding:14px 16px;text-align:center;border-bottom:2px solid var(--br);white-space:nowrap}
+td{padding:14px 16px;border-bottom:1px dashed var(--br);vertical-align:middle;text-align:center;color:var(--tx);font-weight:800}
 td.tl{text-align:left}
 tr:last-child td{border-bottom:none}
-tr:hover td{background:rgba(2,132,199,.04)}
+tr:hover td{background:var(--bg3)}
 tr.sel td{background:var(--blb)}
 tr.hr td{background:var(--gnb)}
-tr.hr:hover td{background:rgba(5,150,105,.12)}
-tr.hr.sel td{background:rgba(5,150,105,.16)}
-.cf{font-family:var(--mo);font-weight:900;font-size:15px}
+tr.hr:hover td{background:rgba(98,177,176,.25)}
+tr.hr.sel td{background:rgba(98,177,176,.3)}
+.cf{font-family:var(--mo);font-weight:900;font-size:16px}
 .rcw{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:flex-start}
-.ei{display:inline-block;width:16px;height:16px;cursor:pointer;opacity:.4;flex-shrink:0;transition:.15s}
-.ei:hover{opacity:1;color:var(--bl)}
-/* Badges */
-.badge{display:inline-block;font-size:12px;font-family:var(--mo);font-weight:800;padding:4px 10px;border-radius:8px;white-space:nowrap}
-.badge.urgent{background:var(--rdb);color:var(--rd);border:1px solid rgba(220,38,38,.3)}
-.badge.soon{background:var(--amb);color:var(--am);border:1px solid rgba(217,119,6,.3)}
-.badge.ok{background:var(--gnb);color:var(--gn);border:1px solid rgba(5,150,105,.3)}
-.badge.passed{background:var(--bg3);color:var(--tx3);border:1px solid var(--br)}
+.ei{display:inline-block;width:18px;height:18px;cursor:pointer;opacity:.4;flex-shrink:0;transition:.15s}
+.ei:hover{opacity:1;color:var(--bl);transform:scale(1.2)}
+
+/* 🔥 已截止超級明顯標籤 🔥 */
+.badge{display:inline-block;font-size:12px;font-family:var(--mo);font-weight:900;padding:4px 10px;border-radius:10px;white-space:nowrap}
+.badge.urgent{background:var(--rdb);color:var(--rd);border:2px solid rgba(242,139,130,.4)}
+.badge.soon{background:var(--amb);color:var(--am);border:2px solid rgba(243,181,98,.4)}
+.badge.ok{background:var(--gnb);color:var(--gn);border:2px solid rgba(98,177,176,.4)}
+.badge.passed{
+  background: #705b63; /* 深灰咖啡底色 */
+  color: #ffffff;      /* 白色字體 */
+  border: 2px solid #4a3b40;
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.15); /* 強烈立體感 */
+  transform: rotate(-3deg); /* 蓋章的歪斜感 */
+  letter-spacing: 0.5px;
+}
+
 /* Pagination */
-.pgn{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:10px}
-.pgi{font-size:13px;font-weight:800;font-family:var(--mo);color:var(--tx3)}
-.pgbs{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
-.pgb{min-width:34px;height:34px;padding:0 10px;font-size:13px;font-weight:800;font-family:var(--mo);border:2px solid var(--br);border-radius:12px;background:var(--bg2);color:var(--tx2);cursor:pointer;transition:.2s;display:inline-flex;align-items:center;justify-content:center}
-.pgb:hover{border-color:var(--bl);color:var(--bl)}
-.pgb.on{background:var(--bl);color:#fff;border-color:var(--bl)}
-.pgb:disabled{opacity:.4;cursor:default}
+.pgn{display:flex;align-items:center;justify-content:space-between;margin-bottom:30px;flex-wrap:wrap;gap:12px}
+.pgi{font-size:14px;font-weight:800;font-family:var(--mo);color:var(--tx3)}
+.pgbs{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.pgb{min-width:36px;height:36px;padding:0 12px;font-size:14px;font-weight:900;font-family:var(--mo);border:2px solid var(--br);border-radius:12px;background:var(--bg2);color:var(--tx2);cursor:pointer;transition:.2s;display:inline-flex;align-items:center;justify-content:center}
+.pgb:hover{border-color:var(--br2);color:var(--tx);transform:translateY(-2px)}
+.pgb.on{background:var(--br2);color:#fff;border-color:var(--br2)}
+.pgb:disabled{opacity:.4;cursor:default;transform:none}
 .pgb:disabled:hover{background:var(--bg2);color:var(--tx2);border-color:var(--br)}
-.pgdots{font-size:14px;font-weight:900;color:var(--tx3);padding:0 4px;font-family:var(--mo)}
+.pgdots{font-size:15px;font-weight:900;color:var(--tx3);padding:0 6px;font-family:var(--mo)}
+
 /* Holdings */
-.hp{background:var(--bg2);border:2px solid var(--br);border-radius:var(--r2);padding:20px 24px;margin-bottom:16px}
-.hpt{font-size:15px;font-weight:900;font-family:var(--mo);margin-bottom:14px}
-.har{display:flex;gap:8px;align-items:center;margin-bottom:12px}
-.har input{font-size:14px;font-weight:700;font-family:var(--mo);padding:0 12px;height:40px;border:2px solid var(--br);border-radius:var(--r);background:var(--bg3);color:var(--tx);outline:none}
-.har input:focus{border-color:var(--bl)}
-.har input::placeholder{color:var(--tx3);font-weight:500}
-.hcode{width:105px}.hname{width:120px}
-.hadd{height:40px;padding:0 16px;font-size:14px;font-weight:800;font-family:var(--mo);border:2px solid var(--gn);border-radius:var(--r);background:var(--gn);color:#fff;cursor:pointer;transition:.2s;flex-shrink:0}
-.hadd:hover{background:#047857;border-color:#047857}
+.hp{background:var(--bg2);border:2px solid var(--br);border-radius:var(--r2);padding:24px;margin-bottom:16px}
+.hpt{font-size:16px;font-weight:900;font-family:var(--mo);margin-bottom:16px}
+.har{display:flex;gap:10px;align-items:center;margin-bottom:14px}
+.har input{font-size:15px;font-weight:800;font-family:var(--mo);padding:0 14px;height:44px;border:2px solid var(--br);border-radius:var(--r);background:var(--bg);color:var(--tx);outline:none}
+.har input:focus{border-color:var(--br2)}
+.har input::placeholder{color:var(--tx3);font-weight:700}
+.hcode{width:110px}.hname{width:130px}
+.hadd{height:44px;padding:0 18px;font-size:15px;font-weight:900;font-family:var(--mo);border:2px solid var(--gn);border-radius:var(--r);background:var(--gn);color:#fff;cursor:pointer;transition:.2s;flex-shrink:0}
+.hadd:hover{background:#4d9a99;border-color:#4d9a99}
 .hadd:disabled{opacity:0.6;pointer-events:none;cursor:wait}
-.hpm{font-size:13px;font-weight:800;font-family:var(--mo);color:var(--tx3);margin-bottom:12px}
-.cr{display:flex;flex-wrap:wrap;gap:8px}
-.hchip{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:24px;font-size:13px;font-weight:800;font-family:var(--mo);border:2px solid var(--br);background:var(--bg3);color:var(--tx2);white-space:nowrap}
-.hchip.hg{background:var(--gnb);border-color:rgba(5,150,105,.4);color:var(--gn)}
-.hdel{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;font-size:11px;cursor:pointer;opacity:.6;flex-shrink:0;background:rgba(0,0,0,.1);transition:.15s}
-.hchip.hg .hdel{background:rgba(5,150,105,.2)}
-.hdel:hover{opacity:1;color:#fff;background:rgba(0,0,0,.4)}
-.errmsg{font-size:13px;font-weight:800;font-family:var(--mo);color:var(--rd);margin-top:6px;min-height:18px}
+.hpm{font-size:14px;font-weight:800;font-family:var(--mo);color:var(--tx3);margin-bottom:14px}
+.cr{display:flex;flex-wrap:wrap;gap:10px}
+.hchip{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:24px;font-size:14px;font-weight:800;font-family:var(--mo);border:2px solid var(--br);background:var(--bg);color:var(--tx2);white-space:nowrap}
+.hchip.hg{background:var(--gnb);border-color:rgba(98,177,176,.4);color:var(--gn)}
+.hdel{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:12px;cursor:pointer;opacity:.6;flex-shrink:0;background:rgba(92,75,81,.1);transition:.15s}
+.hchip.hg .hdel{background:rgba(98,177,176,.25)}
+.hdel:hover{opacity:1;color:#fff;background:var(--tx2)}
+.errmsg{font-size:14px;font-weight:800;font-family:var(--mo);color:var(--rd);margin-top:6px;min-height:20px}
+
 /* Sec btn */
-.secbtn{font-size:12px;font-weight:800;font-family:var(--mo);padding:6px 14px;border-radius:12px;border:2px solid var(--br);background:var(--bg2);color:var(--tx2);cursor:pointer;transition:.2s}
-.secbtn:hover{border-color:var(--bl);color:var(--bl)}
+.secbtn{font-size:14px;font-weight:900;font-family:var(--mo);padding:8px 16px;border-radius:24px;border:2px solid var(--br);background:var(--bg2);color:var(--tx2);cursor:pointer;transition:.2s}
+.secbtn:hover{border-color:var(--br2);color:var(--tx);background:var(--bg3)}
+
 /* Modal */
-.modw{display:none;background:rgba(0,0,0,.4);position:fixed;inset:0;z-index:200;align-items:center;justify-content:center;backdrop-filter:blur(5px)}
+.modw{display:none;background:rgba(92,75,81,.4);position:fixed;inset:0;z-index:200;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
 .modw.open{display:flex}
+
 /* Inline stock detail row */
-.detail-tr td{background:var(--bg3)!important;padding:16px 24px!important;border-bottom:2px solid var(--br)!important}
+.detail-tr td{background:var(--bg3)!important;padding:20px 24px!important;border-bottom:2px dashed var(--br2)!important}
 .detail-tr:hover td{background:var(--bg3)!important}
-.detail-inner{font-size:15px;line-height:1.9;color:var(--tx);font-weight:700}
-.detail-inner strong{font-size:16px;font-weight:900;font-family:var(--mo)}
-.detail-inner .di-label{color:var(--tx3);font-size:14px;font-weight:800}
-.detail-close{float:right;font-size:13px;font-weight:800;font-family:var(--mo);padding:6px 14px;border-radius:12px;border:2px solid var(--br);background:var(--bg2);color:var(--tx3);cursor:pointer;transition:.2s;margin-top:2px}
-.detail-close:hover{border-color:var(--rd);color:var(--rd)}
-.mod{background:var(--bg2);border:none;border-radius:24px;padding:28px;width:360px;max-width:95vw;box-shadow:0 10px 40px rgba(0,0,0,.15)}
-.mod h3{font-size:16px;font-weight:900;font-family:var(--mo);margin-bottom:16px;border-bottom:2px dashed var(--br);padding-bottom:14px}
-.modl{font-size:12px;font-weight:900;font-family:var(--mo);color:var(--tx3);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}
-.ckr{display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:14px;font-weight:700;color:var(--tx2);cursor:pointer;padding:8px 12px;border-radius:12px;transition:.15s}
-.ckr:hover{background:var(--bg3);color:var(--tx)}
-.ckr input{accent-color:var(--gn);width:16px;height:16px;cursor:pointer}
-.nin{font-size:14px;font-weight:700;width:100%;padding:10px 14px;border:2px solid var(--br);border-radius:12px;background:var(--bg3);color:var(--tx);resize:vertical;min-height:60px;margin-top:6px;outline:none;font-family:var(--fn)}
-.nin:focus{border-color:var(--bl)}
-.nin::placeholder{color:var(--tx3);font-weight:500}
-.mac{display:flex;gap:10px;margin-top:20px;justify-content:flex-end}
-.bc{font-size:13px;font-weight:800;font-family:var(--mo);padding:8px 18px;border-radius:12px;border:2px solid var(--br);background:transparent;color:var(--tx3);cursor:pointer;transition:.2s}
+.detail-inner{font-size:15px;line-height:1.9;color:var(--tx);font-weight:800}
+.detail-inner strong{font-size:18px;font-weight:900;font-family:var(--mo)}
+.detail-inner .di-label{color:var(--tx2);font-size:14px;font-weight:800}
+.detail-close{float:right;font-size:14px;font-weight:900;font-family:var(--mo);padding:6px 16px;border-radius:16px;border:2px solid var(--br);background:var(--bg2);color:var(--tx3);cursor:pointer;transition:.2s;margin-top:2px}
+.detail-close:hover{border-color:var(--br2);color:var(--tx);background:var(--bg)}
+.mod{background:var(--bg2);border:none;border-radius:28px;padding:32px;width:380px;max-width:95vw;box-shadow:0 15px 50px rgba(92,75,81,.15)}
+.mod h3{font-size:18px;font-weight:900;font-family:var(--mo);margin-bottom:18px;border-bottom:2px dashed var(--br);padding-bottom:16px;color:var(--tx)}
+.modl{font-size:13px;font-weight:900;font-family:var(--mo);color:var(--tx3);margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+.ckr{display:flex;align-items:center;gap:10px;margin-bottom:12px;font-size:15px;font-weight:800;color:var(--tx2);cursor:pointer;padding:10px 14px;border-radius:16px;transition:.15s}
+.ckr:hover{background:var(--bg);color:var(--tx)}
+.ckr input{accent-color:var(--br2);width:18px;height:18px;cursor:pointer}
+.nin{font-size:15px;font-weight:800;width:100%;padding:12px 16px;border:2px solid var(--br);border-radius:16px;background:var(--bg);color:var(--tx);resize:vertical;min-height:80px;margin-top:8px;outline:none;font-family:var(--fn)}
+.nin:focus{border-color:var(--br2)}
+.nin::placeholder{color:var(--tx3);font-weight:700}
+.mac{display:flex;gap:12px;margin-top:24px;justify-content:flex-end}
+.bc{font-size:14px;font-weight:900;font-family:var(--mo);padding:10px 20px;border-radius:16px;border:2px solid var(--br);background:transparent;color:var(--tx3);cursor:pointer;transition:.2s}
 .bc:hover{border-color:var(--tx2);color:var(--tx2)}
-.bs2{font-size:13px;font-weight:800;font-family:var(--mo);padding:8px 20px;border-radius:12px;border:none;background:var(--gn);color:#fff;cursor:pointer;transition:.2s}
-.bs2:hover{background:#047857}
+.bs2{font-size:14px;font-weight:900;font-family:var(--mo);padding:10px 24px;border-radius:16px;border:none;background:var(--br2);color:#fff;cursor:pointer;transition:.2s}
+.bs2:hover{background:#ff999d}
 
 /* Multi-account */
-.acct-bar{display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap}
-.acct-tab{font-size:13px;font-weight:800;font-family:var(--mo);padding:8px 16px;border-radius:24px;border:2px solid var(--br);background:var(--bg2);color:var(--tx2);cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:8px;position:relative}
+.acct-bar{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.acct-tab{font-size:14px;font-weight:900;font-family:var(--mo);padding:8px 18px;border-radius:24px;border:2px solid var(--br);background:var(--bg2);color:var(--tx2);cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:10px;position:relative}
 .acct-tab.on{background:var(--gnb);color:var(--gn);border-color:var(--gn)}
-.acct-tab:hover:not(.on){border-color:var(--bl);color:var(--bl)}
-.acct-del{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;font-size:11px;background:rgba(0,0,0,.08);opacity:.7;cursor:pointer;transition:.15s;flex-shrink:0}
+.acct-tab:hover:not(.on){border-color:var(--br2);color:var(--tx)}
+.acct-del{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;font-size:11px;background:rgba(92,75,81,.1);opacity:.7;cursor:pointer;transition:.15s;flex-shrink:0}
 .acct-del:hover{opacity:1;background:var(--rd);color:#fff}
-.acct-add{font-size:13px;font-weight:800;font-family:var(--mo);padding:8px 16px;border-radius:24px;border:2px dashed var(--tx3);background:transparent;color:var(--tx3);cursor:pointer;transition:.2s}
-.acct-add:hover{border-color:var(--gn);color:var(--gn);border-style:solid}
-.acct-sect{background:var(--bg2);border:2px solid var(--br);border-radius:var(--r2);padding:20px 24px;margin-bottom:16px}
-.acct-name-row{display:flex;align-items:center;gap:10px;margin-bottom:16px}
-.acct-name-row input{font-size:14px;font-weight:800;font-family:var(--mo);padding:0 12px;height:38px;border:2px solid var(--br);border-radius:12px;background:var(--bg3);color:var(--tx);outline:none;width:180px}
-.acct-name-row input:focus{border-color:var(--bl)}
-.acct-label{font-size:13px;font-weight:800;font-family:var(--mo);color:var(--tx2)}
-.acct-rename{font-size:12px;font-weight:800;font-family:var(--mo);padding:6px 12px;border-radius:10px;border:2px solid var(--br);background:var(--bg2);color:var(--tx3);cursor:pointer;transition:.2s}
-.acct-rename:hover{border-color:var(--gn);color:var(--gn)}
-.acct-color{width:24px;height:24px;border-radius:50%;border:3px solid transparent;cursor:pointer;flex-shrink:0;transition:.15s}
+.acct-add{font-size:14px;font-weight:900;font-family:var(--mo);padding:8px 18px;border-radius:24px;border:2px dashed var(--tx3);background:transparent;color:var(--tx3);cursor:pointer;transition:.2s}
+.acct-add:hover{border-color:var(--br2);color:var(--tx);border-style:solid;background:var(--bg2)}
+.acct-name-row{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.acct-name-row input{font-size:15px;font-weight:800;font-family:var(--mo);padding:0 14px;height:42px;border:2px solid var(--br);border-radius:12px;background:var(--bg);color:var(--tx);outline:none;width:190px}
+.acct-name-row input:focus{border-color:var(--br2)}
+.acct-label{font-size:14px;font-weight:900;font-family:var(--mo);color:var(--tx2)}
+.acct-rename{font-size:13px;font-weight:900;font-family:var(--mo);padding:8px 14px;border-radius:12px;border:2px solid var(--br);background:var(--bg2);color:var(--tx3);cursor:pointer;transition:.2s}
+.acct-rename:hover{border-color:var(--br2);color:var(--tx)}
+.acct-color{width:28px;height:28px;border-radius:50%;border:3px solid transparent;cursor:pointer;flex-shrink:0;transition:.15s}
 .acct-color.sel{border-color:var(--tx)}
-.color-picks{display:flex;gap:8px;align-items:center;margin-bottom:16px}
+.color-picks{display:flex;gap:10px;align-items:center;margin-bottom:18px}
 
 /* Refresh button */
-.refresh-btn{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;font-family:var(--mo);padding:0 16px;height:42px;border-radius:12px;border:2px solid var(--br);background:var(--bg2);color:var(--tx3);cursor:pointer;transition:.2s;white-space:nowrap;flex-shrink:0}
-.refresh-btn:hover{border-color:var(--bl);color:var(--bl)}
+.refresh-btn{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:900;font-family:var(--mo);padding:0 18px;height:44px;border-radius:16px;border:2px solid var(--br);background:var(--bg2);color:var(--tx3);cursor:pointer;transition:.2s;white-space:nowrap;flex-shrink:0}
+.refresh-btn:hover{border-color:var(--bl);color:var(--bl);background:var(--blb)}
 .refresh-btn.loading{border-color:var(--am);color:var(--am);pointer-events:none}
 .refresh-btn.done{border-color:var(--gn);color:var(--gn);background:var(--gnb)}
 .refresh-btn.err{border-color:var(--rd);color:var(--rd);background:var(--rdb)}
-.refresh-btn .spin{display:inline-block;animation:spin .8s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
 .spin{animation:spin .8s linear infinite;display:inline-block}
-.refresh-status{font-size:12px;font-weight:800;font-family:var(--mo);color:var(--tx3);margin-left:6px}
-/* ── Responsive ─────────────────────────────────────────── */
+@keyframes spin{to{transform:rotate(360deg)}}
+.refresh-status{font-size:13px;font-weight:900;font-family:var(--mo);color:var(--tx3);margin-left:8px}
+
+/* 🌸 吉依卡娃實體浮動小圖 🌸 */
+.chiikawa-float {
+  position: fixed;
+  bottom: 24px;
+  right: 30px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  animation: floaty 3s ease-in-out infinite;
+  cursor: pointer;
+}
+.chiikawa-img {
+  width: 150px;
+  height: auto;
+  border-radius: 28px;
+  border: 4px solid var(--bg2);
+  box-shadow: 0 10px 30px rgba(255, 182, 185, 0.4);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: var(--bg3);
+}
+.chiikawa-float:hover .chiikawa-img {
+  transform: scale(1.08) rotate(-4deg);
+}
+.chiikawa-float .speech-bubble {
+  background: #ffffff;
+  border: 2px solid var(--br2);
+  padding: 10px 16px;
+  border-radius: 18px;
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--tx);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: 0.3s;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 6px 16px rgba(255, 182, 185, 0.25);
+  white-space: nowrap;
+}
+.chiikawa-float .speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px 8px 0 8px;
+  border-style: solid;
+  border-color: var(--br2) transparent transparent transparent;
+}
+.chiikawa-float:hover .speech-bubble {
+  opacity: 1;
+  transform: translateY(0);
+}
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+/* Responsive */
 @media(max-width:768px){
   .hdr{padding:0 16px}
   .hdr-in{height:54px;gap:8px}
   .logo{font-size:16px}
-  .hlink{padding:6px 12px}
-  .main{padding:16px}
+  .hlink{padding:6px 12px;font-size:13px}
+  .main{padding:16px; padding-bottom:140px;} /* 給浮動圖片更多空間 */
   .mets{grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px}
-  .met{padding:14px 16px}
-  .met-v{font-size:26px}
-  .met-l{font-size:11px}
-  .dv{margin:20px 0}
-  .st{font-size:15px}
+  .met{padding:16px}
+  .met-v{font-size:28px}
+  .met-l{font-size:12px}
+  .dv{margin:24px 0}
+  .st{font-size:16px}
   .ssub{font-size:12px}
-  .sh{flex-wrap:wrap;gap:10px}
-  .hgg{grid-template-columns:1fr 1fr;gap:10px}
-  .egg{grid-template-columns:1fr 1fr;gap:10px}
-  .egc,.hc{padding:14px}
+  .sh{flex-wrap:wrap;gap:12px}
+  .hgg{grid-template-columns:1fr 1fr;gap:12px}
+  .egg{grid-template-columns:1fr 1fr;gap:12px}
+  .egc,.hc{padding:16px}
   .tnav{overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
-  .tn{font-size:14px;padding:8px 16px}
+  .tn{font-size:15px;padding:10px 18px}
   .tbar{flex-wrap:wrap}
   .sg{flex:none;width:100%;order:0}
-  .tbar select{flex:1;min-width:0;order:1;font-size:13px;height:38px}
-  .refresh-btn{order:2;font-size:12px;padding:0 12px;height:38px}
+  .tbar select{flex:1;min-width:0;order:1;font-size:14px;height:40px}
+  .refresh-btn{order:2;font-size:13px;padding:0 14px;height:40px}
   table{font-size:13px}
-  th,td{padding:10px 8px}
+  th,td{padding:12px 10px}
   th:nth-child(6),td:nth-child(6),
   th:nth-child(8),td:nth-child(8){display:none}
   .pgn{flex-direction:column;align-items:flex-start;gap:8px}
   .har{flex-wrap:wrap}
-  .hcode,.hname{width:calc(50% - 4px);flex:none}
-  .hadd{width:100%;margin-top:4px}
-  .acct-bar{overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;padding-bottom:6px}
+  .hcode,.hname{width:calc(50% - 5px);flex:none}
+  .hadd{width:100%;margin-top:6px}
+  .acct-bar{overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;padding-bottom:8px}
   .acct-tab{white-space:nowrap;flex-shrink:0}
   .detail-inner{font-size:14px}
-  .ipnl{padding:14px 16px}
+  .ipnl{padding:16px}
   .refresh-status{font-size:12px;display:block;margin-top:6px}
+  
+  /* 手機版縮小圖片 */
+  .chiikawa-float { bottom: 16px; right: 16px; gap: 8px;}
+  .chiikawa-img { width: 90px; border-width: 3px; border-radius: 20px;}
+  .chiikawa-float .speech-bubble { font-size: 12px; padding: 6px 12px; }
+  body::before { width: 300px; height: 300px; }
 }
 @media(max-width:480px){
   .hgg,.egg{grid-template-columns:1fr}
   .mets{grid-template-columns:repeat(2,1fr)}
-  .met-v{font-size:24px}
+  .met-v{font-size:26px}
   th:nth-child(3),td:nth-child(3){display:none}
-  .logo-dot{display:none}
 }
 </style>
 </head>
 <body>
 <header class="hdr">
   <div class="hdr-in">
-    <div class="logo"><span class="logo-dot"></span>股東會紀念品追蹤器</div>
-    <!-- 移除了 2026 ／ 零股寶資料的標籤 -->
-    <span id="update-time" style="font-size:12px;font-weight:800;font-family:var(--mo);color:var(--tx3);margin-left:12px">更新時間：2026/03/20 (共存取 120 筆)</span>
-    <span id="cloud-status" style="font-size:12px;font-weight:800;font-family:var(--mo);color:var(--tx3);margin-left:8px;padding:2px 8px;border:2px solid var(--br);border-radius:8px;display:none;"></span>
-    <a class="hlink" href="https://stockgift.tw/STOCK/Stock/Info" target="_blank">
-前往零股寶
-    </a>
+    <div class="logo">🌸 股東會紀念品追蹤器 ૮( ⸝⸝´ ꒳ `⸝⸝ )ა</div>
+    <span id="update-time" style="font-size:13px;font-weight:900;font-family:var(--mo);color:var(--tx3);margin-left:12px">更新時間：2026/03/20 (共存取 120 筆)</span>
+    <span id="cloud-status" style="font-size:13px;font-weight:900;font-family:var(--mo);color:var(--tx3);margin-left:10px;padding:4px 10px;border:2px dashed var(--br);border-radius:12px;display:none;"></span>
+    <a class="hlink" href="https://stockgift.tw/STOCK/Stock/Info" target="_blank">前往零股寶 🐥</a>
   </div>
 </header>
 
 <main class="main">
 
 <div class="mets">
-  <div class="met g"><div class="met-l">我的持股有紀念品</div><div class="met-v" id="m2">—</div><div class="met-s">檔已公告可領取</div></div>
-  <div class="met b"><div class="met-l">已公告清單</div><div class="met-v" id="m1">—</div><div class="met-s">筆（零股寶資料）</div></div>
-  <div class="met a"><div class="met-l">需身分證正本</div><div class="met-v" id="m3">—</div><div class="met-s">筆需特別注意</div></div>
-  <div class="met p"><div class="met-l">eGift 線上領</div><div class="met-v" id="m4">—</div><div class="met-s">檔可線上領取</div></div>
+  <div class="met g"><div class="met-l">我的持股有紀念品</div><div class="met-v" id="m2">—</div><div class="met-s">吉依卡娃陪你領 🐹</div></div>
+  <div class="met b"><div class="met-l">已公告清單</div><div class="met-v" id="m1">—</div><div class="met-s">小巴幫你查 🐱</div></div>
+  <div class="met a"><div class="met-l">需身分證正本</div><div class="met-v" id="m3">—</div><div class="met-s">烏薩奇提醒你 🐰</div></div>
+  <div class="met p"><div class="met-l">eGift 線上領</div><div class="met-v" id="m4">—</div><div class="met-s">檔可線上領取 ✨</div></div>
 </div>
 
 <section>
   <div class="sh">
     <div>
-      <div class="st"><span class="sdot r"></span>2026 熱門零股專區</div>
-      <div class="ssub">市場最熱議 · 依討論熱度排名 · 點擊查看分析</div>
+      <div class="st">🔥 烏薩奇大推！熱門零股專區 🐰</div>
+      <div class="ssub">市場最熱議 · 依討論熱度排名 · 點擊卡片會自動展開分析喔 🐰</div>
     </div>
   </div>
   <div class="hgg" id="HG"></div>
-  <div class="ipnl" id="phot" style="display:none">
-    <div class="iphd"><span class="ipdot"></span>熱門零股分析</div>
-    <div class="ipbd" id="thot"></div>
-  </div>
 </section>
 
 <div class="dv"></div>
 
 <section>
   <div class="sh">
-    <div>
-      <div class="st"><span class="sdot g"></span>eGift 電子化紀念品專區</div>
-      <div class="ssub">藍框=零股可領 · 橘框=需持滿1張 · 點擊卡片查看詳情</div>
+    <div style="width:100%">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <div class="st">🎁 小巴最愛！eGift 電子化專區 🐱</div>
+          <div class="ssub">藍框=零股可領 · 橘框=需持滿1張 · 點擊卡片查看詳情</div>
+        </div>
+        <button class="secbtn" id="btn-eg-all">📝 點我看整體分析</button>
+      </div>
+      <!-- eGift整體分析區塊 -->
+      <div class="ipnl" id="peg" style="display:none;">
+        <div class="iphd">✨ eGift 整體分析 ૮ ˶ᵔ ᵕ ᵔ˶ ა</div>
+        <div class="ipbd" id="teg"></div>
+      </div>
     </div>
-    <button class="secbtn" id="btn-eg-all">整體分析 ↗</button>
   </div>
+  
   <div class="ftrow">
     <button class="ft on" data-etab="all">全部</button>
     <button class="ft" data-etab="os">零股可領</button>
     <button class="ft" data-etab="full">需滿1張</button>
   </div>
   <div class="egg" id="EG"></div>
-  <div class="ipnl" id="peg" style="display:none">
-    <div class="iphd"><span class="ipdot"></span>eGift 分析</div>
-    <div class="ipbd" id="teg"></div>
-  </div>
 </section>
 
 <div class="dv"></div>
@@ -362,7 +480,7 @@ tr.hr.sel td{background:rgba(5,150,105,.16)}
 
 <div class="tp on" id="tab-all">
   <div class="tbar">
-    <div class="sg"><input type="text" id="srch" placeholder="輸入股號、股名或紀念品..."><button class="sqb" id="btn-srch">搜尋</button></div>
+    <div class="sg"><input type="text" id="srch" placeholder="輸入股號、股名... 烏薩奇幫你找 🐰🔍"><button class="sqb" id="btn-srch">搜尋</button></div>
     <select id="fu">
       <option value="all">全部狀態</option>
       <option value="u">緊急(7天內)</option>
@@ -378,11 +496,11 @@ tr.hr.sel td{background:rgba(5,150,105,.16)}
       <option value="noev">無需電投</option>
     </select>
     <button class="refresh-btn" id="btn-refresh">
-      <svg width="15" height="15" viewBox="0 0 13 13" fill="none"><path d="M11.5 6.5A5 5 0 1 1 9 2.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M9 2.1V0M9 2.1H7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <svg width="16" height="16" viewBox="0 0 13 13" fill="none"><path d="M11.5 6.5A5 5 0 1 1 9 2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M9 2.1V0M9 2.1H7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       重整資料
     </button>
   </div>
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
     <div class="hint" id="hint" style="margin:0;flex:1"></div>
     <span class="refresh-status" id="refresh-status"></span>
   </div>
@@ -397,9 +515,9 @@ tr.hr.sel td{background:rgba(5,150,105,.16)}
 </div>
 
 <div class="tp" id="tab-mine">
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap">
     <div class="hint" id="mine-hint" style="margin:0;flex:1"></div>
-    <div id="mine-acct-filter" style="display:flex;gap:6px;flex-wrap:wrap"></div>
+    <div id="mine-acct-filter" style="display:flex;gap:8px;flex-wrap:wrap"></div>
   </div>
   <div class="tw"><table><thead><tr>
     <th style="width:60px">股號</th><th style="width:75px">股名</th><th style="width:75px">股價</th>
@@ -409,7 +527,10 @@ tr.hr.sel td{background:rgba(5,150,105,.16)}
     <th style="min-width:190px">領取條件</th>
   </tr></thead><tbody id="TB-mine"></tbody></table></div>
   <div class="pgn" id="pg-mine"></div>
-  <div id="no-match" style="display:none;padding:2rem;text-align:center;font-size:15px;font-weight:800;font-family:var(--mo);color:var(--tx3)">你的持股中目前尚無已公告紀念品的股票</div>
+  <div id="no-match" style="display:none;padding:3rem;text-align:center;font-size:16px;font-weight:900;font-family:var(--mo);color:var(--tx3)">
+    <img src="chiikawa.png" style="width:140px; border-radius:24px; margin-bottom:16px; border:3px dashed var(--br2); opacity:0.8"><br>
+    你的持股中目前尚無已公告紀念品的股票...<br>吉依卡娃都要哭了 嗚嗚 ( ߹꒳߹ )
+  </div>
 </div>
 
 <div class="tp" id="tab-manage">
@@ -423,14 +544,14 @@ tr.hr.sel td{background:rgba(5,150,105,.16)}
     </div>
     <div class="color-picks" id="color-picks"></div>
     <div class="hp" style="margin-bottom:0">
-      <div class="hpt">新增持股到此帳號</div>
+      <div class="hpt">✨ 吉依卡娃的持股小本本 🐹</div>
       <div class="har">
         <input type="text" class="hcode" id="add-code" placeholder="股票代號" maxlength="6">
         <input type="text" class="hname" id="add-name" placeholder="股名（選填）">
-        <button class="hadd" id="btn-add">+ 新增</button>
+        <button class="hadd" id="btn-add">➕ 新增</button>
       </div>
       <div class="errmsg" id="add-err"></div>
-      <div class="hpm">此帳號持股 <span id="holding-count">0</span> 檔　· 綠色 = 已有紀念品公告</div>
+      <div class="hpm">此帳號持股 <span id="holding-count" style="font-weight:900;color:var(--tx)">0</span> 檔　· 綠色 = 已有紀念品公告 🌸</div>
       <div class="cr" id="holding-grid"></div>
     </div>
   </div>
@@ -439,15 +560,21 @@ tr.hr.sel td{background:rgba(5,150,105,.16)}
 <div class="modw" id="MOD">
   <div class="mod">
     <h3 id="modtitle">備註</h3>
-    <div class="modl">快速標籤</div>
+    <div class="modl">快速標籤 🔖</div>
     <label class="ckr"><input type="checkbox" id="ck1"> 零股不能領取</label>
     <label class="ckr"><input type="checkbox" id="ck2"> 需攜帶身分證</label>
     <label class="ckr"><input type="checkbox" id="ck3"> 需完成電子投票</label>
     <label class="ckr"><input type="checkbox" id="ck4"> 支援 eGift 線上領取</label>
-    <div class="modl" style="margin-top:12px">自訂備註</div>
+    <div class="modl" style="margin-top:16px">自訂備註 📝</div>
     <textarea class="nin" id="note" placeholder="例：1股可領、需APP認證..."></textarea>
     <div class="mac"><button class="bc" id="btnmc">取消</button><button class="bs2" id="btnms">儲存</button></div>
   </div>
+</div>
+
+<!-- 🌸 吉依卡娃實體浮動精靈 🌸 -->
+<div class="chiikawa-float" id="c-float">
+  <div class="speech-bubble" id="c-msg">呀哈！<br>有什麼可以幫忙的嗎？</div>
+  <img src="chiikawa.png" alt="吉依卡娃小隊" class="chiikawa-img" onerror="this.style.display='none'; document.getElementById('c-msg').innerHTML='圖片讀取失敗 🥲<br>請確認檔名為 chiikawa.png';">
 </div>
 
 <script>
@@ -581,7 +708,16 @@ const ALL=[
 {code:'4142',name:'國光生',price:18.15,gift:'氣密保鮮罐',lbo:'2026-03-31',meet:'2026-06-04',cond:'ev'},
 ];
 
-// EGIFT is now dynamic - see getEGIFT()
+const HEAT={
+  '1432':{heat:12400,restrict:'零股可領，電投截圖，eGift線上領',analysis:'大魯閣(1432) ⚾\n• 18.5元→4,200元消費券，CP值全場最高！\n• eGift完全線上領，需電子投票截圖喔'},
+  '2303':{heat:10850,restrict:'零股不能領取，需電投截圖',analysis:'聯電(2303) 🐶\n• 這次是可愛的 Snoopy 聯名保溫瓶！\n• 零股不能領取 🥲\n• 需持滿1張（1000股）+電投截圖'},
+  '1101':{heat:8200,restrict:'零股可領，需電投截圖',analysis:'台泥(1101) 🌿\n• 環保又實用的折疊提包\n• 零股可以領喔，記得完成電子投票截圖！'},
+  '2614':{heat:7800,restrict:'零股可領，需電投截圖',analysis:'東森(2614) ✨\n• 保濕潔面霜市價近 2,000 元，CP值極高\n• 零股可以領，需電子投票截圖'},
+  '1708':{heat:6900,restrict:'零股可領，需電投截圖',analysis:'東鹼(1708) 🧼\n• 小蘇打粉清潔組，居家好幫手\n• 零股可以領，需電子投票截圖'},
+  '4102':{heat:6200,restrict:'零股可領，需電投截圖',analysis:'永日(4102) 💊\n• 送益生菌（市價880元），CP值超級高！\n• 零股可以領，需電子投票截圖'},
+  '2002':{heat:5800,restrict:'待公告，需電投截圖',analysis:'中鋼(2002) ⚙️\n• 歷年紀念品都會造成熱烈搶兌\n• 今年品項待公告，記得先買進並準備電投！'},
+  '3714':{heat:5200,restrict:'零股可領，需電投截圖',analysis:'富采(3714) 🐱\n• 送黃阿瑪後宮生活聯名雙層碗，超可愛！\n• 零股可以領，需電子投票截圖'},
+};
 
 const HOT=[
   {code:'1432',name:'大魯閣'},
@@ -598,7 +734,6 @@ function getHOT(){
   return HOT.map(h=>ALL.find(s=>s.code===h.code)||null).filter(Boolean);
 }
 
-// 新增更多常見台股名單以優化「輸入股號帶股名」體驗
 const INIT=[
 {code:'1101',name:'台泥'},{code:'1103',name:'嘉泥'},{code:'1201',name:'味全'},
 {code:'1217',name:'愛之味'},{code:'1218',name:'泰山'},{code:'1220',name:'台榮'},
@@ -618,7 +753,6 @@ const INIT=[
 {code:'6116',name:'彩晶'},{code:'6026',name:'福邦證'},{code:'6169',name:'昱泉'},
 {code:'8076',name:'伍豐'},{code:'8215',name:'明碁材'},{code:'2031',name:'新光鋼'},
 {code:'2332',name:'友訊'},{code:'2371',name:'大同'},
-// 熱門補充電庫
 {code:'2330',name:'台積電'},{code:'2317',name:'鴻海'},{code:'2454',name:'聯發科'},
 {code:'2308',name:'台達電'},{code:'2881',name:'富邦金'},{code:'2882',name:'國泰金'},
 {code:'2892',name:'第一金'},{code:'2886',name:'兆豐金'},{code:'2884',name:'玉山金'},
@@ -627,14 +761,10 @@ const INIT=[
 {code:'00929',name:'復華台灣科技優息'}
 ];
 
-// ── 設定你的 Cloudflare Worker URL ──────────────────────────────────────
 let WORKER_URL = 'https://stockgift-api.cindypc33.workers.dev';
-
 const PS=20;
-// 修改為適合白底的帳號顏色
-const ACCT_COLORS=['#059669', '#0284c7', '#d97706', '#dc2626', '#7c3aed', '#0d9488', '#2563eb', '#c026d3'];
+const ACCT_COLORS=['#62b1b0', '#8bbeea', '#f3b562', '#f28b82', '#cbbadd', '#a3d9a5', '#9ab7d3', '#e8a5b2'];
 
-// ── localStorage 與雲端持久化同步 ──────────────────────────────────────
 async function saveData(){
   const dataObj = {
     all: ALL,
@@ -644,7 +774,6 @@ async function saveData(){
     rem: rem
   };
 
-  // 1. 本地儲存備用
   try{
     localStorage.setItem('sg_all', JSON.stringify(ALL));
     localStorage.setItem('sg_accounts', JSON.stringify(accounts));
@@ -653,7 +782,6 @@ async function saveData(){
     localStorage.setItem('sg_rem', JSON.stringify(rem));
   }catch(e){}
 
-  // 2. 雲端同步儲存
   const cs = document.getElementById('cloud-status');
   if(cs) { cs.style.display = 'inline-block'; cs.textContent = '☁️ 同步中...'; cs.style.color = 'var(--am)'; }
   
@@ -680,12 +808,11 @@ async function loadData(){
   
   let cloudSuccess = false;
 
-  // 嘗試從雲端讀取
   if(WORKER_URL) {
     try {
       const res = await fetch(WORKER_URL + '?action=load');
       const data = await res.json();
-      if (data && data.accounts) { // 驗證資料有效性
+      if (data && data.accounts) {
          ALL.length = 0;
          if(data.all) data.all.forEach(s=>ALL.push(s));
          accounts = data.accounts;
@@ -700,12 +827,9 @@ async function loadData(){
          }
          cloudSuccess = true;
       }
-    } catch(e) {
-       console.error("Cloud load failed", e);
-    }
+    } catch(e) {}
   }
 
-  // 若雲端讀取失敗或無設定，回退使用本地資料庫
   if(!cloudSuccess) {
       try{
         const saved=localStorage.getItem('sg_all');
@@ -743,29 +867,24 @@ async function loadData(){
   rHoldings();
   rFull();
 }
-// ────────────────────────────────────────────────────────────
 
-let accounts=[{id:'a1',name:'帳號一',color:'#059669',holdings:[...INIT]}];
+let accounts=[{id:'a1',name:'帳號一',color:'#f3b562',holdings:[...INIT]}];
 let curAcct='a1';
 let mineFilter='all';
 let rem={},ec=null,aq='',etab='all',pa=1,pm=1,fa=[],fm=[];
 
-// 取當下今天的日期，並計算剩下幾天（所以每天打開畫面時，過期天數都會自動變化）
 const days=s=>Math.ceil((new Date(s.lbo)-new Date(new Date().toDateString()))/864e5);
 
-// Returns accounts that hold the code
 const acctsWith=c=>accounts.filter(a=>a.holdings.some(h=>h.code===c));
-// isH: true if ANY account holds it (for table highlight etc.)
 const isH=c=>accounts.some(a=>a.holdings.some(h=>h.code===c));
 const gF=c=>ALL.find(s=>s.code===c);
 const curA=()=>accounts.find(a=>a.id===curAcct)||accounts[0];
-// All holdings across all accounts (deduplicated)
 const allHoldings=()=>{const m={};accounts.forEach(a=>a.holdings.forEach(h=>{if(!m[h.code])m[h.code]=h;}));return Object.values(m);};
 const lbs=s=>s.lbo.replace(/-/g,'/');
 const ms=d=>d.replace(/-/g,'/');
 const urg=d=>d<0?'p':d<=7?'u':d<=30?'s':'o';
 const badge=d=>{
-  if(d<0)return`<span class="badge passed">已截止</span>`;
+  if(d<0)return`<span class="badge passed">✖ 已截止</span>`;
   if(d<=7)return`<span class="badge urgent">緊急 ${d}天</span>`;
   if(d<=30)return`<span class="badge soon">${d}天</span>`;
   return`<span class="badge ok">${d}天</span>`;
@@ -778,14 +897,14 @@ function ct(s){
   if(c.includes('loc'))t+=`<span class="tag lc" title="${s.note||''}">地點限制</span>`;
   if(s.egift)t+=`<span class="tag eg">eGift</span>`;
   if(s.cp)t+=`<span class="tag cp">高CP值</span>`;
-  if(s.ip)t+=`<span class="tag" style="background:var(--pub);color:var(--pu);border:1px solid rgba(124,58,237,.3)">${s.ip}</span>`;
+  if(s.ip)t+=`<span class="tag" style="background:var(--pub);color:var(--pu);border:2px solid rgba(203,186,221,.3)">${s.ip}</span>`;
   const r=rem[s.code];
-  if(r&&r.custom)t+=`<span class="tag" style="background:var(--bg3);color:var(--tx2);border:1px solid var(--br)" title="${r.custom}">${r.custom.slice(0,8)}</span>`;
+  if(r&&r.custom)t+=`<span class="tag" style="background:var(--bg3);color:var(--tx2);border:2px solid var(--br)" title="${r.custom}">${r.custom.slice(0,8)}</span>`;
   return t||`<span style="font-size:11px;font-family:var(--mo);color:var(--tx3)">—</span>`;
 }
-const esvg=()=>`<svg class="ei" viewBox="0 0 16 16" fill="none"><path d="M11 2.5L13.5 5L5.5 13H3V10.5L11 2.5Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const esvg=()=>`<svg class="ei" viewBox="0 0 16 16" fill="none"><path d="M11 2.5L13.5 5L5.5 13H3V10.5L11 2.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 const ch=()=>((Math.random()-0.47)*2.8).toFixed(2);
-const fmt=t=>t.replace(/\n/g,'<br>').replace(/•/g,'<span style="color:var(--gn);font-weight:900">•</span>');
+const fmt=t=>t.replace(/\n/g,'<br>').replace(/•/g,'<span style="color:var(--gn);font-weight:900">🌸</span>');
 
 function rRow(s){
   const d=days(s),c=ch(),up=parseFloat(c)>=0,sg=up?'+':'';
@@ -794,12 +913,12 @@ function rRow(s){
   return`<tr data-code="${s.code}" class="${h?'hr':''}" style="cursor:pointer">
     <td><span class="cf">${s.code}</span></td>
     <td style="cursor:pointer;font-weight:900" title="點擊查看詳情">${s.name.length>5?s.name.slice(0,5)+'<br>'+s.name.slice(5):s.name}</td>
-    <td><span class="${up?'pu':'pd'}">${s.price||'—'}<br><small style="font-size:12px;font-weight:900;opacity:1">${sg}${c}%</small></span></td>
-    <td class="tl" style="max-width:140px;overflow:hidden;font-size:14px;font-weight:700">${gd}</td>
-    <td style="font-family:var(--mo);font-size:14px;font-weight:800">${lbs(s)}</td>
-    <td style="font-family:var(--mo);font-size:14px;font-weight:800">${ms(s.meet)}</td>
+    <td><span class="${up?'pu':'pd'}">${s.price||'—'}<br><small style="font-size:13px;font-weight:900;opacity:1">${sg}${c}%</small></span></td>
+    <td class="tl" style="max-width:140px;overflow:hidden;font-size:15px;font-weight:800">${gd}</td>
+    <td style="font-family:var(--mo);font-size:15px;font-weight:800">${lbs(s)}</td>
+    <td style="font-family:var(--mo);font-size:15px;font-weight:800">${ms(s.meet)}</td>
     <td style="font-size:14px">${badge(d)}</td>
-    <td>${(()=>{const accts=acctsWith(s.code);if(!accts.length)return'<span style="color:var(--tx3);font-size:12px">—</span>';return accts.map(a=>'<span class="tag hd" style="background:'+a.color+'15;color:'+a.color+';border-color:'+a.color+'44;font-size:12px;font-weight:800;padding:4px 9px">'+a.name+'</span>').join(' ');})()} </td>
+    <td>${(()=>{const accts=acctsWith(s.code);if(!accts.length)return'<span style="color:var(--tx3);font-size:12px">—</span>';return accts.map(a=>'<span class="tag hd" style="background:'+a.color+'22;color:'+a.color+';border-color:'+a.color+'55;font-size:12px;font-weight:800;padding:4px 9px">'+a.name+'</span>').join(' ');})()} </td>
     <td><div class="rcw">${ct(s)}<span data-edit="${s.code}">${esvg()}</span></div></td>
   </tr>`;
 }
@@ -844,27 +963,16 @@ function rEG(){
         ${s.cp?'<span class="tag cp">高CP</span>':''}
         ${isH(s.code)?'<span class="tag hd">持有</span>':''}
       </div>
-      <div style="margin-top:6px"><span class="ec">${s.code}</span><span class="en">${s.name}</span></div>
+      <div style="margin-top:8px"><span class="ec">${s.code}</span><span class="en">${s.name}</span></div>
       <div class="egft">${s.gift}</div>
       <div class="eghw">${(s.cond||'').includes('ev')?'需電投截圖':''}${(s.cond||'').includes('id')?' + 身分證':''}</div>
       <div class="egbt">
-        <span class="${up?'pu':'pd'}">${s.price||'—'} <small style="font-size:12px;font-weight:900">${sg}${c}%</small></span>
+        <span class="${up?'pu':'pd'}">${s.price||'—'} <small style="font-size:13px;font-weight:900">${sg}${c}%</small></span>
         ${badge(d)}
       </div>
     </div>`;
   }).join('');
 }
-
-const HEAT={
-  '1432':{heat:12400,restrict:'零股可領，電投截圖，eGift線上領',analysis:'大魯閣(1432)\n• 18.5元→4,200元消費券，CP值全場最高\n• eGift完全線上領，需電子投票截圖'},
-  '2303':{heat:10850,restrict:'零股不能領取，需電投截圖',analysis:'聯電(2303)\n• Snoopy聯名保溫瓶，零股不能領取\n• 需持滿1張（1000股）+電投截圖'},
-  '1101':{heat:8200,restrict:'零股可領，需電投截圖',analysis:'台泥(1101)\n• 折疊環保提包\n• 零股可領，需電子投票截圖'},
-  '2614':{heat:7800,restrict:'零股可領，需電投截圖',analysis:'東森(2614)\n• 保濕潔面霜市價近2,000元，CP值極高\n• 零股可領，需電子投票截圖'},
-  '1708':{heat:6900,restrict:'零股可領，需電投截圖',analysis:'東鹼(1708)\n• 小蘇打粉清潔組，CP值高\n• 零股可領，需電子投票截圖'},
-  '4102':{heat:6200,restrict:'零股可領，需電投截圖',analysis:'永日(4102)\n• 益生菌880元，CP值極高\n• 零股可領，需電子投票截圖'},
-  '2002':{heat:5800,restrict:'待公告，需電投截圖',analysis:'中鋼(2002)\n• 歷年紀念品熱搶\n• 品項待公告，需電子投票截圖'},
-  '3714':{heat:5200,restrict:'零股可領，需電投截圖',analysis:'富采(3714)\n• 黃阿瑪聯名不鏽鋼雙層碗\n• 零股可領，需電子投票截圖'},
-};
 
 function rHot(){
   const rks=['r1','r2','r3'];
@@ -877,27 +985,31 @@ function rHot(){
     const pct=Math.round(h.heat/maxHeat*100);
     return`<div class="hc" data-hcode="${s.code}">
       <div class="hht">
-        <span class="rk ${rks[i]||'rn'}">${i===0?'#1 熱門':`#${i+1}`}</span>
-        <span style="font-size:12px;font-family:var(--mo);font-weight:800;color:var(--tx3)">${h.heat.toLocaleString()}</span>
+        <span class="rk ${rks[i]||'rn'}">${i===0?'#1 🌟':`#${i+1}`}</span>
+        <span style="font-size:13px;font-family:var(--mo);font-weight:800;color:var(--tx3)">${h.heat.toLocaleString()} 🔥</span>
       </div>
-      <div style="margin-top:8px">
+      <div style="margin-top:10px">
         <span class="cf">${s.code}</span>
-        <span style="font-size:14px;font-weight:900;color:var(--tx);margin-left:6px">${s.name}</span>
+        <span style="font-size:16px;font-weight:900;color:var(--tx);margin-left:6px">${s.name}</span>
         ${s.egift?'<span class="tag eg" style="margin-left:4px">eGift</span>':''}
         ${isH(s.code)?'<span class="tag hd" style="margin-left:4px">持有</span>':''}
       </div>
       <div class="hgft">${s.gift}</div>
-      <div style="font-size:12px;color:var(--tx3);font-family:var(--mo);font-weight:700">${h.restrict}</div>
+      <div style="font-size:13px;color:var(--tx3);font-family:var(--mo);font-weight:800">${h.restrict}</div>
       <div class="hbr"><div class="hbf" style="width:${pct}%"></div></div>
       <div class="hbt">
-        <span class="${up?'pu':'pd'}">${s.price||'—'} <small style="font-size:12px;font-weight:900">${sg}${c}%</small></span>
+        <span class="${up?'pu':'pd'}">${s.price||'—'} <small style="font-size:13px;font-weight:900">${sg}${c}%</small></span>
         ${badge(d)}
+      </div>
+      
+      <!-- 熱門零股展開的分析區塊 (直接在卡片內部) -->
+      <div class="h-detail">
+        ${fmt(h.analysis)}
       </div>
     </div>`;
   }).join('');
 }
 
-// 每日動態排序邏輯：只要過期的（剩餘天數 < 0）絕對推到最底部
 function smartSort(a,b){
   const da=days(a), db=days(b);
   const aExp = da < 0;
@@ -905,7 +1017,7 @@ function smartSort(a,b){
   
   if(aExp && !bExp) return 1;    // a 過期了，丟到後面
   if(!aExp && bExp) return -1;   // b 過期了，丟到後面
-  if(aExp && bExp) return db-da; // 如果兩者都過期，把最近過期的（例如剛過期-1天）排在比較上面
+  if(aExp && bExp) return db-da; // 如果兩者都過期，把最近過期的排在比較上面
   
   // 都沒過期的話，剩餘天數少的（即將到期）排在最前面
   return da-db;
@@ -934,8 +1046,7 @@ function rFull(){
   buildPg(fa.length,1,'pg-all',goAll);
 
   const acctLabel=mineFilter==='all'?'所有帳號':(accounts.find(a=>a.id===mineFilter)||{name:'?'}).name;
-  document.getElementById('mine-hint').textContent=acctLabel+'・持股中有 '+fm.length+' 檔已公告紀念品';
-  // render account filter buttons
+  document.getElementById('mine-hint').textContent=acctLabel+'・持股中有 '+fm.length+' 檔已公告紀念品 🐰';
   const maf=document.getElementById('mine-acct-filter');
   if(maf){maf.innerHTML=['all',...accounts.map(a=>a.id)].map(id=>{
     const label=id==='all'?'全部帳號':(accounts.find(a=>a.id===id)||{name:'?'}).name;
@@ -968,31 +1079,27 @@ function rHoldings(){
     const g=gF(h.code);
     return'<div class="hchip'+(g?' hg':'')+'"><span><strong>'+h.code+'</strong> '+h.name+'</span><span class="hdel" data-del="'+h.code+'">✕</span></div>';
   }).join('');
-  // Render account tabs
   const bar=document.getElementById('acct-bar');
   if(bar){
     bar.innerHTML=accounts.map(a=>{
       const on=a.id===curAcct;
       return'<button class="acct-tab'+(on?' on':'')+'" data-aid="'+a.id+'" style="'+(on?'background:'+a.color+'15;color:'+a.color+';border-color:'+a.color+'55':'')+'">'+
-        '<span style="width:8px;height:8px;border-radius:50%;background:'+a.color+';display:inline-block;flex-shrink:0"></span>'+
+        '<span style="width:10px;height:10px;border-radius:50%;background:'+a.color+';display:inline-block;flex-shrink:0"></span>'+
         a.name+
         '<span class="acct-del" data-adel="'+a.id+'">✕</span>'+
       '</button>';
     }).join('')+
-    '<button class="acct-add" id="btn-new-acct">+ 新增帳號</button>';
+    '<button class="acct-add" id="btn-new-acct">➕ 新增帳號</button>';
   }
-  // Update name input
   const ni=document.getElementById('acct-name-input');
   if(ni)ni.value=curA().name;
-  // Render color picks
   const cp=document.getElementById('color-picks');
   if(cp){
-    cp.innerHTML='<span style="font-size:13px;font-weight:800;font-family:var(--mo);color:var(--tx2);margin-right:4px">顏色：</span>'+
+    cp.innerHTML='<span style="font-size:14px;font-weight:900;font-family:var(--mo);color:var(--tx2);margin-right:4px">選個顏色吧 🎨：</span>'+
       ACCT_COLORS.map(c=>'<div class="acct-color'+(curA().color===c?' sel':'')+'" data-acolor="'+c+'" style="background:'+c+'"></div>').join('');
   }
 }
 
-// 綜合搜尋字典：統整公告清單、預設清單、已加入的持股
 function findStockInfo(query, type) {
   const allKnown = [...ALL, ...INIT, ...allHoldings()];
   if (type === 'code') return allKnown.find(s => s.code === query);
@@ -1000,7 +1107,6 @@ function findStockInfo(query, type) {
   return null;
 }
 
-// Yahoo API 搜尋 (透過 allorigins proxy 解決 CORS)
 async function searchYahoo(query) {
   if(!query) return null;
   try {
@@ -1010,56 +1116,42 @@ async function searchYahoo(query) {
     const rawData = await res.json();
     const data = JSON.parse(rawData.contents);
     if(data && data.ResultSet && data.ResultSet.Result && data.ResultSet.Result.length > 0) {
-      // 找出台股代號 (.TW 結尾或 TWS/TWO)
       const match = data.ResultSet.Result.find(item => item.exch === 'TWS' || item.exch === 'TWO' || (item.symbol && item.symbol.includes('.TW')));
       if(match) {
-        return {
-          code: match.symbol.split('.')[0],
-          name: match.name
-        };
+        return { code: match.symbol.split('.')[0], name: match.name };
       }
     }
-  } catch(e) {
-    console.error("Yahoo 搜尋失敗", e);
-  }
+  } catch(e) {}
   return null;
 }
 
-// 【QC 防呆升級版】新增持股邏輯
 async function addH(){
   let code = document.getElementById('add-code').value.trim().toUpperCase();
   let name = document.getElementById('add-name').value.trim();
   const err = document.getElementById('add-err');
   const btn = document.getElementById('btn-add');
   
-  // 防止重複點擊，加上 loading 狀態
   btn.disabled = true;
-  btn.textContent = '搜尋中...';
+  btn.textContent = '搜尋中... 🔍';
   err.textContent = '';
   
   try {
-      // 邏輯 1：如果只有輸入名稱，沒有股號，反查代號
       if(!code && name) {
           let stock = findStockInfo(name, 'name');
-          if(!stock) stock = await searchYahoo(name); // 本地沒有，找 Yahoo
-          if(stock) {
-              code = stock.code;
-              name = stock.name; // 順便正名
-          }
+          if(!stock) stock = await searchYahoo(name);
+          if(stock) { code = stock.code; name = stock.name; }
       }
       
-      if(!code) { err.textContent='請輸入股票代號（或系統無法識別該股名）'; return; }
+      if(!code) { err.textContent='請輸入股票代號（或系統無法識別該股名）💦'; return; }
       
       const a = curA();
-      if(a.holdings.some(h => h.code === code)) { err.textContent = code + ' 已在此帳號中'; return; }
+      if(a.holdings.some(h => h.code === code)) { err.textContent = code + ' 已在此帳號中囉 🐰'; return; }
       
-      // 邏輯 2：【絕對真理強制校正】以「代號」為主，杜絕殘留錯誤！
       let trueStock = findStockInfo(code, 'code');
       if(!trueStock) trueStock = await searchYahoo(code);
 
       let finalName = name;
       if (trueStock) {
-          // 檢查殘留狀態：如果使用者畫面上殘留的名字跟真實股名完全無關，強制覆蓋！
           if (!name || !name.includes(trueStock.name)) {
               finalName = trueStock.name;
           }
@@ -1067,20 +1159,17 @@ async function addH(){
           finalName = '';
       }
       
-      // 寫入資料並清空輸入框
       a.holdings.push({code: code, name: finalName});
       document.getElementById('add-code').value='';
       document.getElementById('add-name').value='';
       
-      // 局部更新畫面與存檔
       rHoldings();
       rFull();
       saveData();
       
   } finally {
-      // 恢復按鈕狀態
       btn.disabled = false;
-      btn.textContent = '+ 新增';
+      btn.textContent = '➕ 新增';
   }
 }
 
@@ -1097,27 +1186,21 @@ function addAcct(){
 }
 
 function delAcct(id){
-  if(accounts.length<=1){alert('至少需保留一個帳號');return;}
-  
+  if(accounts.length<=1){alert('至少需保留一個帳號 💦');return;}
   const targetAcct = accounts.find(a => a.id === id);
   const acctName = targetAcct ? targetAcct.name : '此帳號';
-  
-  if(window.confirm('⚠️ 確定要刪除「' + acctName + '」嗎？\n刪除後，該帳號內的持股紀錄將無法復原！') === false) {
-    return;
-  }
+  if(window.confirm('⚠️ 確定要刪除「' + acctName + '」嗎？\n刪除後，該帳號內的持股紀錄將無法復原喔！') === false) { return; }
   
   accounts=accounts.filter(a=>a.id!==id);
   if(curAcct===id)curAcct=accounts[0].id;
   
-  rHoldings();
-  rFull();
-  saveData();
+  rHoldings(); rFull(); saveData();
 }
 
 function openMod(code){
   ec=code;
   const s=ALL.find(x=>x.code===code)||allHoldings().find(x=>x.code===code)||{name:'',code};
-  document.getElementById('modtitle').textContent=`備註 ／ ${s.name} (${code})`;
+  document.getElementById('modtitle').textContent=`備註 📝 ／ ${s.name} (${code})`;
   const r=rem[code]||{};
   document.getElementById('ck1').checked=!!r.nofrac;
   document.getElementById('ck2').checked=!!r.id;
@@ -1137,14 +1220,11 @@ function saveMod(){
   if(nofrac||id||evote||egift||custom)rem[ec]={nofrac,id,evote,egift,custom};
   else delete rem[ec];
   
-  closeMod();
-  rFull();
-  saveData();
+  closeMod(); rFull(); saveData();
 }
 
 function showStock(s, clickedRow){
   if(!s) return;
-  // Remove any existing detail row
   document.querySelectorAll('.detail-tr').forEach(r=>r.remove());
   document.querySelectorAll('tr[data-code]').forEach(r=>r.classList.remove('sel'));
 
@@ -1157,7 +1237,7 @@ function showStock(s, clickedRow){
     const urgTag=d<0?' <span style="color:var(--tx3)">(已截止)</span>':d<=7?' <span style="color:var(--rd)">⚠ 緊急！'+d+'天</span>':'';
     const evColor=c.includes('ev')?'var(--am)':'var(--gn)';
     const idColor=c.includes('id')?'var(--rd)':'var(--gn)';
-    const egLine=s.egift?'<span class="di-label">• eGift 線上領取：</span><span style="color:var(--gn)">支援</span>（零股'+(s.os?'可':'不可')+'領）<br>':'';
+    const egLine=s.egift?'<span class="di-label">🌸 eGift 線上領取：</span><span style="color:var(--gn)">支援</span>（零股'+(s.os?'可':'不可')+'領）<br>':'';
 
     const colSpan=clickedRow.querySelectorAll('td').length||9;
     const detailTr=document.createElement('tr');
@@ -1166,12 +1246,12 @@ function showStock(s, clickedRow){
       '<div class="detail-inner">'+
         '<button class="detail-close" id="btn-close-detail">✕ 關閉</button>'+
         '<strong>'+s.name+' ('+s.code+')</strong>'+holdTag+'<br>'+
-        '<span class="di-label">• 股價：</span><span style="font-family:var(--mo);font-weight:900">'+(s.price||'—')+'</span> 元<br>'+
-        '<span class="di-label">• 紀念品：</span>'+s.gift+cpTag+ipTag+'<br>'+
-        '<span class="di-label">• 最後買進日：</span><span style="font-family:var(--mo);font-weight:900">'+lbs(s)+'</span>'+urgTag+'<br>'+
-        '<span class="di-label">• 股東會日：</span><span style="font-family:var(--mo);font-weight:900">'+ms(s.meet)+'</span><br>'+
-        '<span class="di-label">• 電子投票截圖：</span><span style="color:'+evColor+'">'+(c.includes('ev')?'需要':'不需要')+'</span><br>'+
-        '<span class="di-label">• 身分證正本：</span><span style="color:'+idColor+'">'+(c.includes('id')?'需要':'不需要')+'</span><br>'+
+        '<span class="di-label">🌸 股價：</span><span style="font-family:var(--mo);font-weight:900">'+(s.price||'—')+'</span> 元<br>'+
+        '<span class="di-label">🌸 紀念品：</span>'+s.gift+cpTag+ipTag+'<br>'+
+        '<span class="di-label">🌸 最後買進日：</span><span style="font-family:var(--mo);font-weight:900">'+lbs(s)+'</span>'+urgTag+'<br>'+
+        '<span class="di-label">🌸 股東會日：</span><span style="font-family:var(--mo);font-weight:900">'+ms(s.meet)+'</span><br>'+
+        '<span class="di-label">🌸 電子投票截圖：</span><span style="color:'+evColor+'">'+(c.includes('ev')?'需要':'不需要')+'</span><br>'+
+        '<span class="di-label">🌸 身分證正本：</span><span style="color:'+idColor+'">'+(c.includes('id')?'需要':'不需要')+'</span><br>'+
         egLine+
       '</div>'+
     '</td>';
@@ -1185,203 +1265,30 @@ function showStock(s, clickedRow){
   }
 }
 
-// ── Refresh via Cloudflare Worker ───────────────────────────────────────
-async function doRefresh(){
-  const btn    = document.getElementById('btn-refresh');
-  const status = document.getElementById('refresh-status');
-
-  // 若還沒設定 Worker URL，先顯示設定面板
-  if(!WORKER_URL){
-    showWorkerSetup();
-    return;
-  }
-
-  btn.classList.remove('done','err');
-  btn.classList.add('loading');
-  btn.innerHTML = '<span class="spin">↻</span> 抓取中...';
-  status.textContent = '連線零股寶...';
-  status.style.color = 'var(--tx3)';
-
-  try {
-    const ac = new AbortController();
-    const tm = setTimeout(()=>ac.abort(), 20000);
-    let res;
-    try {
-      res = await fetch(WORKER_URL, { signal: ac.signal });
-    } finally {
-      clearTimeout(tm);
-    }
-
-    if(!res.ok) throw new Error('Worker 回應 ' + res.status);
-    const html = await res.text();
-    if(!html || html.length < 2000) throw new Error('回傳內容太短，可能 Worker 未正確部署');
-    if(!html.includes('股東會') && !html.includes('stockgift')) throw new Error('非預期的回傳內容');
-
-    const result = parseStockgift(html);
-    const svgIcon = '<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M11.5 6.5A5 5 0 1 1 9 2.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M9 2.1V0M9 2.1H7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
-
-    btn.classList.remove('loading');
-    if(result.total > 0){
-      btn.classList.add('done');
-      btn.innerHTML = svgIcon + ' 重整資料';
-      const now = new Date().toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'});
-      status.textContent = '✓ 共 '+result.total+' 筆，新增 '+result.added+'・更新 '+result.updated+'・'+now;
-      status.style.color = 'var(--gn)';
-      
-      const today = new Date();
-      const dateStr = today.getFullYear()+'/'
-        +String(today.getMonth()+1).padStart(2,'0')+'/'
-        +String(today.getDate()).padStart(2,'0');
-      const ut = document.getElementById('update-time');
-      if(ut) ut.textContent = `更新時間：${dateStr} (共存取 ${ALL.length} 筆)`;
-      
-      rFull();
-      saveData();
-      setTimeout(()=>{ btn.classList.remove('done'); status.textContent=''; }, 5000);
-    } else {
-      throw new Error('解析到 0 筆，請確認 Worker 是否正確回傳零股寶內容');
-    }
-  } catch(err){
-    const svgIcon = '<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M11.5 6.5A5 5 0 1 1 9 2.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M9 2.1V0M9 2.1H7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
-    btn.classList.remove('loading');
-    btn.classList.add('err');
-    btn.innerHTML = svgIcon + ' 重整資料';
-    const msg = err.name === 'AbortError' ? 'Timeout（超過 20 秒）' : err.message;
-    status.textContent = '✗ ' + msg;
-    status.style.color = 'var(--rd)';
-    setTimeout(()=>{ btn.classList.remove('err'); }, 6000);
-  }
-}
-
-function showWorkerSetup(){
-  const existing = document.getElementById('worker-setup');
-  if(existing){ existing.remove(); return; }
-
-  const panel = document.createElement('div');
-  panel.id = 'worker-setup';
-  panel.style.cssText = 'background:var(--bg2);border:2px solid var(--br2);border-radius:var(--r2);padding:20px 24px;margin-bottom:16px;box-shadow:0 4px 12px rgba(0,0,0,.05)';
-  panel.innerHTML = `
-    <div style="font-size:15px;font-weight:900;font-family:var(--mo);color:var(--tx);margin-bottom:8px">設定 Cloudflare Worker URL</div>
-    <div style="font-size:13px;font-weight:700;color:var(--tx3);margin-bottom:14px;line-height:1.6">
-      需要先部署 <code style="background:var(--bg3);padding:2px 6px;border-radius:6px;font-family:var(--mo);color:var(--bl)">stockgift-worker.js</code>（已下載），然後把 Worker URL 填入下方。<br>
-      部署教學：<a href="https://workers.cloudflare.com" target="_blank" style="color:var(--bl);font-weight:800">workers.cloudflare.com</a> → 新建 Worker → 貼上程式碼 → Save & Deploy → 複製 URL
-    </div>
-    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-      <input id="worker-url-input" type="text"
-        placeholder="https://stockgift-proxy.你的帳號.workers.dev"
-        value="${WORKER_URL}"
-        style="flex:1;min-width:280px;font-size:14px;font-weight:800;font-family:var(--mo);padding:0 14px;height:42px;border:2px solid var(--br2);border-radius:12px;background:var(--bg3);color:var(--tx);outline:none">
-      <button id="btn-save-worker" style="height:42px;padding:0 20px;font-size:14px;font-weight:800;font-family:var(--mo);border:none;border-radius:12px;background:var(--gn);color:#fff;cursor:pointer">儲存並重整</button>
-      <button id="btn-cancel-worker" style="height:42px;padding:0 16px;font-size:14px;font-weight:800;font-family:var(--mo);border:2px solid var(--br);border-radius:12px;background:transparent;color:var(--tx2);cursor:pointer">取消</button>
-    </div>
-    <div id="worker-err" style="font-size:13px;font-weight:800;font-family:var(--mo);color:var(--rd);margin-top:8px;min-height:18px"></div>
-  `;
-
-  const tbar = document.querySelector('#tab-all .tbar');
-  tbar.parentNode.insertBefore(panel, tbar);
-
-  document.getElementById('btn-save-worker').addEventListener('click', ()=>{
-    const val = document.getElementById('worker-url-input').value.trim().replace(/\/$/,'');
-    if(!val || !val.startsWith('http')){ document.getElementById('worker-err').textContent='請輸入有效的 URL'; return; }
-    WORKER_URL = val;
-    localStorage.setItem('workerUrl', val);
-    panel.remove();
-    doRefresh();
-  });
-  document.getElementById('btn-cancel-worker').addEventListener('click', ()=>panel.remove());
-  document.getElementById('worker-url-input').addEventListener('keydown', e=>{ if(e.key==='Enter') document.getElementById('btn-save-worker').click(); });
-  document.getElementById('worker-url-input').focus();
-}
-
-function parseStockgift(html){
-  const existCodes = new Set(ALL.map(s=>s.code));
-  const egiftKw = ['商品卡','禮物卡','咖啡券','禮券','消費券','購物金','抵用券','兌換券'];
-  let added=0, updated=0, total=0;
-
-  // 把 HTML 餵給 DOMParser，讓瀏覽器直接解析 <tr><td>
-  const doc = new DOMParser().parseFromString(html,'text/html');
-  const trs = doc.querySelectorAll('tr');
-
-  const parseD = s=>{ const p=(s||'').match(/(\d{2})\/(\d{2})\/(\d{2})/); return p?'20'+p[1]+'-'+p[2]+'-'+p[3]:null; };
-  const stripTags = s=>(s||'').replace(/<[^>]+>/g,'').trim();
-
-  trs.forEach(tr=>{
-    const tds = tr.querySelectorAll('td');
-    if(tds.length < 8) return;
-
-    // 零股寶欄位順序:
-    // 0:持有 1:股號 2:股名 3:股價 4:最後買進日 5:股東會日期
-    // 6:委託截止 7:紀念品 8:收購價 9:代領費 10:新增日 11:備註 12:note 13:性質 ...
-    const code = stripTags(tds[1].innerHTML).replace(/\s+\d+\s*$/,'').trim();
-    if(!/^\d{4,5}$/.test(code)) return;
-
-    const name     = stripTags(tds[2].innerHTML).replace(/\s+\d+\s*$/,'').trim();
-    const price    = parseFloat(stripTags(tds[3].innerHTML)) || 0;
-    const lbo      = parseD(stripTags(tds[4].innerHTML));
-    const meet     = parseD(stripTags(tds[5].innerHTML));
-    if(!lbo || !meet) return;
-
-    // 紀念品：取 td[7] 的文字（可能有 <a> 包住）
-    const gift = stripTags(tds[7].innerHTML)
-      .replace(/\([^)]*紀念品[^)]*\)/g,'')
-      .replace(/\([^)]*數量[^)]*\)/g,'')
-      .trim();
-    if(!gift || gift.length < 2) return;
-
-    // 平台收購價：td[8]，"近期決定" 代表尚未公布
-    const buyRaw = stripTags((tds[8]||{innerHTML:''}).innerHTML).trim();
-    const buyPrice = buyRaw && !/近期|決定|尚未/.test(buyRaw) ? parseFloat(buyRaw)||0 : 0;
-
-    // 備註：td[11] 含領取條件
-    const condRaw = stripTags(tds[11].innerHTML) + ' ' + stripTags((tds[12]||{innerHTML:''}).innerHTML);
-    let cond = '';
-    if(condRaw.includes('電子投票'))               cond += 'ev,';
-    if(/身分證|健保卡|駕照/.test(condRaw))          cond += 'id,';
-    if(/雲林|台南|新竹|桃園|高雄|地點/.test(condRaw)) cond += 'loc,';
-    cond = cond.replace(/,$/,'');
-
-    const isEgift = egiftKw.some(k=>gift.includes(k)) ? 1 : 0;
-    const entry = {code, name, price, gift, lbo, meet, cond};
-    if(isEgift){ entry.egift=1; entry.os=1; }
-    if(buyPrice>0){ entry.buyPrice=buyPrice; }
-
-    total++;
-    if(existCodes.has(code)){
-      const idx = ALL.findIndex(s=>s.code===code);
-      if(idx>=0){
-        ALL[idx].price=price; ALL[idx].gift=gift;
-        ALL[idx].lbo=lbo; ALL[idx].meet=meet; ALL[idx].cond=cond;
-        if(buyPrice>0) ALL[idx].buyPrice=buyPrice;
-        updated++;
-      }
-    } else {
-      ALL.push(entry); existCodes.add(code); added++;
-    }
-  });
-  return {added, updated, total};
-}
-
 document.addEventListener('click',e=>{
-  // Filter tabs
   const ft=e.target.closest('.ft[data-etab]');
   if(ft){document.querySelectorAll('.ft').forEach(t=>t.classList.remove('on'));ft.classList.add('on');etab=ft.dataset.etab;rEG();return;}
-  // Tab nav
+  
   const tn=e.target.closest('.tn[data-tab]');
   if(tn){document.querySelectorAll('.tn').forEach(t=>t.classList.remove('on'));document.querySelectorAll('.tp').forEach(p=>p.classList.remove('on'));tn.classList.add('on');document.getElementById('tab-'+tn.dataset.tab).classList.add('on');return;}
-  // eGift overall analysis
+  
   if(e.target.id==='btn-eg-all'){
-    const p=document.getElementById('peg');p.style.display='block';
-    document.getElementById('teg').innerHTML=fmt(
-      'eGift 零股整體分析\n\n'+
-      '• 幾乎所有 eGift 標的都需要電子投票截圖才能領取\n'+
-      '• 部分需加上身分證正本：浩鼎、普誠、點序、旭軟等\n'+
-      '• 你的持股中，大同(2371) 零股可領且支援 eGift\n'+
-      '• 尚未截止：日馳(1526) 最後買進日4/22、永虹先進(6618) 4/28\n\n'+
-      '操作流程：\n1. 完成股東會電子投票並截圖存好\n2. 前往集保e股利APP或指定平台領取\n3. 需身分證者請帶原件正本'
-    );
-    p.scrollIntoView({behavior:'smooth',block:'nearest'});return;
+    const p=document.getElementById('peg');
+    if(p.style.display==='none' || p.style.display==='') {
+      p.style.display='block';
+      document.getElementById('teg').innerHTML=fmt(
+        '🌸 幾乎所有 eGift 標的都需要電子投票截圖才能領取喔！\n'+
+        '🌸 部分需加上身分證正本：浩鼎、普誠、點序、旭軟等\n'+
+        '🌸 你的持股中，大同(2371) 零股可領且支援 eGift\n'+
+        '🌸 尚未截止：日馳(1526) 最後買進日4/22、永虹先進(6618) 4/28\n\n'+
+        '✨ 操作小撇步 ✨\n1. 完成股東會電子投票並截圖存好 📱\n2. 前往集保e股利APP或指定平台領取\n3. 需身分證者請帶原件正本 💳'
+      );
+    } else {
+      p.style.display='none';
+    }
+    return;
   }
-  // eGift card
+  
   const ei=e.target.closest('[data-ei]');
   if(ei){
     const eg=ALL.filter(s=>s.egift);
@@ -1390,69 +1297,41 @@ document.addEventListener('click',e=>{
     else if(etab==='full')list=eg.filter(s=>!s.os);
     showStock(list[+ei.dataset.ei]);return;
   }
-  // Hot card
-  const hi=e.target.closest('[data-hcode]');
+  
+  const hi=e.target.closest('.hc[data-hcode]');
   if(hi){
-    const s=ALL.find(x=>x.code===hi.dataset.hcode);
-    if(s){
-      const h=HEAT[s.code]||{analysis:s.name+'('+s.code+')\n• '+s.gift};
-      const p=document.getElementById('phot');p.style.display='block';
-      document.getElementById('thot').innerHTML=fmt(
-        '<strong style="font-size:16px;color:var(--tx);font-family:var(--mo);font-weight:900">'+s.name+' ('+s.code+')</strong>'+
-        (isH(s.code)?' <span class="tag hd">你的持股</span>':'')+
-        '<br><br>'+h.analysis
-      );
-      p.scrollIntoView({behavior:'smooth',block:'nearest'});
+    hi.classList.toggle('open');
+    const hd = hi.querySelector('.h-detail');
+    if(hd) {
+      if(hi.classList.contains('open')) { hd.style.display = 'block'; } 
+      else { hd.style.display = 'none'; }
     }
     return;
   }
-  // Add holding
+  
   if(e.target.id==='btn-add'){addH();return;}
-  // Mine account filter
   const mafBtn=e.target.closest('[data-maf]');
   if(mafBtn){mineFilter=mafBtn.dataset.maf;rFull();return;}
-  // Account tab switch
   const aidBtn=e.target.closest('[data-aid]');
   if(aidBtn&&!e.target.closest('[data-adel]')){curAcct=aidBtn.dataset.aid;rHoldings();return;}
-  // Account delete
   const adelBtn=e.target.closest('[data-adel]');
   if(adelBtn){delAcct(adelBtn.dataset.adel);return;}
-  // New account
   if(e.target.id==='btn-new-acct'){addAcct();return;}
-  // Rename account
   if(e.target.id==='btn-rename'){
     const v=document.getElementById('acct-name-input').value.trim();
-    if(v){
-      curA().name=v; 
-      rHoldings();
-      rFull();
-      saveData(); 
-    }
+    if(v){ curA().name=v; rHoldings(); rFull(); saveData(); }
     return;
   }
-  // Color pick
   const acolor=e.target.closest('[data-acolor]');
-  if(acolor){
-    curA().color=acolor.dataset.acolor; 
-    rHoldings();
-    rFull();
-    saveData(); 
-    return;
-  }
-  // Delete holding from current account
+  if(acolor){ curA().color=acolor.dataset.acolor; rHoldings(); rFull(); saveData(); return; }
   const del=e.target.closest('[data-del]');
   if(del){
     const codeToDelete = del.dataset.del;
     curA().holdings=curA().holdings.filter(h=>h.code!==codeToDelete); 
-    rHoldings();
-    rFull();
-    saveData(); 
-    return;
+    rHoldings(); rFull(); saveData(); return;
   }
-  // Edit note
   const ed=e.target.closest('[data-edit]');
   if(ed){openMod(ed.dataset.edit);return;}
-  // Table row — click any cell to show detail inline
   const row=e.target.closest('tr[data-code]');
   if(row&&!e.target.closest('[data-edit]')){
     const code=row.dataset.code;
@@ -1475,10 +1354,7 @@ document.getElementById('fu').addEventListener('change',rFull);
 document.getElementById('fc').addEventListener('change',rFull);
 document.getElementById('srch').addEventListener('keydown',e=>{if(e.key==='Enter'){aq=e.target.value.toLowerCase().trim();rFull();}});
 
-// 自動帶入：防抖動計時器
 let searchTimer = null;
-
-// 輸入股號滿 4 碼時，延遲 400ms 後自動帶入股名
 document.getElementById('add-code').addEventListener('input', e => {
   clearTimeout(searchTimer);
   const val = e.target.value.trim().toUpperCase();
@@ -1486,7 +1362,6 @@ document.getElementById('add-code').addEventListener('input', e => {
     searchTimer = setTimeout(async () => {
       let stock = findStockInfo(val, 'code');
       if (!stock) stock = await searchYahoo(val);
-      // 【終極防護】：如果使用者已經清空欄位（或改掉），就不要把遲來的股名填進去
       if (stock && stock.name && document.getElementById('add-code').value.trim().toUpperCase() === val) {
         document.getElementById('add-name').value = stock.name;
       }
@@ -1495,7 +1370,6 @@ document.getElementById('add-code').addEventListener('input', e => {
 });
 document.getElementById('add-code').addEventListener('keydown',e=>{if(e.key==='Enter')addH();});
 
-// 輸入股名滿 2 字時，延遲 400ms 後自動帶入股號
 document.getElementById('add-name').addEventListener('input', e => {
   clearTimeout(searchTimer);
   const val = e.target.value.trim();
@@ -1503,7 +1377,6 @@ document.getElementById('add-name').addEventListener('input', e => {
     searchTimer = setTimeout(async () => {
       let stock = findStockInfo(val, 'name');
       if (!stock) stock = await searchYahoo(val);
-      // 【終極防護】
       if (stock && stock.code && document.getElementById('add-name').value.trim() === val) {
         document.getElementById('add-code').value = stock.code;
       }
@@ -1514,9 +1387,25 @@ document.getElementById('add-name').addEventListener('keydown', e => {
   if(e.key === 'Enter') addH();
 });
 
-// 網頁開啟時的初始化執行
+// 🌸 隨機對話框邏輯
+const cMsg = document.getElementById('c-msg');
+const chiikawaQuotes = [
+  "呀哈！<br>有什麼可以幫忙的嗎？",
+  "總會有辦法的！",
+  "一起吃糰子吧 🍡",
+  "噗嚕嚕嚕...",
+  "股東會紀念品讚啦！",
+  "快點買進！<br>要來不及了 💦",
+  "哇...<br>好多紀念品 🤩",
+  "烏薩奇大推！🐰",
+  "記得要電子投票喔 📱"
+];
+document.getElementById('c-float').addEventListener('click', () => {
+  cMsg.innerHTML = chiikawaQuotes[Math.floor(Math.random() * chiikawaQuotes.length)];
+});
+
 (async function init() {
-  await loadData(); // 會自動包含 rHoldings() 與 rFull()
+  await loadData();
 })();
 
 </script>
