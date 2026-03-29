@@ -149,6 +149,7 @@ tr.hr.sel td{background:rgba(63,185,80,.14)}
 .hcode{width:95px}.hname{width:100px}
 .hadd{height:34px;padding:0 14px;font-size:12px;font-family:var(--mo);border:1px solid var(--gn);border-radius:var(--r);background:var(--gnb);color:var(--gn);cursor:pointer;transition:.2s;flex-shrink:0}
 .hadd:hover{background:rgba(63,185,80,.2)}
+.hadd:disabled{opacity:0.5;pointer-events:none;cursor:wait}
 .hpm{font-size:11px;font-family:var(--mo);color:var(--tx3);margin-bottom:10px}
 .cr{display:flex;flex-wrap:wrap;gap:5px}
 .hchip{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:20px;font-size:12px;font-family:var(--mo);border:1px solid var(--br);background:var(--bg3);color:var(--tx2);white-space:nowrap}
@@ -573,6 +574,8 @@ const HOT=[
 function getHOT(){
   return HOT.map(h=>ALL.find(s=>s.code===h.code)||null).filter(Boolean);
 }
+
+// 新增更多常見台股名單以優化「輸入股號帶股名」體驗
 const INIT=[
 {code:'1101',name:'台泥'},{code:'1103',name:'嘉泥'},{code:'1201',name:'味全'},
 {code:'1217',name:'愛之味'},{code:'1218',name:'泰山'},{code:'1220',name:'台榮'},
@@ -592,11 +595,17 @@ const INIT=[
 {code:'6116',name:'彩晶'},{code:'6026',name:'福邦證'},{code:'6169',name:'昱泉'},
 {code:'8076',name:'伍豐'},{code:'8215',name:'明碁材'},{code:'2031',name:'新光鋼'},
 {code:'2332',name:'友訊'},{code:'2371',name:'大同'},
+// 熱門補充電庫
+{code:'2330',name:'台積電'},{code:'2317',name:'鴻海'},{code:'2454',name:'聯發科'},
+{code:'2308',name:'台達電'},{code:'2881',name:'富邦金'},{code:'2882',name:'國泰金'},
+{code:'2892',name:'第一金'},{code:'2886',name:'兆豐金'},{code:'2884',name:'玉山金'},
+{code:'2890',name:'永豐金'},{code:'0050',name:'元大台灣50'},{code:'0056',name:'元大高股息'},
+{code:'00878',name:'國泰永續高股息'},{code:'00919',name:'群益台灣精選高息'},
+{code:'00929',name:'復華台灣科技優息'}
 ];
 
 // ── 設定你的 Cloudflare Worker URL ──────────────────────────────────────
 // 部署 stockgift-worker.js 後，把 Worker URL 填在這裡
-// 例如：'https://stockgift-proxy.你的帳號.workers.dev'
 let WORKER_URL = 'https://round-mountain-c25d.cindypc33.workers.dev';
 
 const PS=20;
@@ -896,37 +905,79 @@ function findStockInfo(query, type) {
   return null;
 }
 
-function addH(){
+// Yahoo API 搜尋 (透過 allorigins proxy 解決 CORS)
+async function searchYahoo(query) {
+  if(!query) return null;
+  try {
+    const yUrl = `https://tw.stock.yahoo.com/_td-stock/api/resource/AutocompleteService;limit=5;query=${encodeURIComponent(query)}`;
+    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(yUrl)}`;
+    const res = await fetch(proxyUrl);
+    const rawData = await res.json();
+    const data = JSON.parse(rawData.contents);
+    if(data && data.ResultSet && data.ResultSet.Result && data.ResultSet.Result.length > 0) {
+      // 找出台股代號 (.TW 結尾或 TWS/TWO)
+      const match = data.ResultSet.Result.find(item => item.exch === 'TWS' || item.exch === 'TWO' || (item.symbol && item.symbol.includes('.TW')));
+      if(match) {
+        return {
+          code: match.symbol.split('.')[0],
+          name: match.name
+        };
+      }
+    }
+  } catch(e) {
+    console.error("Yahoo 搜尋失敗", e);
+  }
+  return null;
+}
+
+// 新增持股 (包含非同步抓取 Yahoo API)
+async function addH(){
   let code=document.getElementById('add-code').value.trim().toUpperCase();
-  const name=document.getElementById('add-name').value.trim();
+  let name=document.getElementById('add-name').value.trim();
   const err=document.getElementById('add-err');
+  const btn=document.getElementById('btn-add');
   
-  // 邏輯 1：如果只輸入了股名卻沒輸入股號，嘗試從資料庫反查補上
-  if(!code && name) {
-      const stock = findStockInfo(name, 'name');
-      if(stock) code = stock.code;
+  // 防止重複點擊，加上 loading 狀態
+  btn.disabled = true;
+  btn.textContent = '搜尋中...';
+  err.textContent = '';
+  
+  try {
+      // 邏輯 1：如果只輸入了股名卻沒輸入股號，嘗試從資料庫或 Yahoo 反查補上
+      if(!code && name) {
+          let stock = findStockInfo(name, 'name');
+          if(!stock) stock = await searchYahoo(name); // 本地沒有，找 Yahoo
+          if(stock) code = stock.code;
+      }
+      
+      if(!code){err.textContent='請輸入股票代號（或系統無法識別該股名）'; return;}
+      
+      const a=curA();
+      if(a.holdings.some(h=>h.code===code)){err.textContent=code+' 已在此帳號中'; return;}
+      
+      // 邏輯 2：如果沒輸入股名，嘗試用股號從資料庫或 Yahoo 反查補上
+      let finalName = name;
+      if (!finalName) {
+          let stock = findStockInfo(code, 'code');
+          if(!stock) stock = await searchYahoo(code); // 本地沒有，找 Yahoo
+          finalName = stock ? stock.name : '';
+      }
+      
+      // 寫入資料並清空輸入框
+      a.holdings.push({code: code, name: finalName});
+      document.getElementById('add-code').value='';
+      document.getElementById('add-name').value='';
+      
+      // 局部更新畫面與存檔
+      rHoldings();
+      rFull();
+      saveData();
+      
+  } finally {
+      // 恢復按鈕狀態
+      btn.disabled = false;
+      btn.textContent = '+ 新增';
   }
-  
-  if(!code){err.textContent='請輸入股票代號（或系統無法識別該股名）';return;}
-  
-  const a=curA();
-  if(a.holdings.some(h=>h.code===code)){err.textContent=code+' 已在此帳號中';return;}
-  
-  // 邏輯 2：如果沒輸入股名，嘗試用股號反查補上
-  let finalName = name;
-  if (!finalName) {
-      const stock = findStockInfo(code, 'code');
-      finalName = stock ? stock.name : '';
-  }
-  
-  a.holdings.push({code: code, name: finalName});
-  document.getElementById('add-code').value='';
-  document.getElementById('add-name').value='';
-  err.textContent='';
-  
-  rHoldings();
-  rFull();
-  saveData();
 }
 
 function addAcct(){
@@ -947,7 +998,6 @@ function delAcct(id){
   const targetAcct = accounts.find(a => a.id === id);
   const acctName = targetAcct ? targetAcct.name : '此帳號';
   
-  // 使用明確的 window.confirm 避免環境攔截
   if(window.confirm('⚠️ 確定要刪除「' + acctName + '」嗎？\n刪除後，該帳號內的持股紀錄將無法復原！') === false) {
     return;
   }
@@ -1207,7 +1257,6 @@ function parseStockgift(html){
   return {added, updated, total};
 }
 
-
 document.addEventListener('click',e=>{
   // Filter tabs
   const ft=e.target.closest('.ft[data-etab]');
@@ -1290,7 +1339,6 @@ document.addEventListener('click',e=>{
   const del=e.target.closest('[data-del]');
   if(del){
     const codeToDelete = del.dataset.del;
-    if(window.confirm('⚠️ 確定要從帳號移除持股「' + codeToDelete + '」嗎？') === false) return;
     curA().holdings=curA().holdings.filter(h=>h.code!==codeToDelete); 
     rHoldings();
     rFull();
@@ -1323,22 +1371,37 @@ document.getElementById('fu').addEventListener('change',rFull);
 document.getElementById('fc').addEventListener('change',rFull);
 document.getElementById('srch').addEventListener('keydown',e=>{if(e.key==='Enter'){aq=e.target.value.toLowerCase().trim();rFull();}});
 
-// 自動帶入：輸入股號滿 4 碼時，自動帶入股名
+// 自動帶入：防抖動計時器
+let searchTimer = null;
+
+// 輸入股號滿 4 碼時，延遲 400ms 後自動帶入股名
 document.getElementById('add-code').addEventListener('input', e => {
+  clearTimeout(searchTimer);
   const val = e.target.value.trim().toUpperCase();
   if (val.length >= 4) { 
-    const stock = findStockInfo(val, 'code');
-    if (stock && stock.name) document.getElementById('add-name').value = stock.name;
+    searchTimer = setTimeout(async () => {
+      let stock = findStockInfo(val, 'code');
+      if (!stock) stock = await searchYahoo(val);
+      if (stock && stock.name) {
+        document.getElementById('add-name').value = stock.name;
+      }
+    }, 400);
   }
 });
 document.getElementById('add-code').addEventListener('keydown',e=>{if(e.key==='Enter')addH();});
 
-// 自動帶入：輸入股名滿 2 字時，自動帶入股號
+// 輸入股名滿 2 字時，延遲 400ms 後自動帶入股號
 document.getElementById('add-name').addEventListener('input', e => {
+  clearTimeout(searchTimer);
   const val = e.target.value.trim();
   if (val.length >= 2) { 
-    const stock = findStockInfo(val, 'name');
-    if (stock && stock.code) document.getElementById('add-code').value = stock.code;
+    searchTimer = setTimeout(async () => {
+      let stock = findStockInfo(val, 'name');
+      if (!stock) stock = await searchYahoo(val);
+      if (stock && stock.code) {
+        document.getElementById('add-code').value = stock.code;
+      }
+    }, 400);
   }
 });
 document.getElementById('add-name').addEventListener('keydown', e => {
