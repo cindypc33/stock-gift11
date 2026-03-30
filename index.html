@@ -169,7 +169,7 @@ body::before {
 .hbf{height:6px;background:var(--rd);border-radius:6px}
 .hbt{display:flex;align-items:center;justify-content:space-between;margin-top:12px}
 
-/* Inline Hot Analysis */
+/* Inline Hot Analysis inside card */
 .h-detail{display:none;margin-top:14px;padding-top:14px;border-top:2px dashed var(--br2);font-size:13px;font-weight:800;color:var(--tx);line-height:1.7;animation:fadeDown 0.3s ease forwards;}
 @keyframes fadeDown{ from{opacity:0; transform:translateY(-5px)} to{opacity:1; transform:translateY(0)} }
 
@@ -177,7 +177,7 @@ body::before {
 .pu{color:var(--rd);font-family:var(--mo);font-size:15px;font-weight:900}
 .pd{color:var(--gn);font-family:var(--mo);font-size:15px;font-weight:900}
 
-/* Info panel */
+/* Info panel (Overall Analysis) */
 .ipnl{background:var(--bg3);border:2px solid var(--br2);border-radius:var(--r2);padding:18px 24px;margin-top:12px;box-shadow:0 4px 12px rgba(255,182,185,.15); position:relative}
 .ipnl::before{content:'';position:absolute;top:-8px;left:30px;border-width:0 8px 8px 8px;border-style:solid;border-color:transparent transparent var(--br2) transparent;}
 .iphd{font-size:15px;font-family:var(--mo);font-weight:900;color:var(--tx);margin-bottom:10px;display:flex;align-items:center;gap:8px}
@@ -288,10 +288,7 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
 .d-card-title{font-size:14px;font-weight:900;color:var(--tx2);margin-bottom:10px;display:flex;align-items:center;gap:6px}
 .d-row{display:flex;justify-content:space-between;margin-bottom:8px;font-size:14px;font-weight:800;align-items:center}
 .d-val{font-family:var(--mo);color:var(--tx);font-weight:900;text-align:right;max-width:65%;word-break:break-word;line-height:1.4}
-.d-action{text-align:right;margin-top:16px}
-.d-yahoo{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:var(--blb);color:var(--bl);border:2px solid var(--bl);border-radius:24px;font-weight:900;text-decoration:none;transition:0.2s;font-size:14px;font-family:var(--mo)}
-.d-yahoo:hover{background:var(--bl);color:#fff;transform:translateY(-2px);box-shadow:0 4px 12px rgba(139,190,234,0.3)}
-.detail-close{font-size:14px;font-weight:900;font-family:var(--mo);padding:6px 16px;border-radius:16px;border:2px solid var(--br);background:var(--bg2);color:var(--tx3);cursor:pointer;transition:.2s}
+.detail-close{font-size:14px;font-weight:900;font-family:var(--mo);padding:6px 16px;border-radius:16px;border:2px solid var(--br);background:var(--bg2);color:var(--tx3);cursor:pointer;transition:.2s;margin-top:2px}
 .detail-close:hover{border-color:var(--br2);color:var(--tx);background:var(--bg)}
 .di-label{color:var(--tx2);font-size:14px;font-weight:800}
 
@@ -845,7 +842,11 @@ const rawALL=[
 {code:'9917',name:'中保科',price:114.5,gift:'超商100元商品卡',lbo:'2026-03-26',meet:'2026-05-29',cond:'ev',egift:1,os:1},
 {code:'9919',name:'康那香',price:15.6,gift:'口罩',lbo:'2026-04-09',meet:'2026-06-12',cond:'ev'},
 {code:'3322',name:'建舜電',price:13.55,gift:'統一超商35元商品卡',lbo:'2026-04-09',meet:'2026-06-12',cond:'ev',egift:1,os:1},
-{code:'4142',name:'國光生',price:18.15,gift:'氣密保鮮罐',lbo:'2026-03-31',meet:'2026-06-04',cond:'ev'}
+{code:'4142',name:'國光生',price:18.15,gift:'氣密保鮮罐',lbo:'2026-03-31',meet:'2026-06-04',cond:'ev'},
+{code:'1101',name:'台泥',price:25.0,gift:'折疊環保提包',lbo:'2026-03-19',meet:'2026-05-22',cond:'ev'},
+{code:'5202',name:'力新',price:25.45,gift:'常健順暢益生菌（590元）',lbo:'2026-03-19',meet:'2026-05-20',cond:'ev',cp:1},
+{code:'6125',name:'廣運',price:62.3,gift:'超商禮物卡35元',lbo:'2026-03-18',meet:'2026-05-21',cond:'ev',egift:1,os:1},
+{code:'1708',name:'東鹼',price:35.45,gift:'東南實業小蘇打粉',lbo:'2026-03-18',meet:'2026-05-20',cond:'ev',cp:1}
 ];
 
 let ALL = [...rawALL]; 
@@ -1289,8 +1290,8 @@ function showStock(s, clickedRow){
     const idVal = (c.includes('id')||r.id) ? '<span style="color:var(--rd)">需要</span>' : '<span style="color:var(--gn)">不需要</span>';
     const egVal = (s.egift||r.egift) ? '<span style="color:var(--gn)">支援</span>' : '<span style="color:var(--tx3)">無</span>';
     
-    // Yahoo 股市直達車 (升級為按鈕)
-    const yahooLink = `<a href="https://tw.stock.yahoo.com/quote/${s.code}" target="_blank" class="d-yahoo"><i class="ico-chii sparkle" style="width:1.2em;height:1.2em"></i> 前往 Yahoo 股市查詢最新動態</a>`;
+    // Yahoo 股市直達車 (微縮版，移至商品旁)
+    const yahooLink = `<a href="https://tw.stock.yahoo.com/quote/${s.code}" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;background:var(--blb);color:var(--bl);border:2px solid rgba(139,190,234,0.3);border-radius:10px;font-size:12px;font-weight:900;text-decoration:none;transition:0.2s;margin-left:4px" onmouseover="this.style.background='var(--bl)';this.style.color='#fff'" onmouseout="this.style.background='var(--blb)';this.style.color='var(--bl)'" title="前往 Yahoo 股市查詢最新動態"><i class="ico-chii hachi" style="width:1.2em;height:1.2em"></i> Yahoo 股市</a>`;
     
     const detailTr=document.createElement('tr'); detailTr.className='detail-tr';
     detailTr.innerHTML=`<td colspan="${clickedRow.querySelectorAll('td').length||9}">
@@ -1305,7 +1306,7 @@ function showStock(s, clickedRow){
           <div class="d-card">
             <div class="d-card-title"><i class="ico-chii chii" style="width:1.2em;height:1.2em"></i> 紀念品情報</div>
             <div class="d-row"><span class="di-label">當前股價</span><span class="d-val">${s.price||'—'} 元</span></div>
-            <div class="d-row" style="align-items:flex-start"><span class="di-label">發放品項</span><span class="d-val" style="color:var(--tx)">${s.gift||'<span style="color:var(--tx3)">尚未公告</span>'}<br><div style="margin-top:6px;justify-content:flex-end;display:flex;flex-wrap:wrap">${cpTag}${ipTag}</div></span></div>
+            <div class="d-row" style="align-items:flex-start"><span class="di-label">發放品項</span><span class="d-val" style="color:var(--tx)">${s.gift||'<span style="color:var(--tx3)">尚未公告</span>'}<br><div style="margin-top:6px;justify-content:flex-end;display:flex;flex-wrap:wrap;align-items:center">${cpTag}${ipTag}${yahooLink}</div></span></div>
           </div>
 
           <!-- 區塊 2：關鍵時程 -->
@@ -1324,8 +1325,6 @@ function showStock(s, clickedRow){
             <div class="d-row"><span class="di-label">eGift 線上領</span><span class="d-val">${egVal}</span></div>
           </div>
         </div>
-        
-        <div class="d-action">${yahooLink}</div>
       </div>
     </td>`;
     
