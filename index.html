@@ -567,10 +567,12 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
       <option value="id">需身分證</option>
       <option value="noev">無需電投</option>
     </select>
+    <!-- 新增：紀念品分類過濾器 -->
     <select id="fgift">
       <option value="all">全品項</option>
       <option value="card">💳 禮券/商品卡</option>
       <option value="daily">🧴 民生/食品</option>
+      <option value="cp">🌟 高CP值</option>
     </select>
     <button class="refresh-btn" id="btn-refresh">
       <svg width="16" height="16" viewBox="0 0 13 13" fill="none"><path d="M11.5 6.5A5 5 0 1 1 9 2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M9 2.1V0M9 2.1H7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -1039,7 +1041,7 @@ function rFull(){
     
     const isCard = s.egift || kwCard.some(k=>s.gift.includes(k));
     const isDaily = kwDaily.some(k=>s.gift.includes(k));
-    const mgift = fgift === 'all' || (fgift === 'card' && isCard) || (fgift === 'daily' && isDaily);
+    const mgift = fgift === 'all' || (fgift === 'card' && isCard) || (fgift === 'daily' && isDaily) || (fgift === 'cp' && s.cp);
 
     return mq&&mu&&mc&&mgift;
   }).sort(smartSort);
