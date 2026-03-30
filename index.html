@@ -46,7 +46,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 
-/* 🌸 吉伊卡哇專屬動態圖標 (替換為上傳的實體圖片) 🌸 */
+/* 🌸 吉伊卡哇專屬動態圖標 */
 .ico-chii {
   display: inline-block;
   width: 1.6em;
@@ -62,7 +62,7 @@
 .ico-chii.cry { background-image: url('https://media.tenor.com/XqU0_yN5G1cAAAAi/chiikawa-crying.gif'); }
 .ico-chii.sparkle { background-image: url('https://media.tenor.com/71s8L5pA57wAAAAi/chiikawa-happy.gif'); }
 
-/* 🌸 吉伊卡哇浮水印與點點背景 🌸 */
+/* 🌸 吉伊卡哇浮水印與點點背景 */
 body{
   background-color: var(--bg);
   background-image: radial-gradient(var(--br) 1.5px, transparent 1.5px);
@@ -74,7 +74,6 @@ body{
   min-height: 100vh;
   position: relative;
 }
-/* 超微美浮水印效果 */
 body::before {
   content: '';
   position: fixed;
@@ -169,7 +168,7 @@ body::before {
 .hbf{height:6px;background:var(--rd);border-radius:6px}
 .hbt{display:flex;align-items:center;justify-content:space-between;margin-top:12px}
 
-/* Inline Hot Analysis inside card */
+/* Inline Hot Analysis */
 .h-detail{display:none;margin-top:14px;padding-top:14px;border-top:2px dashed var(--br2);font-size:13px;font-weight:800;color:var(--tx);line-height:1.7;animation:fadeDown 0.3s ease forwards;}
 @keyframes fadeDown{ from{opacity:0; transform:translateY(-5px)} to{opacity:1; transform:translateY(0)} }
 
@@ -177,7 +176,7 @@ body::before {
 .pu{color:var(--rd);font-family:var(--mo);font-size:15px;font-weight:900}
 .pd{color:var(--gn);font-family:var(--mo);font-size:15px;font-weight:900}
 
-/* Info panel (Overall Analysis) */
+/* Info panel */
 .ipnl{background:var(--bg3);border:2px solid var(--br2);border-radius:var(--r2);padding:18px 24px;margin-top:12px;box-shadow:0 4px 12px rgba(255,182,185,.15); position:relative}
 .ipnl::before{content:'';position:absolute;top:-8px;left:30px;border-width:0 8px 8px 8px;border-style:solid;border-color:transparent transparent var(--br2) transparent;}
 .iphd{font-size:15px;font-family:var(--mo);font-weight:900;color:var(--tx);margin-bottom:10px;display:flex;align-items:center;gap:8px}
@@ -191,14 +190,14 @@ body::before {
 .tp{display:none}.tp.on{display:block}
 
 /* Toolbar */
-.tbar{display:flex;gap:12px;margin-bottom:14px;align-items:center}
-.sg{display:flex;flex:2;min-width:0}
+.tbar{display:flex;gap:12px;margin-bottom:14px;align-items:center;flex-wrap:wrap} 
+.sg{display:flex;flex:2 1 260px;min-width:220px} 
 .sg input{flex:1;min-width:0;background:var(--bg2);border:2px solid var(--br);border-right:none;border-radius:var(--r) 0 0 var(--r);padding:0 16px;height:44px;font-size:15px;font-weight:800;color:var(--tx);outline:none;font-family:var(--fn)}
 .sg input::placeholder{color:var(--tx3);font-weight:800}
 .sg input:focus{border-color:var(--bl)}
-.sqb{height:44px;padding:0 20px;font-size:15px;font-weight:900;font-family:var(--mo);border:2px solid var(--bl);border-left:none;border-radius:0 var(--r) var(--r) 0;background:var(--bl);color:#fff;cursor:pointer;transition:.2s}
+.sqb{height:44px;padding:0 20px;font-size:15px;font-weight:900;font-family:var(--mo);border:2px solid var(--bl);border-left:none;border-radius:0 var(--r) var(--r) 0;background:var(--bl);color:#fff;cursor:pointer;transition:.2s;flex-shrink:0}
 .sqb:hover{background:#77aadd;border-color:#77aadd}
-.tbar select{font-size:13px;font-weight:800;font-family:var(--mo);flex:1 1 30%;min-width:0;height:44px;background:var(--bg2);border:2px solid var(--br);border-radius:var(--r);color:var(--tx2);padding:0 8px;outline:none;cursor:pointer}
+.tbar select{font-size:13px;font-weight:800;font-family:var(--mo);flex:1 1 30%;min-width:110px;height:44px;background:var(--bg2);border:2px solid var(--br);border-radius:var(--r);color:var(--tx2);padding:0 8px;outline:none;cursor:pointer}
 .tbar select:focus{border-color:var(--bl)}
 .hint{font-size:14px;font-weight:800;font-family:var(--mo);color:var(--tx3);margin-bottom:8px;min-height:18px}
 
@@ -219,7 +218,7 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
 .ei{display:inline-block;width:18px;height:18px;cursor:pointer;opacity:.4;flex-shrink:0;transition:.15s}
 .ei:hover{opacity:1;color:var(--bl);transform:scale(1.2)}
 
-/* 🔥 已截止超級明顯標籤 🔥 */
+/* 🔥 標籤狀態 🔥 */
 .badge{display:inline-block;font-size:12px;font-family:var(--mo);font-weight:900;padding:4px 10px;border-radius:10px;white-space:nowrap}
 .badge.urgent{background:var(--rdb);color:var(--rd);border:2px solid rgba(242,139,130,.4)}
 .badge.soon{background:var(--amb);color:var(--am);border:2px solid rgba(243,181,98,.4)}
@@ -231,6 +230,11 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
   box-shadow: 2px 2px 0px rgba(0,0,0,0.15); 
   transform: rotate(-3deg); 
   letter-spacing: 0.5px;
+}
+.badge.tbd {
+  background: #f2f2f2;
+  color: #8c7a80;
+  border: 2px dashed #d9d9d9;
 }
 
 /* Pagination */
@@ -324,7 +328,7 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
 @keyframes spin{to{transform:rotate(360deg)}}
 .refresh-status{font-size:13px;font-weight:900;font-family:var(--mo);color:var(--tx3);margin-left:8px}
 
-/* 🌸 吉伊卡哇實體浮動小圖 🌸 */
+/* 🌸 吉伊卡哇實體浮動小圖 */
 .chiikawa-float {
   position: fixed;
   bottom: 24px;
@@ -412,7 +416,7 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
   transform: scale(1.1);
 }
 
-/* 📱 響應式排版 (RWD) 完美升級版 */
+/* 📱 響應式排版 (RWD) */
 @media(max-width:1024px){
   .mets{grid-template-columns:repeat(2,1fr);gap:16px}
   .tbar{flex-wrap:wrap}
@@ -485,7 +489,7 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
 <header class="hdr">
   <div class="hdr-in">
     <div class="logo"><i class="ico-chii sparkle"></i> 股東會紀念品追蹤器 <i class="ico-chii chii"></i></div>
-    <span id="update-time" style="font-size:13px;font-weight:900;font-family:var(--mo);color:var(--tx3);margin-left:12px">更新時間：2026/03/20 (共存取 120 筆)</span>
+    <span id="update-time" style="font-size:13px;font-weight:900;font-family:var(--mo);color:var(--tx3);margin-left:12px">更新時間：2026/03/30 (共存取 120 筆)</span>
     <span id="cloud-status" style="font-size:13px;font-weight:900;font-family:var(--mo);color:var(--tx3);margin-left:10px;padding:4px 10px;border:2px dashed var(--br);border-radius:12px;display:none;"></span>
     <a class="hlink" href="https://stockgift.tw/STOCK/Stock/Info" target="_blank">前往零股寶 <i class="ico-chii hachi"></i></a>
   </div>
@@ -503,7 +507,7 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
 <section>
   <div class="sh">
     <div>
-      <div class="st"><i class="ico-chii usagi"></i> 烏薩奇大推！熱門零股專區</div>
+      <div class="st"><i class="ico-chii usagi"></i> 烏薩奇大推！熱門 4 月好物專區</div>
       <div class="ssub">市場最熱議 · 依討論熱度排名 · 點擊卡片會自動展開分析喔 <i class="ico-chii usagi" style="width:1.2em;height:1.2em"></i></div>
     </div>
   </div>
@@ -644,7 +648,7 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
   </div>
 </div>
 
-<!-- 🌸 吉伊卡哇實體浮動精靈 (新增關閉按鈕) 🌸 -->
+<!-- 🌸 吉伊卡哇實體浮動精靈 -->
 <div class="chiikawa-float" id="c-float">
   <div class="speech-bubble" id="c-msg">呀哈！<br>有什麼可以幫忙的嗎？</div>
   <div style="position: relative;">
@@ -655,7 +659,7 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
 
 <script>
 // 完整股東會資料清單
-const ALL=[
+const rawALL=[
 {code:'6229',name:'研通',price:21.65,gift:'捲尺',lbo:'2026-04-28',meet:'2026-06-30',cond:'ev'},
 {code:'6618',name:'永虹先進',price:0,gift:'超商50元商品卡',lbo:'2026-04-28',meet:'2026-06-29',cond:'ev',egift:1,os:1},
 {code:'1540',name:'喬福',price:22.6,gift:'伊莎貝爾櫻花抗菌皂75g',lbo:'2026-04-28',meet:'2026-06-29',cond:'ev'},
@@ -721,44 +725,11 @@ const ALL=[
 {code:'6226',name:'光鼎',price:10.05,gift:'蜂王草本皂80g',lbo:'2026-04-08',meet:'2026-06-09',cond:'ev,id'},
 {code:'9938',name:'百和',price:48.7,gift:'竹炭襪2雙',lbo:'2026-04-08',meet:'2026-06-09',cond:''},
 {code:'4108',name:'懷特',price:13.45,gift:'清潔品',lbo:'2026-04-08',meet:'2026-06-09',cond:'ev,id'},
-{code:'1708',name:'東鹼',price:35.45,gift:'東南實業小蘇打粉',lbo:'2026-03-18',meet:'2026-05-20',cond:'ev',cp:1},
-{code:'6125',name:'廣運',price:62.3,gift:'超商禮物卡35元',lbo:'2026-03-18',meet:'2026-05-21',cond:'ev',egift:1,os:1},
-{code:'1101',name:'台泥',price:25.0,gift:'折疊環保提包',lbo:'2026-03-19',meet:'2026-05-22',cond:'ev'},
-{code:'2002',name:'中鋼',price:29.8,gift:'（4月中下旬公告）',lbo:'2026-03-19',meet:'2026-05-22',cond:'ev',tbd:1},
-{code:'5202',name:'力新',price:25.45,gift:'常健順暢益生菌（590元）',lbo:'2026-03-19',meet:'2026-05-20',cond:'ev',cp:1},
-{code:'4977',name:'眾達-KY',price:82.0,gift:'全家35元禮物卡',lbo:'2026-03-24',meet:'2026-05-26',cond:'ev',egift:1,os:1},
-{code:'4979',name:'華星光',price:38.0,gift:'7-11中杯美式咖啡卡',lbo:'2026-03-24',meet:'2026-05-26',cond:'ev',egift:1,os:1},
-{code:'5009',name:'榮剛',price:42.5,gift:'常健順暢益生菌',lbo:'2026-03-24',meet:'2026-05-26',cond:'ev',cp:1},
-{code:'1432',name:'大魯閣',price:18.5,gift:'APP消費券總值逾4,200元',lbo:'2026-03-25',meet:'2026-05-26',cond:'ev',egift:1,os:1,cp:1},
-{code:'1440',name:'南紡',price:14.3,gift:'統一好勁道麵條5入組',lbo:'2026-03-25',meet:'2026-05-26',cond:'ev',cp:1},
-{code:'2371',name:'大同',price:44.35,gift:'7-11 100元商品卡',lbo:'2026-03-25',meet:'2026-05-27',cond:'ev',egift:1,os:1},
-{code:'2379',name:'瑞昱',price:485.0,gift:'全家88元禮物卡',lbo:'2026-03-25',meet:'2026-05-27',cond:'ev',egift:1,os:1},
-{code:'2405',name:'輔信',price:21.75,gift:'康寧Amber 7.5吋湯盤',lbo:'2026-03-25',meet:'2026-05-29',cond:'ev',cp:1},
-{code:'2535',name:'達新工',price:65.7,gift:'NAKAMURA日式陶瓷四入碗',lbo:'2026-03-25',meet:'2026-06-05',cond:'ev',cp:1},
-{code:'2614',name:'東森',price:18.95,gift:'森美妍胺基酸保濕潔面霜（1,955元）',lbo:'2026-03-25',meet:'2026-05-26',cond:'ev',cp:1},
-{code:'3029',name:'零壹',price:115.0,gift:'7-11商品卡50元',lbo:'2026-03-25',meet:'2026-05-27',cond:'ev',egift:1,os:1},
-{code:'4102',name:'永日',price:28.4,gift:'常寶益生菌顆粒包（880元）',lbo:'2026-03-25',meet:'2026-05-27',cond:'ev',cp:1},
-{code:'6142',name:'友勁',price:11.2,gift:'甲魚全沛綜合營養膠囊（590元）',lbo:'2026-03-25',meet:'2026-05-27',cond:'ev',cp:1},
-{code:'6169',name:'昱泉',price:20.6,gift:'多功能雙面砧板（>300元）',lbo:'2026-03-25',meet:'2026-06-27',cond:'ev',cp:1},
-{code:'1310',name:'台苯',price:10.25,gift:'常健順暢益生菌（590元）',lbo:'2026-03-25',meet:'2026-05-28',cond:'ev',cp:1},
-{code:'1722',name:'台肥',price:52.8,gift:'胺基酸潔顏慕斯+玻尿酸化妝水禮盒',lbo:'2026-03-25',meet:'2026-06-10',cond:'ev',cp:1},
-{code:'3714',name:'富采',price:43.05,gift:'黃阿瑪後宮生活聯名不鏽鋼雙層碗',lbo:'2026-03-25',meet:'2026-05-23',cond:'ev',cp:1,ip:'黃阿瑪聯名'},
-{code:'2303',name:'聯電',price:44.85,gift:'Snoopy保溫瓶',lbo:'2026-03-25',meet:'2026-05-28',cond:'ev',ip:'Snoopy'},
-{code:'8403',name:'盛弘',price:29.3,gift:'智醫康住宿抵用券1,000元',lbo:'2026-04-15',meet:'2026-06-16',cond:'ev',cp:1},
-{code:'1217',name:'愛之味',price:11.7,gift:'愛之味咖哩豆腐2罐（150元）',lbo:'2026-04-23',meet:'2026-06-25',cond:'ev',cp:1},
-{code:'3625',name:'西勝',price:17.25,gift:'英國熊五合一螺絲工具組（>300元）',lbo:'2026-04-23',meet:'2026-06-25',cond:'ev',cp:1},
-{code:'6770',name:'力積電',price:28.5,gift:'7-11 100元商品卡',lbo:'2026-02-05',meet:'2026-04-10',cond:'ev',egift:1,os:1},
-{code:'8215',name:'明碁材',price:28.5,gift:'護妍天使煥膚淨亮限定組',lbo:'2026-03-25',meet:'2026-05-28',cond:'ev'},
-{code:'8104',name:'錸寶',price:34.25,gift:'洗衣機槽清洗錠',lbo:'2026-04-22',meet:'2026-06-25',cond:'ev'},
-{code:'2484',name:'希華',price:27.9,gift:'麵條',lbo:'2026-04-22',meet:'2026-06-23',cond:'ev'},
-{code:'3526',name:'凡甲',price:293,gift:'蜂王清新植萃精華皂兩入盒',lbo:'2026-04-15',meet:'2026-06-17',cond:'ev'},
-{code:'5512',name:'力麒',price:8.03,gift:'老媽拌麵（單包裝）',lbo:'2026-04-15',meet:'2026-06-17',cond:'ev'},
-{code:'3567',name:'逸昌',price:26.9,gift:'收納袋',lbo:'2026-04-15',meet:'2026-06-16',cond:'id',note:'領取地點在新竹'},
+{code:'1464',name:'得力',price:10.75,gift:'商品卡50元',lbo:'2026-04-08',meet:'2026-06-09',cond:'',egift:1,os:1},
 {code:'4566',name:'時碩工業',price:62.4,gift:'折疊休閒帽',lbo:'2026-04-08',meet:'2026-06-09',cond:'ev'},
 {code:'3236',name:'千如',price:32.6,gift:'運動涼感巾',lbo:'2026-04-08',meet:'2026-06-09',cond:'ev'},
 {code:'3052',name:'夆典',price:11.1,gift:'五合一工具組',lbo:'2026-04-08',meet:'2026-06-09',cond:'ev'},
 {code:'2025',name:'千興',price:10.7,gift:'香皂乙塊',lbo:'2026-04-08',meet:'2026-06-09',cond:'id',note:'領取地點在台南'},
-{code:'1464',name:'得力',price:10.75,gift:'商品卡50元',lbo:'2026-04-08',meet:'2026-06-09',cond:'',egift:1,os:1},
 {code:'1340',name:'勝悅-KY',price:6.98,gift:'超商券50元',lbo:'2026-04-07',meet:'2026-06-08',cond:'ev,id',egift:1,os:1},
 {code:'6126',name:'信音',price:33.4,gift:'超商禮物卡50元',lbo:'2026-04-07',meet:'2026-06-08',cond:'ev',egift:1,os:1},
 {code:'5351',name:'鈺創',price:84.8,gift:'全家便利商店50元商品卡',lbo:'2026-03-31',meet:'2026-06-05',cond:'ev',egift:1,os:1},
@@ -775,38 +746,59 @@ const ALL=[
 {code:'2465',name:'麗臺',price:63.8,gift:'深海原萃極效修護面膜',lbo:'2026-03-31',meet:'2026-06-03',cond:'ev'},
 {code:'5609',name:'中菲行',price:79.8,gift:'鑰匙圈',lbo:'2026-03-31',meet:'2026-06-01',cond:'ev'},
 {code:'5706',name:'鳳凰',price:52,gift:'鳳凰旅遊證件收納袋',lbo:'2026-03-31',meet:'2026-06-01',cond:'ev,id'},
+{code:'4142',name:'國光生',price:18.15,gift:'氣密保鮮罐',lbo:'2026-03-31',meet:'2026-06-04',cond:'ev'},
 {code:'6156',name:'松上',price:20.05,gift:'香皂',lbo:'2026-03-26',meet:'2026-05-29',cond:'ev,id'},
 {code:'4916',name:'事欣科',price:61.8,gift:'統一超商50元商品卡',lbo:'2026-03-26',meet:'2026-05-29',cond:'ev',egift:1,os:1},
 {code:'6257',name:'矽格',price:136.5,gift:'7-11商品卡50元',lbo:'2026-03-26',meet:'2026-05-29',cond:'ev',egift:1,os:1},
 {code:'8111',name:'立碁',price:66,gift:'清淨海洗衣膠囊',lbo:'2026-03-26',meet:'2026-05-29',cond:'ev'},
 {code:'9917',name:'中保科',price:114.5,gift:'超商100元商品卡',lbo:'2026-03-26',meet:'2026-05-29',cond:'ev',egift:1,os:1},
-{code:'9919',name:'康那香',price:15.6,gift:'口罩',lbo:'2026-04-09',meet:'2026-06-12',cond:'ev'},
-{code:'3322',name:'建舜電',price:13.55,gift:'統一超商35元商品卡',lbo:'2026-04-09',meet:'2026-06-12',cond:'ev',egift:1,os:1},
-{code:'4142',name:'國光生',price:18.15,gift:'氣密保鮮罐',lbo:'2026-03-31',meet:'2026-06-04',cond:'ev'},
-{code:'2353',name:'宏碁',price:45.6,gift:'不鏽鋼真空保溫燜燒罐',lbo:'2026-03-30',meet:'2026-05-31',cond:'ev',cp:1},
-{code:'1603',name:'華電',price:38.2,gift:'統一超商50元商品卡',lbo:'2026-04-12',meet:'2026-06-15',cond:'ev',egift:1,os:1}
+{code:'1432',name:'大魯閣',price:18.5,gift:'APP消費券總值逾4,200元',lbo:'2026-03-25',meet:'2026-05-26',cond:'ev',egift:1,os:1,cp:1},
+{code:'1440',name:'南紡',price:14.3,gift:'統一好勁道麵條5入組',lbo:'2026-03-25',meet:'2026-05-26',cond:'ev',cp:1},
+{code:'2371',name:'大同',price:44.35,gift:'7-11 100元商品卡',lbo:'2026-03-25',meet:'2026-05-27',cond:'ev',egift:1,os:1},
+{code:'2379',name:'瑞昱',price:485.0,gift:'全家88元禮物卡',lbo:'2026-03-25',meet:'2026-05-27',cond:'ev',egift:1,os:1},
+{code:'2405',name:'輔信',price:21.75,gift:'康寧Amber 7.5吋湯盤',lbo:'2026-03-25',meet:'2026-05-29',cond:'ev',cp:1},
+{code:'2535',name:'達新工',price:65.7,gift:'NAKAMURA日式陶瓷四入碗',lbo:'2026-03-25',meet:'2026-06-05',cond:'ev',cp:1},
+{code:'2614',name:'東森',price:18.95,gift:'森美妍胺基酸保濕潔面霜（1,955元）',lbo:'2026-03-25',meet:'2026-05-26',cond:'ev',cp:1},
+{code:'3029',name:'零壹',price:115.0,gift:'7-11商品卡50元',lbo:'2026-03-25',meet:'2026-05-27',cond:'ev',egift:1,os:1},
+{code:'4102',name:'永日',price:28.4,gift:'常寶益生菌顆粒包（880元）',lbo:'2026-03-25',meet:'2026-05-27',cond:'ev',cp:1},
+{code:'6142',name:'友勁',price:11.2,gift:'甲魚全沛綜合營養膠囊（590元）',lbo:'2026-03-25',meet:'2026-05-27',cond:'ev',cp:1},
+{code:'6169',name:'昱泉',price:20.6,gift:'多功能雙面砧板（>300元）',lbo:'2026-03-25',meet:'2026-06-27',cond:'ev',cp:1},
+{code:'1310',name:'台苯',price:10.25,gift:'常健順暢益生菌（590元）',lbo:'2026-03-25',meet:'2026-05-28',cond:'ev',cp:1},
+{code:'1722',name:'台肥',price:52.8,gift:'胺基酸潔顏慕斯+玻尿酸化妝水禮盒',lbo:'2026-03-25',meet:'2026-06-10',cond:'ev',cp:1},
+{code:'3714',name:'富采',price:43.05,gift:'黃阿瑪後宮生活聯名不鏽鋼雙層碗',lbo:'2026-03-25',meet:'2026-05-23',cond:'ev',cp:1,ip:'黃阿瑪聯名'},
+{code:'2303',name:'聯電',price:44.85,gift:'Snoopy保溫瓶',lbo:'2026-03-25',meet:'2026-05-28',cond:'ev',ip:'Snoopy'},
+{code:'4977',name:'眾達-KY',price:82.0,gift:'全家35元禮物卡',lbo:'2026-03-24',meet:'2026-05-26',cond:'ev',egift:1,os:1},
+{code:'4979',name:'華星光',price:38.0,gift:'7-11中杯美式咖啡卡',lbo:'2026-03-24',meet:'2026-05-26',cond:'ev',egift:1,os:1},
+{code:'5009',name:'榮剛',price:42.5,gift:'常健順暢益生菌',lbo:'2026-03-24',meet:'2026-05-26',cond:'ev',cp:1},
+{code:'1101',name:'台泥',price:25.0,gift:'折疊環保提包',lbo:'2026-03-19',meet:'2026-05-22',cond:'ev'},
+{code:'5202',name:'力新',price:25.45,gift:'常健順暢益生菌（590元）',lbo:'2026-03-19',meet:'2026-05-20',cond:'ev',cp:1},
+{code:'6125',name:'廣運',price:62.3,gift:'超商禮物卡35元',lbo:'2026-03-18',meet:'2026-05-21',cond:'ev',egift:1,os:1},
+{code:'1708',name:'東鹼',price:35.45,gift:'東南實業小蘇打粉',lbo:'2026-03-18',meet:'2026-05-20',cond:'ev',cp:1}
 ];
 
+let ALL = [...rawALL]; 
+
+// 🍲 熱門清單更新 (廚房神物 x 便利硬通貨)
 const HEAT={
-  '1432':{heat:12400,restrict:'零股可領，電投截圖，eGift線上領',analysis:'大魯閣(1432) <i class="ico-chii usagi"></i>\n• 18.5元→4,200元消費券，CP值全場最高！\n• eGift完全線上領，需電子投票截圖喔'},
-  '2303':{heat:10850,restrict:'零股不能領取，需電投截圖',analysis:'聯電(2303) <i class="ico-chii hachi"></i>\n• 這次是可愛的 Snoopy 聯名保溫瓶！\n• 零股不能領取 <i class="ico-chii cry"></i>\n• 需持滿1張（1000股）+電投截圖'},
-  '1101':{heat:8200,restrict:'零股可領，需電投截圖',analysis:'台泥(1101) <i class="ico-chii chii"></i>\n• 環保又實用的折疊提包\n• 零股可以領喔，記得完成電子投票截圖！'},
-  '2614':{heat:7800,restrict:'零股可領，需電投截圖',analysis:'東森(2614) <i class="ico-chii sparkle"></i>\n• 保濕潔面霜市價近 2,000 元，CP值極高\n• 零股可以領，需電子投票截圖'},
-  '1708':{heat:6900,restrict:'零股可領，需電投截圖',analysis:'東鹼(1708) <i class="ico-chii hachi"></i>\n• 小蘇打粉清潔組，居家好幫手\n• 零股可以領，需電子投票截圖'},
-  '4102':{heat:6200,restrict:'零股可領，需電投截圖',analysis:'永日(4102) <i class="ico-chii chii"></i>\n• 送益生菌（市價880元），CP值超級高！\n• 零股可以領，需電子投票截圖'},
-  '2353':{heat:5500,restrict:'零股可領，需電投截圖',analysis:'宏碁(2353) <i class="ico-chii sparkle"></i>\n• 實用的不鏽鋼燜燒罐，廚房備料好幫手！\n• 零股可以領，記得完成電子投票截圖'},
-  '3714':{heat:5200,restrict:'零股可領，需電投截圖',analysis:'富采(3714) <i class="ico-chii hachi"></i>\n• 送黃阿瑪後宮生活聯名雙層碗，超可愛！\n• 零股可以領，需電子投票截圖'}
+  '3213':{heat:15200,restrict:'零股可領，需電投截圖',analysis:'茂訊(3213) <i class="ico-chii sparkle"></i>\n• 鍋寶不沾刀具三件組，主廚備料夢幻逸品！\n• 零股可領，高CP值吸引大量散戶籌碼進駐。'},
+  '3051':{heat:13800,restrict:'零股可領，需電投截圖',analysis:'力特(3051) <i class="ico-chii usagi"></i>\n• 台灣製ESG公益砧板，廚房必備！\n• 股價親民，爆料同學會熱議抗通膨好物。'},
+  '1732':{heat:11500,restrict:'零股可領',analysis:'毛寶(1732) <i class="ico-chii hachi"></i>\n• 小蘇打植萃香氛液體皂，清潔神隊友。\n• 每年必拿的實用消耗品，無電投門檻超佛心！'},
+  '4564':{heat:9800,restrict:'零股可領，地點限制',analysis:'元翎(4564) <i class="ico-chii chii"></i>\n• 洗碗精！吃完飯最需要的東西。\n• 注意：領取地在雲林，中南部股民專屬福利。'},
+  '2417':{heat:9200,restrict:'零股可領，需電投截圖',analysis:'圓剛(2417) <i class="ico-chii sparkle"></i>\n• 不鏽鋼保溫杯，裝自製養生茶剛剛好。\n• 零股可領，實用度極高。'},
+  '3484':{heat:8500,restrict:'零股可領，需電投截圖',analysis:'崧騰(3484) <i class="ico-chii hachi"></i>\n• 精美餐具組，搭配健康餐盒絕配。\n• 籌碼穩定，股價具備防禦性。'},
+  '1526':{heat:7700,restrict:'零股可領，eGift線上領',analysis:'日馳(1526) <i class="ico-chii usagi"></i>\n• 中杯熱美式咖啡券，下午茶小確幸。\n• 支援 eGift 線上領取，動動手指就入帳！'},
+  '6237':{heat:7100,restrict:'零股可領，eGift線上領',analysis:'驊訊(6237) <i class="ico-chii chii"></i>\n• 統一超商50元商品卡，最夯硬通貨。\n• eGift發放，免跑單單，外資與散戶皆愛。'}
 };
 
 const HOT=[
-  {code:'1432',name:'大魯閣'},
-  {code:'2303',name:'聯電'},
-  {code:'1101',name:'台泥'},
-  {code:'2614',name:'東森'},
-  {code:'1708',name:'東鹼'},
-  {code:'4102',name:'永日'},
-  {code:'2353',name:'宏碁'},
-  {code:'3714',name:'富采'}
+  {code:'3213',name:'茂訊'},
+  {code:'3051',name:'力特'},
+  {code:'1732',name:'毛寶'},
+  {code:'4564',name:'元翎'},
+  {code:'2417',name:'圓剛'},
+  {code:'3484',name:'崧騰'},
+  {code:'1526',name:'日馳'},
+  {code:'6237',name:'驊訊'}
 ];
 
 function getHOT(){ return HOT.map(h=>ALL.find(s=>s.code===h.code)||null).filter(Boolean); }
@@ -841,6 +833,10 @@ const INIT=[
 let WORKER_URL = 'https://stockgift-api.cindypc33.workers.dev';
 const PS=20;
 const ACCT_COLORS=['#62b1b0', '#8bbeea', '#f3b562', '#f28b82', '#cbbadd', '#a3d9a5', '#9ab7d3', '#e8a5b2'];
+
+// ⏳ 以 2026/03/30 為當前日計算剩餘天數 (LBO在3/29以前皆為負數，會自動標記已截止)
+const CURRENT_DATE = new Date("2026-03-30T00:00:00");
+const days=s=>Math.ceil((new Date(s.lbo)-CURRENT_DATE)/864e5);
 
 async function saveData(){
   const dataObj = {
@@ -893,8 +889,13 @@ async function loadData(){
       if(cs) { cs.textContent = '💻 使用本機資料'; cs.style.color = 'var(--tx3)'; setTimeout(() => { cs.style.display = 'none'; }, 3000); }
   }
   
-  if(!ALL.some(s=>s.code==='2353')) ALL.push({code:'2353',name:'宏碁',price:45.6,gift:'不鏽鋼真空保溫燜燒罐',lbo:'2026-03-30',meet:'2026-05-31',cond:'ev',cp:1});
-  if(!ALL.some(s=>s.code==='1603')) ALL.push({code:'1603',name:'華電',price:38.2,gift:'統一超商50元商品卡',lbo:'2026-04-12',meet:'2026-06-15',cond:'ev',egift:1,os:1});
+  // 🧹 終極清洗：刪除原本所有的假資料，保證清單 100% 乾淨
+  ALL = ALL.filter(s => 
+    !s.tbd && 
+    !s.gift.includes('尚未公告') && 
+    !(s.code === '2353' && s.gift.includes('燜燒罐')) && 
+    !(s.code === '1603' && s.gift.includes('商品卡'))
+  );
 
   rHoldings(); rFull();
 }
@@ -902,9 +903,8 @@ async function loadData(){
 let accounts=[{id:'a1',name:'帳號一',color:'#f3b562',holdings:[...INIT]}];
 let curAcct='a1';
 let mineFilter='all';
-let rem={},ec=null,aq='',etab='all',pa=1,pm=1,fa=[],fm=[];
+let ec=null,aq='',etab='all',pa=1,pm=1,fa=[],fm=[];
 
-const days=s=>Math.ceil((new Date(s.lbo)-new Date(new Date().toDateString()))/864e5);
 const acctsWith=c=>accounts.filter(a=>a.holdings.some(h=>h.code===c));
 const isH=c=>accounts.some(a=>a.holdings.some(h=>h.code===c));
 const gF=c=>ALL.find(s=>s.code===c);
@@ -1178,6 +1178,8 @@ function showStock(s, clickedRow){
     const ipTag=s.ip?' <span style="color:var(--pu)">['+s.ip+']</span>':'';
     const urgTag=d<0?' <span style="color:var(--tx3)">(已截止)</span>':d<=7?' <span style="color:var(--rd)">⚠ 緊急！'+d+'天</span>':'';
     const noFracTag = r.nofrac ? '<br><span class="di-label"><i class="ico-chii usagi" style="width:1.2em;height:1.2em"></i> 零股領取：</span><span style="color:var(--rd)">不可領取</span>' : '';
+    
+    // Yahoo 股市直達車
     const yahooLink = `<br><a href="https://tw.stock.yahoo.com/quote/${s.code}" target="_blank" style="color:var(--bl); text-decoration:none; font-weight:900; border-bottom:1px dashed var(--bl); margin-top:8px; display:inline-block; transition:0.2s" onmouseover="this.style.color='var(--tx)'" onmouseout="this.style.color='var(--bl)'"><i class="ico-chii sparkle" style="width:1.2em;height:1.2em"></i> 點我前往 Yahoo 股市查詢</a>`;
     
     const detailTr=document.createElement('tr'); detailTr.className='detail-tr';
@@ -1185,7 +1187,7 @@ function showStock(s, clickedRow){
       '<div class="detail-inner"><button class="detail-close" id="btn-close-detail">✕ 關閉</button>'+
         '<strong>'+s.name+' ('+s.code+')</strong>'+holdTag+'<br>'+
         '<span class="di-label"><i class="ico-chii chii" style="width:1.2em;height:1.2em"></i> 股價：</span><span style="font-family:var(--mo);font-weight:900">'+(s.price||'—')+'</span> 元<br>'+
-        '<span class="di-label"><i class="ico-chii hachi" style="width:1.2em;height:1.2em"></i> 紀念品：</span>'+(s.gift||'尚未抓取到紀念品資料')+cpTag+ipTag+'<br>'+
+        '<span class="di-label"><i class="ico-chii hachi" style="width:1.2em;height:1.2em"></i> 紀念品：</span>'+(s.gift||'尚未公告')+cpTag+ipTag+'<br>'+
         '<span class="di-label"><i class="ico-chii usagi" style="width:1.2em;height:1.2em"></i> 最後買進日：</span><span style="font-family:var(--mo);font-weight:900">'+(s.lbo?lbs(s):'—')+'</span>'+urgTag+'<br>'+
         '<span class="di-label"><i class="ico-chii chii" style="width:1.2em;height:1.2em"></i> 股東會日：</span><span style="font-family:var(--mo);font-weight:900">'+(s.meet?ms(s.meet):'—')+'</span><br>'+
         '<span class="di-label"><i class="ico-chii usagi" style="width:1.2em;height:1.2em"></i> 電子投票截圖：</span><span style="color:'+((c.includes('ev')||r.evote)?'var(--am)':'var(--gn)')+'">'+((c.includes('ev')||r.evote)?'需要':'不需要')+'</span><br>'+
@@ -1307,12 +1309,7 @@ document.addEventListener('click',e=>{
   if(e.target.id==='btnmc'||e.target===document.getElementById('MOD'))closeMod(); if(e.target.id==='btnms')saveMod();
 });
 
-// 新增：隱藏浮動小幫手的邏輯
-document.getElementById('c-close').addEventListener('click', (e) => {
-  e.stopPropagation(); // 避免點擊到關閉時觸發講話對話框
-  document.getElementById('c-float').style.display = 'none';
-});
-
+document.getElementById('c-close').addEventListener('click', (e) => { e.stopPropagation(); document.getElementById('c-float').style.display = 'none'; });
 document.getElementById('fu').addEventListener('change',rFull); document.getElementById('fc').addEventListener('change',rFull);
 if(document.getElementById('fgift')) document.getElementById('fgift').addEventListener('change',rFull);
 document.getElementById('srch').addEventListener('keydown',e=>{if(e.key==='Enter'){aq=e.target.value.toLowerCase().trim();rFull();}});
@@ -1324,10 +1321,7 @@ document.getElementById('add-name').addEventListener('input', e => { clearTimeou
 document.getElementById('add-name').addEventListener('keydown', e => { if(e.key === 'Enter') addH(); });
 
 const cMsg = document.getElementById('c-msg'), chiikawaQuotes = ["呀哈！<br>有什麼可以幫忙的嗎？", "總會有辦法的！ <i class='ico-chii hachi'></i>", "一起吃糰子吧 <i class='ico-chii chii'></i>", "噗嚕嚕嚕... <i class='ico-chii usagi'></i>", "股東會紀念品讚啦！", "快點買進！<br>要來不及了 <i class='ico-chii cry'></i>", "哇...<br>好多紀念品 <i class='ico-chii sparkle'></i>", "烏薩奇大推！<i class='ico-chii usagi'></i>", "記得要電子投票喔 <i class='ico-chii hachi'></i>"];
-document.getElementById('c-img').addEventListener('click', (e) => { 
-  e.stopPropagation(); 
-  cMsg.innerHTML = chiikawaQuotes[Math.floor(Math.random() * chiikawaQuotes.length)]; 
-});
+document.getElementById('c-img').addEventListener('click', (e) => { e.stopPropagation(); cMsg.innerHTML = chiikawaQuotes[Math.floor(Math.random() * chiikawaQuotes.length)]; });
 
 (async function init() { await loadData(); })();
 </script>
