@@ -46,7 +46,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 
-/* 🌸 吉伊卡哇專屬動態圖標 */
+/* 🌸 吉伊卡哇專屬動態圖標 (替換為上傳的實體圖片) 🌸 */
 .ico-chii {
   display: inline-block;
   width: 1.6em;
@@ -62,7 +62,7 @@
 .ico-chii.cry { background-image: url('https://media.tenor.com/XqU0_yN5G1cAAAAi/chiikawa-crying.gif'); }
 .ico-chii.sparkle { background-image: url('https://media.tenor.com/71s8L5pA57wAAAAi/chiikawa-happy.gif'); }
 
-/* 🌸 吉伊卡哇浮水印與點點背景 */
+/* 🌸 吉伊卡哇浮水印與點點背景 🌸 */
 body{
   background-color: var(--bg);
   background-image: radial-gradient(var(--br) 1.5px, transparent 1.5px);
@@ -74,6 +74,7 @@ body{
   min-height: 100vh;
   position: relative;
 }
+/* 超微美浮水印效果 */
 body::before {
   content: '';
   position: fixed;
@@ -299,15 +300,93 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
 .bs2{font-size:14px;font-weight:900;font-family:var(--mo);padding:10px 24px;border-radius:16px;border:none;background:var(--br2);color:#fff;cursor:pointer;transition:.2s}
 .bs2:hover{background:#ff999d}
 
-/* Multi-account */
-.acct-bar{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
-.acct-tab{font-size:14px;font-weight:900;font-family:var(--mo);padding:8px 18px;border-radius:24px;border:2px solid var(--br);background:var(--bg2);color:var(--tx2);cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:10px;position:relative}
-.acct-tab.on{background:var(--gnb);color:var(--gn);border-color:var(--gn)}
-.acct-tab:hover:not(.on){border-color:var(--br2);color:var(--tx)}
-.acct-del{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;font-size:11px;background:rgba(92,75,81,.1);opacity:.7;cursor:pointer;transition:.15s;flex-shrink:0}
-.acct-del:hover{opacity:1;background:var(--rd);color:#fff}
-.acct-add{font-size:14px;font-weight:900;font-family:var(--mo);padding:8px 18px;border-radius:24px;border:2px dashed var(--tx3);background:transparent;color:var(--tx3);cursor:pointer;transition:.2s}
-.acct-add:hover{border-color:var(--br2);color:var(--tx);border-style:solid;background:var(--bg2)}
+/* ======================================================= */
+/* 🎀 療癒系 3D Q 彈標籤設計 (帳號管理) */
+/* ======================================================= */
+.acct-bar{display:flex;align-items:center;gap:14px;margin-bottom:24px;flex-wrap:wrap;padding:4px}
+.acct-tab {
+  font-size: 15px;
+  font-weight: 900;
+  font-family: var(--mo);
+  padding: 10px 20px;
+  border-radius: 30px; /* 圓潤糖果造型 */
+  border: 3px solid var(--br);
+  background: var(--bg2);
+  color: var(--tx2);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Q彈特效 */
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  box-shadow: 0 4px 0 var(--br); /* 立體厚度陰影 */
+  transform: translateY(0);
+}
+.acct-tab:active {
+  transform: translateY(4px) !important; /* 按下去的感覺 */
+  box-shadow: 0 0 0 var(--br) !important;
+}
+.acct-tab.on {
+  border-style: dashed;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08); /* 微微發光 */
+  transform: translateY(-2px);
+}
+.acct-tab:hover:not(.on) {
+  border-color: var(--br2);
+  color: var(--tx);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 var(--br2);
+}
+
+/* 療癒系徽章刪除鈕 */
+.acct-del {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 12px;
+  background: #ffffff;
+  color: var(--rd);
+  border: 2px solid var(--rd);
+  opacity: 0.7;
+  cursor: pointer;
+  transition: 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  flex-shrink: 0;
+  margin-left: 2px;
+}
+.acct-del:hover {
+  opacity: 1;
+  background: var(--rd);
+  color: #fff;
+  transform: scale(1.15) rotate(90deg); /* 俏皮旋轉放大 */
+  box-shadow: 0 2px 8px rgba(242, 139, 130, 0.4);
+}
+
+/* 添購新帳號虛線鈕 */
+.acct-add {
+  font-size: 15px;
+  font-weight: 900;
+  font-family: var(--mo);
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: 3px dashed var(--tx3);
+  background: transparent;
+  color: var(--tx3);
+  cursor: pointer;
+  transition: 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.acct-add:hover {
+  border-color: var(--gn);
+  color: var(--gn);
+  background: var(--gnb);
+  transform: rotate(-2deg) scale(1.05); /* 活潑微傾斜 */
+}
+
 .acct-name-row{display:flex;align-items:center;gap:12px;margin-bottom:18px}
 .acct-name-row input{font-size:15px;font-weight:800;font-family:var(--mo);padding:0 14px;height:42px;border:2px solid var(--br);border-radius:12px;background:var(--bg);color:var(--tx);outline:none;width:190px}
 .acct-name-row input:focus{border-color:var(--br2)}
@@ -661,7 +740,7 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
 </div>
 
 <script>
-// 完整股東會資料清單
+// 🧹 洗淨後的純粹資料清單：移除所有未公告標的，確保畫面上只顯示確定有東西領的標的
 const rawALL=[
 {code:'6229',name:'研通',price:21.65,gift:'捲尺',lbo:'2026-04-28',meet:'2026-06-30',cond:'ev'},
 {code:'6618',name:'永虹先進',price:0,gift:'超商50元商品卡',lbo:'2026-04-28',meet:'2026-06-29',cond:'ev',egift:1,os:1},
@@ -733,58 +812,6 @@ const rawALL=[
 {code:'3236',name:'千如',price:32.6,gift:'運動涼感巾',lbo:'2026-04-08',meet:'2026-06-09',cond:'ev'},
 {code:'3052',name:'夆典',price:11.1,gift:'五合一工具組',lbo:'2026-04-08',meet:'2026-06-09',cond:'ev'},
 {code:'2025',name:'千興',price:10.7,gift:'香皂乙塊',lbo:'2026-04-08',meet:'2026-06-09',cond:'id',note:'領取地點在台南'},
-{code:'1340',name:'勝悅-KY',price:6.98,gift:'超商券50元',lbo:'2026-04-07',meet:'2026-06-08',cond:'ev,id',egift:1,os:1},
-{code:'6126',name:'信音',price:33.4,gift:'超商禮物卡50元',lbo:'2026-04-07',meet:'2026-06-08',cond:'ev',egift:1,os:1},
-{code:'5351',name:'鈺創',price:84.8,gift:'全家便利商店50元商品卡',lbo:'2026-03-31',meet:'2026-06-05',cond:'ev',egift:1,os:1},
-{code:'2636',name:'台驊控股',price:70.6,gift:'台灣茶摳滋養沐浴皂',lbo:'2026-03-31',meet:'2026-06-05',cond:'ev'},
-{code:'2911',name:'麗嬰房',price:5.3,gift:'嬰兒柔護濕巾20抽',lbo:'2026-03-31',meet:'2026-06-05',cond:'ev'},
-{code:'2065',name:'世豐',price:30.5,gift:'統一超商50元商品卡',lbo:'2026-03-31',meet:'2026-06-04',cond:'ev',egift:1,os:1},
-{code:'4132',name:'國鼎',price:0,gift:'樂扣樂扣雙飲口彈跳316保溫杯',lbo:'2026-03-31',meet:'2026-06-04',cond:'ev'},
-{code:'5386',name:'青雲',price:417,gift:'肥皂組',lbo:'2026-03-31',meet:'2026-06-04',cond:'ev'},
-{code:'6207',name:'雷科',price:52.2,gift:'牛樟芝菌絲體膠囊10粒入',lbo:'2026-03-31',meet:'2026-06-04',cond:'ev'},
-{code:'8119',name:'公信',price:0,gift:'超商商品卡35元',lbo:'2026-03-31',meet:'2026-06-04',cond:'ev',egift:1,os:1},
-{code:'7689',name:'大鵬科CLMX',price:0,gift:'多功能收納包',lbo:'2026-03-31',meet:'2026-06-04',cond:''},
-{code:'8066',name:'來思達',price:19.25,gift:'伊莎貝爾櫻花香皂二入',lbo:'2026-03-31',meet:'2026-06-04',cond:'ev'},
-{code:'3546',name:'宇峻',price:73,gift:'不鏽鋼調味罐',lbo:'2026-03-31',meet:'2026-06-03',cond:'ev'},
-{code:'2465',name:'麗臺',price:63.8,gift:'深海原萃極效修護面膜',lbo:'2026-03-31',meet:'2026-06-03',cond:'ev'},
-{code:'5609',name:'中菲行',price:79.8,gift:'鑰匙圈',lbo:'2026-03-31',meet:'2026-06-01',cond:'ev'},
-{code:'5706',name:'鳳凰',price:52,gift:'鳳凰旅遊證件收納袋',lbo:'2026-03-31',meet:'2026-06-01',cond:'ev,id'},
-{code:'4142',name:'國光生',price:18.15,gift:'氣密保鮮罐',lbo:'2026-03-31',meet:'2026-06-04',cond:'ev'},
-{code:'6156',name:'松上',price:20.05,gift:'香皂',lbo:'2026-03-26',meet:'2026-05-29',cond:'ev,id'},
-{code:'4916',name:'事欣科',price:61.8,gift:'統一超商50元商品卡',lbo:'2026-03-26',meet:'2026-05-29',cond:'ev',egift:1,os:1},
-{code:'6257',name:'矽格',price:136.5,gift:'7-11商品卡50元',lbo:'2026-03-26',meet:'2026-05-29',cond:'ev',egift:1,os:1},
-{code:'8111',name:'立碁',price:66,gift:'清淨海洗衣膠囊',lbo:'2026-03-26',meet:'2026-05-29',cond:'ev'},
-{code:'9917',name:'中保科',price:114.5,gift:'超商100元商品卡',lbo:'2026-03-26',meet:'2026-05-29',cond:'ev',egift:1,os:1},
-{code:'1432',name:'大魯閣',price:18.5,gift:'APP消費券總值逾4,200元',lbo:'2026-03-25',meet:'2026-05-26',cond:'ev',egift:1,os:1,cp:1},
-{code:'1440',name:'南紡',price:14.3,gift:'統一好勁道麵條5入組',lbo:'2026-03-25',meet:'2026-05-26',cond:'ev',cp:1},
-{code:'2371',name:'大同',price:44.35,gift:'7-11 100元商品卡',lbo:'2026-03-25',meet:'2026-05-27',cond:'ev',egift:1,os:1},
-{code:'2379',name:'瑞昱',price:485.0,gift:'全家88元禮物卡',lbo:'2026-03-25',meet:'2026-05-27',cond:'ev',egift:1,os:1},
-{code:'2405',name:'輔信',price:21.75,gift:'康寧Amber 7.5吋湯盤',lbo:'2026-03-25',meet:'2026-05-29',cond:'ev',cp:1},
-{code:'2535',name:'達新工',price:65.7,gift:'NAKAMURA日式陶瓷四入碗',lbo:'2026-03-25',meet:'2026-06-05',cond:'ev',cp:1},
-{code:'2614',name:'東森',price:18.95,gift:'森美妍胺基酸保濕潔面霜（1,955元）',lbo:'2026-03-25',meet:'2026-05-26',cond:'ev',cp:1},
-{code:'3029',name:'零壹',price:115.0,gift:'7-11商品卡50元',lbo:'2026-03-25',meet:'2026-05-27',cond:'ev',egift:1,os:1},
-{code:'4102',name:'永日',price:28.4,gift:'常寶益生菌顆粒包（880元）',lbo:'2026-03-25',meet:'2026-05-27',cond:'ev',cp:1},
-{code:'6142',name:'友勁',price:11.2,gift:'甲魚全沛綜合營養膠囊（590元）',lbo:'2026-03-25',meet:'2026-05-27',cond:'ev',cp:1},
-{code:'6169',name:'昱泉',price:20.6,gift:'多功能雙面砧板（>300元）',lbo:'2026-03-25',meet:'2026-06-27',cond:'ev',cp:1},
-{code:'1310',name:'台苯',price:10.25,gift:'常健順暢益生菌（590元）',lbo:'2026-03-25',meet:'2026-05-28',cond:'ev',cp:1},
-{code:'1722',name:'台肥',price:52.8,gift:'胺基酸潔顏慕斯+玻尿酸化妝水禮盒',lbo:'2026-03-25',meet:'2026-06-10',cond:'ev',cp:1},
-{code:'3714',name:'富采',price:43.05,gift:'黃阿瑪後宮生活聯名不鏽鋼雙層碗',lbo:'2026-03-25',meet:'2026-05-23',cond:'ev',cp:1,ip:'黃阿瑪聯名'},
-{code:'2303',name:'聯電',price:44.85,gift:'Snoopy保溫瓶',lbo:'2026-03-25',meet:'2026-05-28',cond:'ev',ip:'Snoopy'},
-{code:'8403',name:'盛弘',price:29.3,gift:'智醫康住宿抵用券1,000元',lbo:'2026-04-15',meet:'2026-06-16',cond:'ev',cp:1},
-{code:'1217',name:'愛之味',price:11.7,gift:'愛之味咖哩豆腐2罐（150元）',lbo:'2026-04-23',meet:'2026-06-25',cond:'ev',cp:1},
-{code:'3625',name:'西勝',price:17.25,gift:'英國熊五合一螺絲工具組（>300元）',lbo:'2026-04-23',meet:'2026-06-25',cond:'ev',cp:1},
-{code:'6770',name:'力積電',price:28.5,gift:'7-11 100元商品卡',lbo:'2026-02-05',meet:'2026-04-10',cond:'ev',egift:1,os:1},
-{code:'8215',name:'明碁材',price:28.5,gift:'護妍天使煥膚淨亮限定組',lbo:'2026-03-25',meet:'2026-05-28',cond:'ev'},
-{code:'8104',name:'錸寶',price:34.25,gift:'洗衣機槽清洗錠',lbo:'2026-04-22',meet:'2026-06-25',cond:'ev'},
-{code:'2484',name:'希華',price:27.9,gift:'麵條',lbo:'2026-04-22',meet:'2026-06-23',cond:'ev'},
-{code:'3526',name:'凡甲',price:293,gift:'蜂王清新植萃精華皂兩入盒',lbo:'2026-04-15',meet:'2026-06-17',cond:'ev'},
-{code:'5512',name:'力麒',price:8.03,gift:'老媽拌麵（單包裝）',lbo:'2026-04-15',meet:'2026-06-17',cond:'ev'},
-{code:'3567',name:'逸昌',price:26.9,gift:'收納袋',lbo:'2026-04-15',meet:'2026-06-16',cond:'id',note:'領取地點在新竹'},
-{code:'4566',name:'時碩工業',price:62.4,gift:'折疊休閒帽',lbo:'2026-04-08',meet:'2026-06-09',cond:'ev'},
-{code:'3236',name:'千如',price:32.6,gift:'運動涼感巾',lbo:'2026-04-08',meet:'2026-06-09',cond:'ev'},
-{code:'3052',name:'夆典',price:11.1,gift:'五合一工具組',lbo:'2026-04-08',meet:'2026-06-09',cond:'ev'},
-{code:'2025',name:'千興',price:10.7,gift:'香皂乙塊',lbo:'2026-04-08',meet:'2026-06-09',cond:'id',note:'領取地點在台南'},
-{code:'1464',name:'得力',price:10.75,gift:'商品卡50元',lbo:'2026-04-08',meet:'2026-06-09',cond:'',egift:1,os:1},
 {code:'1340',name:'勝悅-KY',price:6.98,gift:'超商券50元',lbo:'2026-04-07',meet:'2026-06-08',cond:'ev,id',egift:1,os:1},
 {code:'6126',name:'信音',price:33.4,gift:'超商禮物卡50元',lbo:'2026-04-07',meet:'2026-06-08',cond:'ev',egift:1,os:1},
 {code:'5351',name:'鈺創',price:84.8,gift:'全家便利商店50元商品卡',lbo:'2026-03-31',meet:'2026-06-05',cond:'ev',egift:1,os:1},
@@ -983,7 +1010,16 @@ function rRow(s){
     <td style="font-family:var(--mo);font-size:15px;font-weight:800">${lbs(s)}</td>
     <td style="font-family:var(--mo);font-size:15px;font-weight:800">${ms(s.meet)}</td>
     <td style="font-size:14px">${badge(d)}</td>
-    <td>${(()=>{const accts=acctsWith(s.code);if(!accts.length)return'<span style="color:var(--tx3);font-size:12px">—</span>';return accts.map(a=>'<span class="tag hd" style="background:'+a.color+'22;color:'+a.color+';border-color:'+a.color+'55;font-size:12px;font-weight:800;padding:4px 9px">'+a.name+'</span>').join(' ');})()} </td>
+    <td>${(()=>{
+      const accts=acctsWith(s.code);
+      if(!accts.length)return'<span style="color:var(--tx3);font-size:12px">—</span>';
+      const cuteEmojis = ['🍯', '🥑', '🍊', '🍓', '🍵', '🍰', '🍡', '🍭'];
+      return accts.map(a=>{
+        const idx = accounts.findIndex(acc => acc.id === a.id);
+        const emoji = cuteEmojis[idx % cuteEmojis.length];
+        return '<span class="tag hd" style="background:'+a.color+'22;color:'+a.color+';border-color:'+a.color+'55;font-size:12px;font-weight:900;padding:4px 10px;border-radius:12px;display:inline-flex;align-items:center;gap:4px;"><span style="font-size:14px">'+emoji+'</span>'+a.name+'</span>';
+      }).join(' ');
+    })()} </td>
     <td><div class="rcw">${ct(s)}<span data-edit="${s.code}">${esvg()}</span></div></td>
   </tr>`;
 }
@@ -1100,12 +1136,23 @@ function rFull(){
   const acctLabel=mineFilter==='all'?'所有帳號':(accounts.find(a=>a.id===mineFilter)||{name:'?'}).name;
   document.getElementById('mine-hint').innerHTML=acctLabel+'・持股中有 '+fm.length+' 檔已公告紀念品 <i class="ico-chii usagi"></i>';
   const maf=document.getElementById('mine-acct-filter');
-  if(maf){maf.innerHTML=['all',...accounts.map(a=>a.id)].map(id=>{
-    const label=id==='all'?'全部帳號':(accounts.find(a=>a.id===id)||{name:'?'}).name;
-    const col=id==='all'?'var(--tx2)':(accounts.find(a=>a.id===id)||{color:'#888'}).color;
-    const on=mineFilter===id;
-    return'<button class="ft'+(on?' on':'')+'" data-maf="'+id+'" style="'+(on?'background:'+col+'15;color:'+col+';border-color:'+col+'55':'')+'">'+label+'</button>';
-  }).join('');}
+  if(maf){
+    const cuteEmojis = ['🍯', '🥑', '🍊', '🍓', '🍵', '🍰', '🍡', '🍭'];
+    maf.innerHTML=['all',...accounts.map(a=>a.id)].map((id, index)=>{
+      const isAll = id === 'all';
+      const targetAcct = isAll ? null : accounts.find(a=>a.id===id);
+      const label = isAll ? '全部帳號' : (targetAcct||{name:'?'}).name;
+      const col = isAll ? 'var(--tx2)' : (targetAcct||{color:'#888'}).color;
+      const on = mineFilter===id;
+      const emoji = isAll ? '🍱' : cuteEmojis[(index - 1) % cuteEmojis.length];
+      
+      const activeStyle = on && !isAll ? `background:${col}15;color:${col};border-color:${col};box-shadow:0 4px 12px ${col}44;` : '';
+      const baseStyle = isAll && on ? `background:var(--bg3);color:var(--tx);border-color:var(--br2);box-shadow:0 4px 12px rgba(255,182,185,0.4);` : activeStyle;
+
+      return`<button class="acct-tab${on?' on':''}" data-maf="${id}" style="${baseStyle}">
+        <span style="font-size:16px">${emoji}</span>${label}</button>`;
+    }).join('');
+  }
   if(fm.length){
     document.getElementById('TB-mine').innerHTML=fm.slice(0,PS).map(rRow).join('');
     buildPg(fm.length,1,'pg-mine',goMine);
@@ -1129,12 +1176,15 @@ function rHoldings(){
   }).join('');
   const bar=document.getElementById('acct-bar');
   if(bar){
-    bar.innerHTML=accounts.map(a=>{
+    const cuteEmojis = ['🍯', '🥑', '🍊', '🍓', '🍵', '🍰', '🍡', '🍭']; // 🥑 換成高支援度且健康的酪梨！
+    bar.innerHTML=accounts.map((a, idx)=>{
       const on=a.id===curAcct;
-      return'<button class="acct-tab'+(on?' on':'')+'" data-aid="'+a.id+'" style="'+(on?'background:'+a.color+'15;color:'+a.color+';border-color:'+a.color+'55':'')+'">'+
-        '<span style="width:10px;height:10px;border-radius:50%;background:'+a.color+';display:inline-block;flex-shrink:0"></span>'+a.name+
-        '<span class="acct-del" data-adel="'+a.id+'">✕</span></button>';
-    }).join('')+'<button class="acct-add" id="btn-new-acct"><i class="ico-chii sparkle"></i> 新增帳號</button>';
+      const emoji = cuteEmojis[idx % cuteEmojis.length];
+      const activeStyle = on ? `background:${a.color}15;color:${a.color};border-color:${a.color};box-shadow:0 4px 12px ${a.color}44;` : '';
+      return`<button class="acct-tab${on?' on':''}" data-aid="${a.id}" style="${activeStyle}">
+        <span style="font-size:16px">${emoji}</span>${a.name}
+        <span class="acct-del" data-adel="${a.id}" title="刪除帳號">✕</span></button>`;
+    }).join('')+'<button class="acct-add" id="btn-new-acct"><i class="ico-chii sparkle" style="width:1.2em;height:1.2em"></i> 添購新帳號</button>';
   }
   const ni=document.getElementById('acct-name-input'); if(ni)ni.value=curA().name;
   const cp=document.getElementById('color-picks');
