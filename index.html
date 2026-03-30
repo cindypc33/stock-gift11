@@ -8,6 +8,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800;900&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
 <style>
 :root{
+  /* 🌸 圖片變數 (直接讀取 GitHub 圖床) */
+  --img-chii: url('https://raw.githubusercontent.com/cindypc33/stock-gift11/main/image_32ec9e.png');
+  --img-hachi: url('https://raw.githubusercontent.com/cindypc33/stock-gift11/main/image_32e9f1.png');
+  --img-usagi: url('https://raw.githubusercontent.com/cindypc33/stock-gift11/main/image_32e9b4.png');
+  --img-main: url('https://raw.githubusercontent.com/cindypc33/stock-gift11/main/image_32e5d9.png');
+  --img-og: url('https://raw.githubusercontent.com/cindypc33/stock-gift11/main/chiikawa.png'); /* 保留原本的經典圖 */
+
   /* 🍰 文青可愛風 - 奶油與粉彩色系變數 */
   --bg: #fffbf0;       /* 主背景：奶油淡黃色 */
   --bg2: #ffffff;      /* 卡片背景：純白 */
@@ -36,13 +43,6 @@
   --mo: 'Nunito', sans-serif;
   --r: 16px;           
   --r2: 24px;          
-  
-  /* 🌸 圖片變數 (直接讀取 GitHub 圖床) */
-  --img-chii: url('https://raw.githubusercontent.com/cindypc33/stock-gift11/main/image_32ec9e.png');
-  --img-hachi: url('https://raw.githubusercontent.com/cindypc33/stock-gift11/main/image_32e9f1.png');
-  --img-usagi: url('https://raw.githubusercontent.com/cindypc33/stock-gift11/main/image_32e9b4.png');
-  --img-main: url('https://raw.githubusercontent.com/cindypc33/stock-gift11/main/image_32e5d9.png');
-  --img-og: url('https://raw.githubusercontent.com/cindypc33/stock-gift11/main/chiikawa.png'); /* 保留原本的經典圖 */
 }
 *{box-sizing:border-box;margin:0;padding:0}
 
@@ -59,7 +59,6 @@
 .ico-chii.chii { background-image: var(--img-chii); }
 .ico-chii.hachi { background-image: var(--img-hachi); }
 .ico-chii.usagi { background-image: var(--img-usagi); }
-/* 保留原本的動態 GIF 增加豐富度 */
 .ico-chii.cry { background-image: url('https://media.tenor.com/XqU0_yN5G1cAAAAi/chiikawa-crying.gif'); }
 .ico-chii.sparkle { background-image: url('https://media.tenor.com/71s8L5pA57wAAAAi/chiikawa-happy.gif'); }
 
@@ -75,7 +74,7 @@ body{
   min-height: 100vh;
   position: relative;
 }
-/* 超微美浮水印效果 (三隻畫畫圖) */
+/* 超微美浮水印效果 */
 body::before {
   content: '';
   position: fixed;
@@ -88,7 +87,7 @@ body::before {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  opacity: 0.05; /* 極低透明度，不影響閱讀 */
+  opacity: 0.05; 
   pointer-events: none;
   z-index: 0;
 }
@@ -185,7 +184,7 @@ body::before {
 .ipbd{font-size:14px;font-weight:800;line-height:1.8;color:var(--tx)}
 
 /* Tab nav */
-.tnav{display:flex;border-bottom:3px solid var(--br);margin-bottom:20px;gap:8px}
+.tnav{display:flex;border-bottom:3px solid var(--br);margin-bottom:20px;gap:8px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;padding-bottom:2px}
 .tn{font-size:16px;font-weight:900;font-family:var(--mo);padding:10px 24px;border:none;background:transparent;color:var(--tx3);cursor:pointer;border-bottom:4px solid transparent;margin-bottom:-3px;transition:.2s;border-radius:16px 16px 0 0}
 .tn.on{color:var(--tx);border-bottom-color:var(--tx);background:var(--bg2)}
 .tn:hover:not(.on){color:var(--tx2);background:rgba(255,255,255,.6)}
@@ -199,13 +198,13 @@ body::before {
 .sg input:focus{border-color:var(--bl)}
 .sqb{height:44px;padding:0 20px;font-size:15px;font-weight:900;font-family:var(--mo);border:2px solid var(--bl);border-left:none;border-radius:0 var(--r) var(--r) 0;background:var(--bl);color:#fff;cursor:pointer;transition:.2s}
 .sqb:hover{background:#77aadd;border-color:#77aadd}
-.tbar select{font-size:14px;font-weight:800;font-family:var(--mo);flex:1;min-width:0;height:44px;background:var(--bg2);border:2px solid var(--br);border-radius:var(--r);color:var(--tx2);padding:0 14px;outline:none;cursor:pointer}
+.tbar select{font-size:13px;font-weight:800;font-family:var(--mo);flex:1 1 30%;min-width:0;height:44px;background:var(--bg2);border:2px solid var(--br);border-radius:var(--r);color:var(--tx2);padding:0 8px;outline:none;cursor:pointer}
 .tbar select:focus{border-color:var(--bl)}
 .hint{font-size:14px;font-weight:800;font-family:var(--mo);color:var(--tx3);margin-bottom:8px;min-height:18px}
 
 /* Table */
-.tw{overflow-x:auto;border:2px solid var(--br);border-radius:var(--r2);margin-bottom:16px;background:var(--bg2);box-shadow:0 4px 12px rgba(92,75,81,.03)}
-table{width:100%;border-collapse:collapse;font-size:14px}
+.tw{overflow-x:auto;border:2px solid var(--br);border-radius:12px;margin-bottom:16px;background:var(--bg2);box-shadow:0 4px 12px rgba(92,75,81,.03);-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:850px}
 th{background:rgba(255,255,255,0.5);color:var(--tx2);font-size:14px;font-family:var(--mo);font-weight:900;padding:14px 16px;text-align:center;border-bottom:2px solid var(--br);white-space:nowrap}
 td{padding:14px 16px;border-bottom:1px dashed var(--br);vertical-align:middle;text-align:center;color:var(--tx);font-weight:800}
 td.tl{text-align:left}
@@ -336,16 +335,16 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
   align-items: center;
   gap: 12px;
   animation: floaty 3s ease-in-out infinite;
-  cursor: pointer;
 }
 .chiikawa-img {
-  width: 180px; /* 稍微放大讓三隻都看得很清楚 */
+  width: 180px; 
   height: auto;
   border-radius: 28px;
   border: 4px solid var(--bg2);
   box-shadow: 0 10px 30px rgba(255, 182, 185, 0.4);
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   background: var(--bg3);
+  cursor: pointer;
 }
 .chiikawa-float:hover .chiikawa-img {
   transform: scale(1.08) rotate(-4deg);
@@ -385,11 +384,39 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
   50% { transform: translateY(-12px); }
 }
 
+/* ✖️ 浮動精靈的關閉按鈕 */
+.c-close {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 24px;
+  height: 24px;
+  background: var(--bg2);
+  border: 2px solid var(--br2);
+  border-radius: 50%;
+  color: var(--tx2);
+  font-size: 12px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: 0.2s;
+  box-shadow: 0 4px 8px rgba(255, 182, 185, 0.3);
+}
+.c-close:hover {
+  background: var(--rd);
+  color: #fff;
+  border-color: var(--rd);
+  transform: scale(1.1);
+}
+
 /* 📱 響應式排版 (RWD) 完美升級版 */
 @media(max-width:1024px){
   .mets{grid-template-columns:repeat(2,1fr);gap:16px}
   .tbar{flex-wrap:wrap}
-  .sg{flex:1 1 100%;order:-1;margin-bottom:8px} /* 搜尋框在平板獨立拉出到上方 */
+  .sg{flex:1 1 100%;order:-1;margin-bottom:8px} 
 }
 
 @media(max-width:768px){
@@ -407,34 +434,28 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
   .met-l{font-size:12px}
   .dv{margin:24px 0}
   
-  /* 標題與按鈕自適應 */
   .sh{flex-direction:column;gap:12px;align-items:flex-start}
   #btn-eg-all{width:100%;text-align:center;justify-content:center}
   .st{font-size:16px}
   .ssub{font-size:12px}
   
-  /* Grid 自動適配 */
   .egg, .hgg{grid-template-columns:repeat(auto-fill, minmax(min(100%, 220px), 1fr));gap:12px}
   .egc, .hc{padding:16px}
   
-  /* 分頁籤可平滑橫向滑動 */
   .tnav{overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;padding-bottom:2px}
   .tn{font-size:15px;padding:10px 18px}
   
-  /* 工具列配置，放大點擊範圍 */
   .tbar select{flex:1 1 45%;height:42px;font-size:14px}
   .refresh-btn{flex:1 1 100%;height:44px;justify-content:center;margin-top:4px}
   
-  /* 表格優化：保持所有欄位，開啟水平滑動，維持資訊完整性 */
   .tw{-webkit-overflow-scrolling:touch;border-radius:12px}
-  table{font-size:13px;min-width:850px} /* 強制最小寬度以觸發優雅滑動 */
+  table{font-size:13px;min-width:850px} 
   th,td{padding:12px 10px}
   
   .pgn{flex-direction:column;align-items:center;gap:12px}
   .pgi{text-align:center;width:100%}
   .pgbs{justify-content:center}
   
-  /* 帳號管理配置垂直化 */
   .har{flex-direction:column;align-items:stretch;gap:8px}
   .hcode, .hname, .hadd{width:100%;flex:none;height:44px}
   .acct-bar{overflow-x:auto;flex-wrap:nowrap;padding-bottom:10px;-webkit-overflow-scrolling:touch}
@@ -447,18 +468,16 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
   .ipnl{padding:16px}
   .refresh-status{font-size:12px;display:block;margin-top:6px}
   
-  /* 手機版縮小浮動精靈 */
   .chiikawa-float{bottom:16px;right:16px;gap:8px}
   .chiikawa-img{width:130px;border-width:3px;border-radius:20px}
   .chiikawa-float .speech-bubble{font-size:12px;padding:6px 12px}
   body::before{width:350px;height:250px}
 }
 
-/* 迷你手機尺寸 (480px 以下) */
 @media(max-width:480px){
-  .mets{grid-template-columns:1fr} /* 四大指標垂直排列 */
-  .tbar select{flex:1 1 100%}      /* 下拉選單垂直排列 */
-  .mod{padding:24px 20px}          /* 彈出視窗縮小內距 */
+  .mets{grid-template-columns:1fr} 
+  .tbar select{flex:1 1 100%}      
+  .mod{padding:24px 20px}          
 }
 </style>
 </head>
@@ -544,6 +563,11 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
       <option value="id">需身分證</option>
       <option value="noev">無需電投</option>
     </select>
+    <select id="fgift">
+      <option value="all">全品項</option>
+      <option value="card">💳 禮券/商品卡</option>
+      <option value="daily">🧴 民生/食品</option>
+    </select>
     <button class="refresh-btn" id="btn-refresh">
       <svg width="16" height="16" viewBox="0 0 13 13" fill="none"><path d="M11.5 6.5A5 5 0 1 1 9 2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M9 2.1V0M9 2.1H7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       重整資料
@@ -620,10 +644,13 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
   </div>
 </div>
 
-<!-- 🌸 吉伊卡哇實體浮動精靈 🌸 -->
+<!-- 🌸 吉伊卡哇實體浮動精靈 (新增關閉按鈕) 🌸 -->
 <div class="chiikawa-float" id="c-float">
   <div class="speech-bubble" id="c-msg">呀哈！<br>有什麼可以幫忙的嗎？</div>
-  <img src="https://raw.githubusercontent.com/cindypc33/stock-gift11/main/chiikawa.png" alt="吉伊卡哇小隊" class="chiikawa-img">
+  <div style="position: relative;">
+    <div class="c-close" id="c-close" title="隱藏小幫手">✕</div>
+    <img src="https://raw.githubusercontent.com/cindypc33/stock-gift11/main/chiikawa.png" alt="吉伊卡哇小隊" class="chiikawa-img" id="c-img">
+  </div>
 </div>
 
 <script>
@@ -755,7 +782,9 @@ const ALL=[
 {code:'9917',name:'中保科',price:114.5,gift:'超商100元商品卡',lbo:'2026-03-26',meet:'2026-05-29',cond:'ev',egift:1,os:1},
 {code:'9919',name:'康那香',price:15.6,gift:'口罩',lbo:'2026-04-09',meet:'2026-06-12',cond:'ev'},
 {code:'3322',name:'建舜電',price:13.55,gift:'統一超商35元商品卡',lbo:'2026-04-09',meet:'2026-06-12',cond:'ev',egift:1,os:1},
-{code:'4142',name:'國光生',price:18.15,gift:'氣密保鮮罐',lbo:'2026-03-31',meet:'2026-06-04',cond:'ev'}
+{code:'4142',name:'國光生',price:18.15,gift:'氣密保鮮罐',lbo:'2026-03-31',meet:'2026-06-04',cond:'ev'},
+{code:'2353',name:'宏碁',price:45.6,gift:'不鏽鋼真空保溫燜燒罐',lbo:'2026-03-30',meet:'2026-05-31',cond:'ev',cp:1},
+{code:'1603',name:'華電',price:38.2,gift:'統一超商50元商品卡',lbo:'2026-04-12',meet:'2026-06-15',cond:'ev',egift:1,os:1}
 ];
 
 const HEAT={
@@ -765,7 +794,7 @@ const HEAT={
   '2614':{heat:7800,restrict:'零股可領，需電投截圖',analysis:'東森(2614) <i class="ico-chii sparkle"></i>\n• 保濕潔面霜市價近 2,000 元，CP值極高\n• 零股可以領，需電子投票截圖'},
   '1708':{heat:6900,restrict:'零股可領，需電投截圖',analysis:'東鹼(1708) <i class="ico-chii hachi"></i>\n• 小蘇打粉清潔組，居家好幫手\n• 零股可以領，需電子投票截圖'},
   '4102':{heat:6200,restrict:'零股可領，需電投截圖',analysis:'永日(4102) <i class="ico-chii chii"></i>\n• 送益生菌（市價880元），CP值超級高！\n• 零股可以領，需電子投票截圖'},
-  '2002':{heat:5800,restrict:'待公告，需電投截圖',analysis:'中鋼(2002) <i class="ico-chii usagi"></i>\n• 歷年紀念品都會造成熱烈搶兌\n• 今年品項待公告，記得先買進並準備電投！'},
+  '2353':{heat:5500,restrict:'零股可領，需電投截圖',analysis:'宏碁(2353) <i class="ico-chii sparkle"></i>\n• 實用的不鏽鋼燜燒罐，廚房備料好幫手！\n• 零股可以領，記得完成電子投票截圖'},
   '3714':{heat:5200,restrict:'零股可領，需電投截圖',analysis:'富采(3714) <i class="ico-chii hachi"></i>\n• 送黃阿瑪後宮生活聯名雙層碗，超可愛！\n• 零股可以領，需電子投票截圖'}
 };
 
@@ -776,7 +805,7 @@ const HOT=[
   {code:'2614',name:'東森'},
   {code:'1708',name:'東鹼'},
   {code:'4102',name:'永日'},
-  {code:'2002',name:'中鋼'},
+  {code:'2353',name:'宏碁'},
   {code:'3714',name:'富采'}
 ];
 
@@ -787,26 +816,26 @@ const INIT=[
 {code:'1217',name:'愛之味'},{code:'1218',name:'泰山'},{code:'1220',name:'台榮'},
 {code:'1225',name:'福懋油'},{code:'1312',name:'國僑'},{code:'1314',name:'中石化'},
 {code:'1316',name:'上曜'},{code:'1337',name:'再生-KY'},{code:'1338',name:'廣華-KY'},
-{code:'1605',name:'華新'},{code:'1611',name:'中電'},{code:'1718',name:'中纖'},
-{code:'1722',name:'台肥'},{code:'1737',name:'臺鹽'},{code:'1904',name:'正隆'},
-{code:'2002',name:'中鋼'},{code:'2102',name:'泰豐'},{code:'2352',name:'佳世達'},
-{code:'2369',name:'菱生'},{code:'2409',name:'友達'},{code:'2426',name:'鼎元'},
-{code:'2482',name:'連宇'},{code:'2534',name:'宏盛'},{code:'2547',name:'日勝生'},
-{code:'2614',name:'東森'},{code:'2616',name:'山隆'},{code:'2727',name:'王品'},
-{code:'2880',name:'華南金'},{code:'2883',name:'凱基金'},{code:'2885',name:'元大金'},
-{code:'2887',name:'台新金'},{code:'2889',name:'國票金'},{code:'2891',name:'中信金'},
-{code:'3481',name:'群創'},{code:'3714',name:'富采'},{code:'3717',name:'聯嘉'},
-{code:'4102',name:'永日'},{code:'4108',name:'懷特'},{code:'4142',name:'國光生'},
-{code:'4306',name:'炎洲'},{code:'5227',name:'立凱-KY'},{code:'5309',name:'系統電'},
-{code:'6116',name:'彩晶'},{code:'6026',name:'福邦證'},{code:'6169',name:'昱泉'},
-{code:'8076',name:'伍豐'},{code:'8215',name:'明碁材'},{code:'2031',name:'新光鋼'},
-{code:'2332',name:'友訊'},{code:'2371',name:'大同'},
-{code:'2330',name:'台積電'},{code:'2317',name:'鴻海'},{code:'2454',name:'聯發科'},
-{code:'2308',name:'台達電'},{code:'2881',name:'富邦金'},{code:'2882',name:'國泰金'},
-{code:'2892',name:'第一金'},{code:'2886',name:'兆豐金'},{code:'2884',name:'玉山金'},
-{code:'2890',name:'永豐金'},{code:'0050',name:'元大台灣50'},{code:'0056',name:'元大高股息'},
-{code:'00878',name:'國泰永續高股息'},{code:'00919',name:'群益台灣精選高息'},
-{code:'00929',name:'復華台灣科技優息'}
+{code:'1603',name:'華電'},{code:'1605',name:'華新'},{code:'1611',name:'中電'},
+{code:'1718',name:'中纖'},{code:'1722',name:'台肥'},{code:'1737',name:'臺鹽'},
+{code:'1904',name:'正隆'},{code:'2002',name:'中鋼'},{code:'2102',name:'泰豐'},
+{code:'2352',name:'佳世達'},{code:'2353',name:'宏碁'},{code:'2369',name:'菱生'},
+{code:'2409',name:'友達'},{code:'2426',name:'鼎元'},{code:'2482',name:'連宇'},
+{code:'2534',name:'宏盛'},{code:'2547',name:'日勝生'},{code:'2614',name:'東森'},
+{code:'2616',name:'山隆'},{code:'2727',name:'王品'},{code:'2880',name:'華南金'},
+{code:'2883',name:'凱基金'},{code:'2885',name:'元大金'},{code:'2887',name:'台新金'},
+{code:'2889',name:'國票金'},{code:'2891',name:'中信金'},{code:'3481',name:'群創'},
+{code:'3714',name:'富采'},{code:'3717',name:'聯嘉'},{code:'4102',name:'永日'},
+{code:'4108',name:'懷特'},{code:'4142',name:'國光生'},{code:'4306',name:'炎洲'},
+{code:'5227',name:'立凱-KY'},{code:'5309',name:'系統電'},{code:'6116',name:'彩晶'},
+{code:'6026',name:'福邦證'},{code:'6169',name:'昱泉'},{code:'8076',name:'伍豐'},
+{code:'8215',name:'明碁材'},{code:'2031',name:'新光鋼'},{code:'2332',name:'友訊'},
+{code:'2371',name:'大同'},{code:'2330',name:'台積電'},{code:'2317',name:'鴻海'},
+{code:'2454',name:'聯發科'},{code:'2308',name:'台達電'},{code:'2881',name:'富邦金'},
+{code:'2882',name:'國泰金'},{code:'2892',name:'第一金'},{code:'2886',name:'兆豐金'},
+{code:'2884',name:'玉山金'},{code:'2890',name:'永豐金'},{code:'0050',name:'元大台灣50'},
+{code:'0056',name:'元大高股息'},{code:'00878',name:'國泰永續高股息'},
+{code:'00919',name:'群益台灣精選高息'},{code:'00929',name:'復華台灣科技優息'}
 ];
 
 let WORKER_URL = 'https://stockgift-api.cindypc33.workers.dev';
@@ -817,14 +846,11 @@ async function saveData(){
   const dataObj = {
     all: ALL, accounts: accounts,
     updateDate: document.getElementById('update-time')?.textContent || '',
-    lastCount: ALL.length.toString(),
-    rem: rem
+    lastCount: ALL.length.toString(), rem: rem
   };
   try{
-    localStorage.setItem('sg_all', JSON.stringify(ALL));
-    localStorage.setItem('sg_accounts', JSON.stringify(accounts));
-    localStorage.setItem('sg_updateDate', dataObj.updateDate);
-    localStorage.setItem('sg_lastCount', dataObj.lastCount);
+    localStorage.setItem('sg_all', JSON.stringify(ALL)); localStorage.setItem('sg_accounts', JSON.stringify(accounts));
+    localStorage.setItem('sg_updateDate', dataObj.updateDate); localStorage.setItem('sg_lastCount', dataObj.lastCount);
     localStorage.setItem('sg_rem', JSON.stringify(rem));
   }catch(e){}
   const cs = document.getElementById('cloud-status');
@@ -843,14 +869,11 @@ async function loadData(){
   let cloudSuccess = false;
   if(WORKER_URL) {
     try {
-      const res = await fetch(WORKER_URL + '?action=load');
-      const data = await res.json();
+      const res = await fetch(WORKER_URL + '?action=load'); const data = await res.json();
       if (data && data.accounts) {
-         ALL.length = 0;
-         if(data.all) data.all.forEach(s=>ALL.push(s));
+         ALL.length = 0; if(data.all) data.all.forEach(s=>ALL.push(s));
          accounts = data.accounts; rem = data.rem || {};
-         const ut = document.getElementById('update-time');
-         if(ut && data.updateDate) ut.textContent = data.updateDate;
+         const ut = document.getElementById('update-time'); if(ut && data.updateDate) ut.textContent = data.updateDate;
          if(cs) { cs.textContent = '☁️ 雲端載入成功'; cs.style.color = 'var(--gn)'; setTimeout(() => { cs.style.display = 'none'; }, 3000); }
          cloudSuccess = true;
       }
@@ -869,6 +892,10 @@ async function loadData(){
       }catch(e){}
       if(cs) { cs.textContent = '💻 使用本機資料'; cs.style.color = 'var(--tx3)'; setTimeout(() => { cs.style.display = 'none'; }, 3000); }
   }
+  
+  if(!ALL.some(s=>s.code==='2353')) ALL.push({code:'2353',name:'宏碁',price:45.6,gift:'不鏽鋼真空保溫燜燒罐',lbo:'2026-03-30',meet:'2026-05-31',cond:'ev',cp:1});
+  if(!ALL.some(s=>s.code==='1603')) ALL.push({code:'1603',name:'華電',price:38.2,gift:'統一超商50元商品卡',lbo:'2026-04-12',meet:'2026-06-15',cond:'ev',egift:1,os:1});
+
   rHoldings(); rFull();
 }
 
@@ -999,12 +1026,22 @@ function smartSort(a,b){
 
 function rFull(){
   const q=aq,fu=document.getElementById('fu').value,fc=document.getElementById('fc').value;
+  const fgift=document.getElementById('fgift') ? document.getElementById('fgift').value : 'all';
+  
+  const kwCard = ['商品卡','禮物卡','禮券','咖啡','消費券','抵用券','兌換券','購物金','全家','7-11','超商'];
+  const kwDaily = ['皂','洗碗','洗衣','菜瓜布','濕巾','衛生紙','牙膏','沐浴','米','麵','砧板','碗','盤','餐具','保溫杯','燜燒罐','水壺','杯','傘','清潔','洗面','豆腐','益生菌','膠囊','面膜','保鮮罐','調味罐'];
+
   fa=ALL.filter(s=>{
     const d=days(s),u=urg(d),c=s.cond||'';
     const mq=!q||s.code.includes(q)||s.name.includes(q)||s.gift.toLowerCase().includes(q);
     const mu=fu==='all'||u===fu;
     const mc=fc==='all'||(fc==='mine'&&isH(s.code))||(fc==='egift'&&s.egift)||(fc==='id'&&c.includes('id'))||(fc==='noev'&&!c.includes('ev'));
-    return mq&&mu&&mc;
+    
+    const isCard = s.egift || kwCard.some(k=>s.gift.includes(k));
+    const isDaily = kwDaily.some(k=>s.gift.includes(k));
+    const mgift = fgift === 'all' || (fgift === 'card' && isCard) || (fgift === 'daily' && isDaily);
+
+    return mq&&mu&&mc&&mgift;
   }).sort(smartSort);
 
   const srcH = mineFilter==='all' ? allHoldings() : (accounts.find(a=>a.id===mineFilter)||{holdings:[]}).holdings;
@@ -1016,7 +1053,7 @@ function rFull(){
   buildPg(fa.length,1,'pg-all',goAll);
 
   const acctLabel=mineFilter==='all'?'所有帳號':(accounts.find(a=>a.id===mineFilter)||{name:'?'}).name;
-  document.getElementById('mine-hint').textContent=acctLabel+'・持股中有 '+fm.length+' 檔已公告紀念品 <i class="ico-chii usagi"></i>';
+  document.getElementById('mine-hint').innerHTML=acctLabel+'・持股中有 '+fm.length+' 檔已公告紀念品 <i class="ico-chii usagi"></i>';
   const maf=document.getElementById('mine-acct-filter');
   if(maf){maf.innerHTML=['all',...accounts.map(a=>a.id)].map(id=>{
     const label=id==='all'?'全部帳號':(accounts.find(a=>a.id===id)||{name:'?'}).name;
@@ -1141,18 +1178,21 @@ function showStock(s, clickedRow){
     const ipTag=s.ip?' <span style="color:var(--pu)">['+s.ip+']</span>':'';
     const urgTag=d<0?' <span style="color:var(--tx3)">(已截止)</span>':d<=7?' <span style="color:var(--rd)">⚠ 緊急！'+d+'天</span>':'';
     const noFracTag = r.nofrac ? '<br><span class="di-label"><i class="ico-chii usagi" style="width:1.2em;height:1.2em"></i> 零股領取：</span><span style="color:var(--rd)">不可領取</span>' : '';
+    const yahooLink = `<br><a href="https://tw.stock.yahoo.com/quote/${s.code}" target="_blank" style="color:var(--bl); text-decoration:none; font-weight:900; border-bottom:1px dashed var(--bl); margin-top:8px; display:inline-block; transition:0.2s" onmouseover="this.style.color='var(--tx)'" onmouseout="this.style.color='var(--bl)'"><i class="ico-chii sparkle" style="width:1.2em;height:1.2em"></i> 點我前往 Yahoo 股市查詢</a>`;
+    
     const detailTr=document.createElement('tr'); detailTr.className='detail-tr';
     detailTr.innerHTML='<td colspan="'+(clickedRow.querySelectorAll('td').length||9)+'">'+
       '<div class="detail-inner"><button class="detail-close" id="btn-close-detail">✕ 關閉</button>'+
         '<strong>'+s.name+' ('+s.code+')</strong>'+holdTag+'<br>'+
         '<span class="di-label"><i class="ico-chii chii" style="width:1.2em;height:1.2em"></i> 股價：</span><span style="font-family:var(--mo);font-weight:900">'+(s.price||'—')+'</span> 元<br>'+
-        '<span class="di-label"><i class="ico-chii hachi" style="width:1.2em;height:1.2em"></i> 紀念品：</span>'+s.gift+cpTag+ipTag+'<br>'+
-        '<span class="di-label"><i class="ico-chii usagi" style="width:1.2em;height:1.2em"></i> 最後買進日：</span><span style="font-family:var(--mo);font-weight:900">'+lbs(s)+'</span>'+urgTag+'<br>'+
-        '<span class="di-label"><i class="ico-chii chii" style="width:1.2em;height:1.2em"></i> 股東會日：</span><span style="font-family:var(--mo);font-weight:900">'+ms(s.meet)+'</span><br>'+
+        '<span class="di-label"><i class="ico-chii hachi" style="width:1.2em;height:1.2em"></i> 紀念品：</span>'+(s.gift||'尚未抓取到紀念品資料')+cpTag+ipTag+'<br>'+
+        '<span class="di-label"><i class="ico-chii usagi" style="width:1.2em;height:1.2em"></i> 最後買進日：</span><span style="font-family:var(--mo);font-weight:900">'+(s.lbo?lbs(s):'—')+'</span>'+urgTag+'<br>'+
+        '<span class="di-label"><i class="ico-chii chii" style="width:1.2em;height:1.2em"></i> 股東會日：</span><span style="font-family:var(--mo);font-weight:900">'+(s.meet?ms(s.meet):'—')+'</span><br>'+
         '<span class="di-label"><i class="ico-chii usagi" style="width:1.2em;height:1.2em"></i> 電子投票截圖：</span><span style="color:'+((c.includes('ev')||r.evote)?'var(--am)':'var(--gn)')+'">'+((c.includes('ev')||r.evote)?'需要':'不需要')+'</span><br>'+
         '<span class="di-label"><i class="ico-chii hachi" style="width:1.2em;height:1.2em"></i> 身分證正本：</span><span style="color:'+((c.includes('id')||r.id)?'var(--rd)':'var(--gn)')+'">'+((c.includes('id')||r.id)?'需要':'不需要')+'</span>'+
         noFracTag +
         ((s.egift||r.egift)?'<br><span class="di-label"><i class="ico-chii hachi" style="width:1.2em;height:1.2em"></i> eGift 線上領取：</span><span style="color:var(--gn)">支援</span>（零股'+((s.os && !r.nofrac)?'可':'不可')+'領）':'')+
+        yahooLink +
       '</div></td>';
     clickedRow.insertAdjacentElement('afterend', detailTr);
     detailTr.scrollIntoView({behavior:'smooth', block:'nearest'});
@@ -1267,7 +1307,14 @@ document.addEventListener('click',e=>{
   if(e.target.id==='btnmc'||e.target===document.getElementById('MOD'))closeMod(); if(e.target.id==='btnms')saveMod();
 });
 
+// 新增：隱藏浮動小幫手的邏輯
+document.getElementById('c-close').addEventListener('click', (e) => {
+  e.stopPropagation(); // 避免點擊到關閉時觸發講話對話框
+  document.getElementById('c-float').style.display = 'none';
+});
+
 document.getElementById('fu').addEventListener('change',rFull); document.getElementById('fc').addEventListener('change',rFull);
+if(document.getElementById('fgift')) document.getElementById('fgift').addEventListener('change',rFull);
 document.getElementById('srch').addEventListener('keydown',e=>{if(e.key==='Enter'){aq=e.target.value.toLowerCase().trim();rFull();}});
 
 let searchTimer = null;
@@ -1277,9 +1324,14 @@ document.getElementById('add-name').addEventListener('input', e => { clearTimeou
 document.getElementById('add-name').addEventListener('keydown', e => { if(e.key === 'Enter') addH(); });
 
 const cMsg = document.getElementById('c-msg'), chiikawaQuotes = ["呀哈！<br>有什麼可以幫忙的嗎？", "總會有辦法的！ <i class='ico-chii hachi'></i>", "一起吃糰子吧 <i class='ico-chii chii'></i>", "噗嚕嚕嚕... <i class='ico-chii usagi'></i>", "股東會紀念品讚啦！", "快點買進！<br>要來不及了 <i class='ico-chii cry'></i>", "哇...<br>好多紀念品 <i class='ico-chii sparkle'></i>", "烏薩奇大推！<i class='ico-chii usagi'></i>", "記得要電子投票喔 <i class='ico-chii hachi'></i>"];
-document.getElementById('c-float').addEventListener('click', () => { cMsg.innerHTML = chiikawaQuotes[Math.floor(Math.random() * chiikawaQuotes.length)]; });
+document.getElementById('c-img').addEventListener('click', (e) => { 
+  e.stopPropagation(); 
+  cMsg.innerHTML = chiikawaQuotes[Math.floor(Math.random() * chiikawaQuotes.length)]; 
+});
 
 (async function init() { await loadData(); })();
 </script>
 </body>
 </html>
+
+
