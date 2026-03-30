@@ -277,14 +277,24 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
 .modw{display:none;background:rgba(92,75,81,.4);position:fixed;inset:0;z-index:200;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
 .modw.open{display:flex}
 
-/* Inline stock detail row */
-.detail-tr td{background:var(--bg3)!important;padding:20px 24px!important;border-bottom:2px dashed var(--br2)!important}
-.detail-tr:hover td{background:var(--bg3)!important}
-.detail-inner{font-size:15px;line-height:1.9;color:var(--tx);font-weight:800}
-.detail-inner strong{font-size:18px;font-weight:900;font-family:var(--mo)}
-.detail-inner .di-label{color:var(--tx2);font-size:14px;font-weight:800}
-.detail-close{float:right;font-size:14px;font-weight:900;font-family:var(--mo);padding:6px 16px;border-radius:16px;border:2px solid var(--br);background:var(--bg2);color:var(--tx3);cursor:pointer;transition:.2s;margin-top:2px}
+/* Inline stock detail row - 🍱 九宮格便當盒升級版 */
+.detail-tr td{padding:16px 20px 24px 20px!important;border-bottom:2px dashed var(--br2)!important;background:var(--bg)!important}
+.detail-tr:hover td{background:var(--bg)!important}
+.d-bento{background:var(--bg2);border:2px solid var(--br2);border-radius:var(--r2);padding:20px;box-shadow:0 8px 24px rgba(255,182,185,0.2);position:relative}
+.d-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;padding-bottom:12px;border-bottom:2px dotted var(--br)}
+.d-title{font-size:20px;font-weight:900;font-family:var(--mo);color:var(--tx);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.d-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.d-card{background:var(--bg3);padding:14px 18px;border-radius:16px;border:1px solid rgba(255,182,185,0.4)}
+.d-card-title{font-size:14px;font-weight:900;color:var(--tx2);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.d-row{display:flex;justify-content:space-between;margin-bottom:8px;font-size:14px;font-weight:800;align-items:center}
+.d-val{font-family:var(--mo);color:var(--tx);font-weight:900;text-align:right;max-width:65%;word-break:break-word;line-height:1.4}
+.d-action{text-align:right;margin-top:16px}
+.d-yahoo{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:var(--blb);color:var(--bl);border:2px solid var(--bl);border-radius:24px;font-weight:900;text-decoration:none;transition:0.2s;font-size:14px;font-family:var(--mo)}
+.d-yahoo:hover{background:var(--bl);color:#fff;transform:translateY(-2px);box-shadow:0 4px 12px rgba(139,190,234,0.3)}
+.detail-close{font-size:14px;font-weight:900;font-family:var(--mo);padding:6px 16px;border-radius:16px;border:2px solid var(--br);background:var(--bg2);color:var(--tx3);cursor:pointer;transition:.2s}
 .detail-close:hover{border-color:var(--br2);color:var(--tx);background:var(--bg)}
+.di-label{color:var(--tx2);font-size:14px;font-weight:800}
+
 .mod{background:var(--bg2);border:none;border-radius:28px;padding:32px;width:380px;max-width:95vw;box-shadow:0 15px 50px rgba(92,75,81,.15)}
 .mod h3{font-size:18px;font-weight:900;font-family:var(--mo);margin-bottom:18px;border-bottom:2px dashed var(--br);padding-bottom:16px;color:var(--tx)}
 .modl{font-size:13px;font-weight:900;font-family:var(--mo);color:var(--tx3);margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
@@ -1268,29 +1278,57 @@ function showStock(s, clickedRow){
   if(clickedRow){
     clickedRow.classList.add('sel');
     const d=days(s), c=s.cond||''; const r=rem[s.code]||{};
-    const holdTag=isH(s.code)?' <span class="tag hd" style="font-size:12px">你的持股</span>':'';
-    const cpTag=s.cp?' <span class="tag cp" style="font-size:12px">高CP值</span>':'';
-    const ipTag=s.ip?' <span style="color:var(--pu)">['+s.ip+']</span>':'';
-    const urgTag=d<0?' <span style="color:var(--tx3)">(已截止)</span>':d<=7?' <span style="color:var(--rd)">⚠ 緊急！'+d+'天</span>':'';
-    const noFracTag = r.nofrac ? '<br><span class="di-label"><i class="ico-chii usagi" style="width:1.2em;height:1.2em"></i> 零股領取：</span><span style="color:var(--rd)">不可領取</span>' : '';
+    const holdTag=isH(s.code)?'<span class="tag hd" style="font-size:12px;margin-left:4px">你的持股</span>':'';
+    const cpTag=s.cp?'<span class="tag cp" style="font-size:12px;margin-right:4px">高CP值</span>':'';
+    const ipTag=s.ip?'<span class="tag" style="background:var(--pub);color:var(--pu);border:2px solid rgba(203,186,221,.3);font-size:12px;margin-right:4px">'+s.ip+'</span>':'';
+    const urgTag=d<0?'<span style="color:var(--tx3);font-size:12px">(已截止)</span>':d<=7?`<span style="color:var(--rd);font-size:12px">⚠ 緊急！${d}天</span>`:'';
     
-    // Yahoo 股市直達車
-    const yahooLink = `<br><a href="https://tw.stock.yahoo.com/quote/${s.code}" target="_blank" style="color:var(--bl); text-decoration:none; font-weight:900; border-bottom:1px dashed var(--bl); margin-top:8px; display:inline-block; transition:0.2s" onmouseover="this.style.color='var(--tx)'" onmouseout="this.style.color='var(--bl)'"><i class="ico-chii sparkle" style="width:1.2em;height:1.2em"></i> 點我前往 Yahoo 股市查詢</a>`;
+    // 防呆條件判斷與顏色切換
+    const noFracVal = r.nofrac ? '<span style="color:var(--rd)">不可領取</span>' : '<span style="color:var(--gn)">可領取</span>';
+    const evVal = (c.includes('ev')||r.evote) ? '<span style="color:var(--am)">需要</span>' : '<span style="color:var(--gn)">不需要</span>';
+    const idVal = (c.includes('id')||r.id) ? '<span style="color:var(--rd)">需要</span>' : '<span style="color:var(--gn)">不需要</span>';
+    const egVal = (s.egift||r.egift) ? '<span style="color:var(--gn)">支援</span>' : '<span style="color:var(--tx3)">無</span>';
+    
+    // Yahoo 股市直達車 (升級為按鈕)
+    const yahooLink = `<a href="https://tw.stock.yahoo.com/quote/${s.code}" target="_blank" class="d-yahoo"><i class="ico-chii sparkle" style="width:1.2em;height:1.2em"></i> 前往 Yahoo 股市查詢最新動態</a>`;
     
     const detailTr=document.createElement('tr'); detailTr.className='detail-tr';
-    detailTr.innerHTML='<td colspan="'+(clickedRow.querySelectorAll('td').length||9)+'">'+
-      '<div class="detail-inner"><button class="detail-close" id="btn-close-detail">✕ 關閉</button>'+
-        '<strong>'+s.name+' ('+s.code+')</strong>'+holdTag+'<br>'+
-        '<span class="di-label"><i class="ico-chii chii" style="width:1.2em;height:1.2em"></i> 股價：</span><span style="font-family:var(--mo);font-weight:900">'+(s.price||'—')+'</span> 元<br>'+
-        '<span class="di-label"><i class="ico-chii hachi" style="width:1.2em;height:1.2em"></i> 紀念品：</span>'+(s.gift||'尚未公告')+cpTag+ipTag+'<br>'+
-        '<span class="di-label"><i class="ico-chii usagi" style="width:1.2em;height:1.2em"></i> 最後買進日：</span><span style="font-family:var(--mo);font-weight:900">'+(s.lbo?lbs(s):'—')+'</span>'+urgTag+'<br>'+
-        '<span class="di-label"><i class="ico-chii chii" style="width:1.2em;height:1.2em"></i> 股東會日：</span><span style="font-family:var(--mo);font-weight:900">'+(s.meet?ms(s.meet):'—')+'</span><br>'+
-        '<span class="di-label"><i class="ico-chii usagi" style="width:1.2em;height:1.2em"></i> 電子投票截圖：</span><span style="color:'+((c.includes('ev')||r.evote)?'var(--am)':'var(--gn)')+'">'+((c.includes('ev')||r.evote)?'需要':'不需要')+'</span><br>'+
-        '<span class="di-label"><i class="ico-chii hachi" style="width:1.2em;height:1.2em"></i> 身分證正本：</span><span style="color:'+((c.includes('id')||r.id)?'var(--rd)':'var(--gn)')+'">'+((c.includes('id')||r.id)?'需要':'不需要')+'</span>'+
-        noFracTag +
-        ((s.egift||r.egift)?'<br><span class="di-label"><i class="ico-chii hachi" style="width:1.2em;height:1.2em"></i> eGift 線上領取：</span><span style="color:var(--gn)">支援</span>（零股'+((s.os && !r.nofrac)?'可':'不可')+'領）':'')+
-        yahooLink +
-      '</div></td>';
+    detailTr.innerHTML=`<td colspan="${clickedRow.querySelectorAll('td').length||9}">
+      <div class="d-bento">
+        <div class="d-hdr">
+          <div class="d-title">${s.name} (${s.code}) ${holdTag}</div>
+          <button class="detail-close" id="btn-close-detail">✕ 關閉</button>
+        </div>
+        
+        <div class="d-grid">
+          <!-- 區塊 1：紀念品核心 -->
+          <div class="d-card">
+            <div class="d-card-title"><i class="ico-chii chii" style="width:1.2em;height:1.2em"></i> 紀念品情報</div>
+            <div class="d-row"><span class="di-label">當前股價</span><span class="d-val">${s.price||'—'} 元</span></div>
+            <div class="d-row" style="align-items:flex-start"><span class="di-label">發放品項</span><span class="d-val" style="color:var(--tx)">${s.gift||'<span style="color:var(--tx3)">尚未公告</span>'}<br><div style="margin-top:6px;justify-content:flex-end;display:flex;flex-wrap:wrap">${cpTag}${ipTag}</div></span></div>
+          </div>
+
+          <!-- 區塊 2：關鍵時程 -->
+          <div class="d-card">
+            <div class="d-card-title"><i class="ico-chii usagi" style="width:1.2em;height:1.2em"></i> 關鍵時程 (決策點)</div>
+            <div class="d-row"><span class="di-label">最後買進日</span><span class="d-val">${s.lbo?lbs(s):'—'}<br><div style="margin-top:2px">${urgTag}</div></span></div>
+            <div class="d-row"><span class="di-label">股東會日期</span><span class="d-val">${s.meet?ms(s.meet):'—'}</span></div>
+          </div>
+
+          <!-- 區塊 3：領取條件防呆 -->
+          <div class="d-card">
+            <div class="d-card-title"><i class="ico-chii hachi" style="width:1.2em;height:1.2em"></i> 領取條件防呆清單</div>
+            <div class="d-row"><span class="di-label">零股領取</span><span class="d-val">${noFracVal}</span></div>
+            <div class="d-row"><span class="di-label">電子投票截圖</span><span class="d-val">${evVal}</span></div>
+            <div class="d-row"><span class="di-label">身分證正本</span><span class="d-val">${idVal}</span></div>
+            <div class="d-row"><span class="di-label">eGift 線上領</span><span class="d-val">${egVal}</span></div>
+          </div>
+        </div>
+        
+        <div class="d-action">${yahooLink}</div>
+      </div>
+    </td>`;
+    
     clickedRow.insertAdjacentElement('afterend', detailTr);
     detailTr.scrollIntoView({behavior:'smooth', block:'nearest'});
     document.getElementById('btn-close-detail').addEventListener('click', ()=>{ detailTr.remove(); clickedRow.classList.remove('sel'); });
