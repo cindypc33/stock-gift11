@@ -131,10 +131,12 @@ body::before {
 .egg{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-bottom:16px}
 .egc{background:var(--bg2);border:2px solid var(--br);border-radius:var(--r2);padding:18px;cursor:pointer;transition:.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);position:relative;overflow:hidden;box-shadow:0 4px 12px rgba(92,75,81,.04)}
 .egc.os{border-color:rgba(139,190,234,.4)}.egc.fl{border-color:rgba(243,181,98,.4)}
+.egc.expired{border-color:rgba(176,163,167,.3);opacity:0.65}
 .egc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:5px}
-.egc.os::after{background:var(--bl)}.egc.fl::after{background:var(--am)}
+.egc.os::after{background:var(--bl)}.egc.fl::after{background:var(--am)}.egc.expired::after{background:var(--tx3)}
 .egc:hover{transform:translateY(-5px);box-shadow:0 10px 25px rgba(139,190,234,.2);border-color:var(--bl)}
 .egc.fl:hover{box-shadow:0 10px 25px rgba(243,181,98,.2);border-color:var(--am)}
+.egc.expired:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(176,163,167,.15)}
 .egt{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:10px}
 
 /* Tags */
@@ -214,6 +216,10 @@ tr.sel td{background:var(--blb)}
 tr.hr td{background:var(--gnb)}
 tr.hr:hover td{background:rgba(98,177,176,.25)}
 tr.hr.sel td{background:rgba(98,177,176,.3)}
+/* 已截止列的視覺淡化 */
+tr.expired-row td{opacity:0.55}
+tr.expired-row:hover td{opacity:0.8;background:var(--bg3)}
+tr.expired-row.hr td{opacity:0.6}
 .cf{font-family:var(--mo);font-weight:900;font-size:16px}
 .rcw{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:flex-start}
 .ei{display:inline-block;width:18px;height:18px;cursor:pointer;opacity:.4;flex-shrink:0;transition:.15s}
@@ -907,9 +913,9 @@ let WORKER_URL = 'https://stockgift-api.cindypc33.workers.dev';
 const PS=20;
 const ACCT_COLORS=['#62b1b0', '#8bbeea', '#f3b562', '#f28b82', '#cbbadd', '#a3d9a5', '#9ab7d3', '#e8a5b2'];
 
-// ⏳ 以 2026/04/13 為當前日計算剩餘天數
-const CURRENT_DATE = new Date("2026-04-13T00:00:00");
- 
+// ⏳ 以 2026/03/30 為當前日計算剩餘天數
+const CURRENT_DATE = new Date("2026-03-30T00:00:00");
+
 // ✅ 修正版 days()：加入日期格式防呆，無效日期視為已截止
 const days = s => {
   const lboDate = new Date(s.lbo + 'T00:00:00');
@@ -968,7 +974,7 @@ async function loadData(){
       if(cs) { cs.textContent = '💻 使用本機資料'; cs.style.color = 'var(--tx3)'; setTimeout(() => { cs.style.display = 'none'; }, 3000); }
   }
   
-  // 🧹 終極清洗：刪除原本所有的假資料，保證清單 100% 乾淨
+  // 🧹 終極清洗：刪除原本所有的假資料
   ALL = ALL.filter(s => 
     !s.tbd && 
     !s.gift.includes('尚未公告') && 
@@ -1018,8 +1024,9 @@ const fmt=t=>t.replace(/\n/g,'<br>').replace(/•/g,'<i class="ico-chii sparkle"
 function rRow(s){
   const d=days(s),c=ch(),up=parseFloat(c)>=0,sg=up?'+':'';
   const h=isH(s.code);
+  const isExpired = d < 0;
   let gd=s.tbd?`<span style="color:var(--tx3)">${s.gift}</span>`:s.gift;
-  return`<tr data-code="${s.code}" class="${h?'hr':''}" style="cursor:pointer">
+  return`<tr data-code="${s.code}" class="${h?'hr':''} ${isExpired?'expired-row':''}" style="cursor:pointer">
     <td><span class="cf">${s.code}</span></td>
     <td style="cursor:pointer;font-weight:900" title="點擊查看詳情">${s.name.length>5?s.name.slice(0,5)+'<br>'+s.name.slice(5):s.name}</td>
     <td><span class="${up?'pu':'pd'}">${s.price||'—'}<br><small style="font-size:13px;font-weight:900;opacity:1">${sg}${c}%</small></span></td>
@@ -1068,7 +1075,7 @@ function rEG(){
   const eg=ALL.filter(s=>s.egift);
   let list=[];
   
-  // 🧹 依照「是否過期」進行獨立分類
+  // 依照「是否過期」進行獨立分類
   if(etab==='passed'){
     list=eg.filter(s=>days(s)<0);
   } else {
@@ -1082,7 +1089,8 @@ function rEG(){
   list=[...list].sort(smartSort);
   document.getElementById('EG').innerHTML=list.map((s,i)=>{
     const d=days(s),c=ch(),up=parseFloat(c)>=0,sg=up?'+':'';
-    return`<div class="egc ${s.os?'os':'fl'}" data-ecode="${s.code}">
+    const isExpired = d < 0;
+    return`<div class="egc ${s.os?'os':'fl'} ${isExpired?'expired':''}" data-ecode="${s.code}">
       <div class="egt"><span class="tag eg">eGift</span>${s.os?'<span class="tag os">1股可領</span>':'<span class="tag fl">需滿1張</span>'}
       ${s.cp?'<span class="tag cp">高CP</span>':''}${isH(s.code)?'<span class="tag hd">持有</span>':''}</div>
       <div style="margin-top:8px"><span class="ec">${s.code}</span><span class="en">${s.name}</span></div>
@@ -1115,15 +1123,16 @@ function rHot(){
   }).join('');
 }
 
+// ✅ 修正版 smartSort：已截止的資料一律排到最後
 function smartSort(a, b) {
   const da = days(a), db = days(b);
   const aExp = da < 0, bExp = db < 0;
-  // 已截止的一律排到最後
+  // 已截止的一律沉底
   if (aExp && !bExp) return 1;
   if (!aExp && bExp) return -1;
-  // 兩個都截止：截止較晚的排前面（da 較大 = 較近截止 = 排前）
+  // 兩個都截止：截止日較晚（較近期）的排前面
   if (aExp && bExp) return db - da;
-  // 兩個都未截止：剩餘天數少的排前面
+  // 兩個都未截止：剩餘天數少（最快到期）的排前面
   return da - db;
 }
 
@@ -1198,7 +1207,7 @@ function rHoldings(){
   }).join('');
   const bar=document.getElementById('acct-bar');
   if(bar){
-    const cuteEmojis = ['🍯', '🥑', '🍊', '🍓', '🍵', '🍰', '🍡', '🍭']; // 🥑 換成高支援度且健康的酪梨！
+    const cuteEmojis = ['🍯', '🥑', '🍊', '🍓', '🍵', '🍰', '🍡', '🍭'];
     bar.innerHTML=accounts.map((a, idx)=>{
       const on=a.id===curAcct;
       const emoji = cuteEmojis[idx % cuteEmojis.length];
@@ -1295,13 +1304,11 @@ function showStock(s, clickedRow){
     const ipTag=s.ip?'<span class="tag" style="background:var(--pub);color:var(--pu);border:2px solid rgba(203,186,221,.3);font-size:12px;margin-right:4px">'+s.ip+'</span>':'';
     const urgTag=d<0?'<span style="color:var(--tx3);font-size:12px">(已截止)</span>':d<=7?`<span style="color:var(--rd);font-size:12px">⚠ 緊急！${d}天</span>`:'';
     
-    // 防呆條件判斷與顏色切換
     const noFracVal = r.nofrac ? '<span style="color:var(--rd)">不可領取</span>' : '<span style="color:var(--gn)">可領取</span>';
     const evVal = (c.includes('ev')||r.evote) ? '<span style="color:var(--am)">需要</span>' : '<span style="color:var(--gn)">不需要</span>';
     const idVal = (c.includes('id')||r.id) ? '<span style="color:var(--rd)">需要</span>' : '<span style="color:var(--gn)">不需要</span>';
     const egVal = (s.egift||r.egift) ? '<span style="color:var(--gn)">支援</span>' : '<span style="color:var(--tx3)">無</span>';
     
-    // Yahoo 股市直達車 (微縮版，移至商品旁)
     const yahooLink = `<a href="https://tw.stock.yahoo.com/quote/${s.code}" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;background:var(--blb);color:var(--bl);border:2px solid rgba(139,190,234,0.3);border-radius:10px;font-size:12px;font-weight:900;text-decoration:none;transition:0.2s;margin-left:4px" onmouseover="this.style.background='var(--bl)';this.style.color='#fff'" onmouseout="this.style.background='var(--blb)';this.style.color='var(--bl)'" title="前往 Yahoo 股市查詢最新動態"><i class="ico-chii hachi" style="width:1.2em;height:1.2em"></i> Yahoo 股市</a>`;
     
     const detailTr=document.createElement('tr'); detailTr.className='detail-tr';
@@ -1313,21 +1320,18 @@ function showStock(s, clickedRow){
         </div>
         
         <div class="d-grid">
-          <!-- 區塊 1：紀念品核心 -->
           <div class="d-card">
             <div class="d-card-title"><i class="ico-chii chii" style="width:1.2em;height:1.2em"></i> 紀念品情報</div>
             <div class="d-row"><span class="di-label">當前股價</span><span class="d-val">${s.price||'—'} 元</span></div>
             <div class="d-row" style="align-items:flex-start"><span class="di-label">發放品項</span><span class="d-val" style="color:var(--tx)">${s.gift||'<span style="color:var(--tx3)">尚未公告</span>'}<br><div style="margin-top:6px;justify-content:flex-end;display:flex;flex-wrap:wrap;align-items:center">${cpTag}${ipTag}${yahooLink}</div></span></div>
           </div>
 
-          <!-- 區塊 2：關鍵時程 -->
           <div class="d-card">
             <div class="d-card-title"><i class="ico-chii usagi" style="width:1.2em;height:1.2em"></i> 關鍵時程 (決策點)</div>
             <div class="d-row"><span class="di-label">最後買進日</span><span class="d-val">${s.lbo?lbs(s):'—'}<br><div style="margin-top:2px">${urgTag}</div></span></div>
             <div class="d-row"><span class="di-label">股東會日期</span><span class="d-val">${s.meet?ms(s.meet):'—'}</span></div>
           </div>
 
-          <!-- 區塊 3：領取條件防呆 -->
           <div class="d-card">
             <div class="d-card-title"><i class="ico-chii hachi" style="width:1.2em;height:1.2em"></i> 領取條件防呆清單</div>
             <div class="d-row"><span class="di-label">零股領取</span><span class="d-val">${noFracVal}</span></div>
@@ -1419,6 +1423,8 @@ function parseStockgift(html){
   });
   return {added, updated, total};
 }
+
+let rem = {};
 
 document.addEventListener('click',e=>{
   const ft=e.target.closest('.ft[data-etab]'); if(ft){document.querySelectorAll('.ft').forEach(t=>t.classList.remove('on'));ft.classList.add('on');etab=ft.dataset.etab;rEG();return;}
