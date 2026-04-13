@@ -872,16 +872,68 @@ const HEAT={
   '6237':{heat:7100,restrict:'零股可領，eGift線上領',analysis:'驊訊(6237) <i class="ico-chii chii"></i>\n• 統一超商50元商品卡，最夯硬通貨。\n• eGift發放，免跑單單，外資與散戶皆愛。'}
 };
 
-const HOT=[
-  {code:'3213',name:'茂訊'},
-  {code:'3051',name:'力特'},
-  {code:'1732',name:'毛寶'},
-  {code:'4564',name:'元翎'},
-  {code:'2417',name:'圓剛'},
-  {code:'3484',name:'崧騰'},
-  {code:'1526',name:'日馳'},
-  {code:'6237',name:'驊訊'}
-];
+// 熱門好物：動態從 ALL 中依「剩餘天數最少但未截止」自動產生，每月自動更新
+function getHOT() {
+  const now = new Date();
+  now.setHours(0, 0, 0, 0);
+  const thisMonth = now.getMonth();
+  const thisYear = now.getFullYear();
+
+  // 篩選：本月或下月截止、尚未過期、有紀念品
+  const candidates = ALL.filter(s => {
+    const d = days(s);
+    if (d < 0) return false; // 已截止排除
+    const lboDate = new Date(s.lbo + 'T00:00:00');
+    const lboMonth = lboDate.getMonth();
+    const lboYear = lboDate.getFullYear();
+    // 本月或下個月截止的都列入
+    const isThisMonth = lboYear === thisYear && lboMonth === thisMonth;
+    const isNextMonth = (lboMonth === (thisMonth + 1) % 12) &&
+      (thisMonth === 11 ? lboYear === thisYear + 1 : lboYear === thisYear);
+    return isThisMonth || isNextMonth;
+  });
+
+  // 計分規則：
+  // 1. 剩餘天數越少分越高（緊迫感）
+  // 2. eGift 加分（便利性）
+  // 3. 零股可領加分（門檻低）
+  // 4. 高CP值加分
+  const scored = candidates.map(s => {
+    const d = days(s);
+    let score = 0;
+    score += Math.max(0, 60 - d) * 80;   // 剩餘天數越少，分越高
+    if (s.egift) score += 3000;           // eGift 加分
+    if (s.os) score += 2000;              // 零股可領加分
+    if (s.cp) score += 2500;              // 高CP值加分
+    if (!(s.cond || '').includes('id')) score += 1000; // 不需身分證加分
+    score += Math.floor(Math.random() * 500); // 微小隨機性，避免每次完全相同
+    return { ...s, _score: score };
+  });
+
+  // 依分數降序，取前 8 名
+  scored.sort((a, b) => b._score - a._score);
+  return scored.slice(0, 8);
+}
+
+// HEAT 也改為動態產生（顯示在熱門卡片上的說明文字）
+function getHeatInfo(s) {
+  const d = days(s);
+  const tags = [];
+  if (s.egift && s.os) tags.push('零股可領・eGift線上領');
+  else if (s.egift) tags.push('eGift線上領');
+  else if (s.os) tags.push('零股可領');
+  if ((s.cond || '').includes('ev')) tags.push('需電投截圖');
+  if ((s.cond || '').includes('id')) tags.push('需身分證');
+  if (s.cp) tags.push('高CP值');
+
+  const restrict = tags.join('・') || '請確認領取條件';
+  const dText = d <= 7 ? `⚠ 緊急！僅剩 ${d} 天` : d <= 14 ? `快！還有 ${d} 天` : `剩 ${d} 天截止`;
+  const analysis = `${s.name}(${s.code})\n• ${s.gift}\n• ${dText}\n• ${restrict}`;
+
+  // 熱度數值：依剩餘天數動態計算
+  const heat = Math.max(3000, 15000 - d * 150 + (s.egift ? 2000 : 0) + (s.os ? 1500 : 0));
+  return { heat, restrict, analysis };
+}
 
 function getHOT(){ return HOT.map(h=>ALL.find(s=>s.code===h.code)||null).filter(Boolean); }
 
@@ -1105,24 +1157,37 @@ function rEG(){
 
 function rHot(){
   const rks=['r1','r2','r3'];
-  const hot=getHOT();
-  const maxHeat=12400;
-  document.getElementById('HG').innerHTML=hot.map((s,i)=>{
-    const d=days(s),c=ch(),up=parseFloat(c)>=0,sg=up?'+':'';
-    const h=HEAT[s.code]||{heat:3000,restrict:'需電投截圖',analysis:s.name+'('+s.code+')\n• '+s.gift};
-    const pct=Math.round(h.heat/maxHeat*100);
-    return`<div class="hc" data-hcode="${s.code}">
-      <div class="hht"><span class="rk ${rks[i]||'rn'}">${i===0?'#1 <i class="ico-chii sparkle" style="width:1em;height:1em"></i>':`#${i+1}`}</span>
-      <span style="font-size:13px;font-family:var(--mo);font-weight:800;color:var(--tx3)">${h.heat.toLocaleString()} <i class="ico-chii usagi" style="width:1.2em;height:1.2em"></i></span></div>
-      <div style="margin-top:10px"><span class="cf">${s.code}</span><span style="font-size:16px;font-weight:900;color:var(--tx);margin-left:6px">${s.name}</span>
-      ${s.egift?'<span class="tag eg" style="margin-left:4px">eGift</span>':''}${isH(s.code)?'<span class="tag hd" style="margin-left:4px">持有</span>':''}</div>
-      <div class="hgft">${s.gift}</div>
-      <div style="font-size:13px;color:var(--tx3);font-family:var(--mo);font-weight:800">${h.restrict}</div>
-      <div class="hbr"><div class="hbf" style="width:${pct}%"></div></div>
-      <div class="hbt"><span class="${up?'pu':'pd'}">${s.price||'—'} <small style="font-size:13px;font-weight:900">${sg}${c}%</small></span>${badge(d)}</div>
-      <div class="h-detail">${fmt(h.analysis)}</div>
-    </div>`;
-  }).join('');
+  const hot = getHOT();
+  const maxHeat = 15000;
+  document.getElementById('HG').innerHTML = hot.length === 0
+    ? `<div style="padding:2rem;text-align:center;color:var(--tx3);font-weight:800;font-family:var(--mo)">
+        本月暫無熱門推薦，請稍後再看 <i class="ico-chii cry"></i></div>`
+    : hot.map((s, i) => {
+      const d = days(s), c = ch(), up = parseFloat(c) >= 0, sg = up ? '+' : '';
+      const h = getHeatInfo(s);
+      const pct = Math.round(h.heat / maxHeat * 100);
+      return `<div class="hc" data-hcode="${s.code}">
+        <div class="hht">
+          <span class="rk ${rks[i] || 'rn'}">${i === 0 ? '#1 <i class="ico-chii sparkle" style="width:1em;height:1em"></i>' : `#${i + 1}`}</span>
+          <span style="font-size:13px;font-family:var(--mo);font-weight:800;color:var(--tx3)">${h.heat.toLocaleString()} <i class="ico-chii usagi" style="width:1.2em;height:1.2em"></i></span>
+        </div>
+        <div style="margin-top:10px">
+          <span class="cf">${s.code}</span>
+          <span style="font-size:16px;font-weight:900;color:var(--tx);margin-left:6px">${s.name}</span>
+          ${s.egift ? '<span class="tag eg" style="margin-left:4px">eGift</span>' : ''}
+          ${s.os ? '<span class="tag os" style="margin-left:4px">零股</span>' : ''}
+          ${isH(s.code) ? '<span class="tag hd" style="margin-left:4px">持有</span>' : ''}
+        </div>
+        <div class="hgft">${s.gift}</div>
+        <div style="font-size:13px;color:var(--tx3);font-family:var(--mo);font-weight:800">${h.restrict}</div>
+        <div class="hbr"><div class="hbf" style="width:${pct}%"></div></div>
+        <div class="hbt">
+          <span class="${up ? 'pu' : 'pd'}">${s.price || '—'} <small style="font-size:13px;font-weight:900">${sg}${c}%</small></span>
+          ${badge(d)}
+        </div>
+        <div class="h-detail">${fmt(h.analysis)}</div>
+      </div>`;
+    }).join('');
 }
 
 function smartSort(a, b) {
@@ -1481,7 +1546,17 @@ document.getElementById('add-name').addEventListener('keydown', e => { if(e.key 
 const cMsg = document.getElementById('c-msg'), chiikawaQuotes = ["呀哈！<br>有什麼可以幫忙的嗎？", "總會有辦法的！ <i class='ico-chii hachi'></i>", "一起吃糰子吧 <i class='ico-chii chii'></i>", "噗嚕嚕嚕... <i class='ico-chii usagi'></i>", "股東會紀念品讚啦！", "快點買進！<br>要來不及了 <i class='ico-chii cry'></i>", "哇...<br>好多紀念品 <i class='ico-chii sparkle'></i>", "烏薩奇大推！<i class='ico-chii usagi'></i>", "記得要電子投票喔 <i class='ico-chii hachi'></i>"];
 document.getElementById('c-img').addEventListener('click', (e) => { e.stopPropagation(); cMsg.innerHTML = chiikawaQuotes[Math.floor(Math.random() * chiikawaQuotes.length)]; });
 
-(async function init() { await loadData(); })();
+(async function init() {
+  await loadData();
+  const ut = document.getElementById('update-time');
+  if (ut) {
+    const now = new Date();
+    const y = now.getFullYear();
+    const m = String(now.getMonth() + 1).padStart(2, '0');
+    const d = String(now.getDate()).padStart(2, '0');
+    ut.textContent = `更新時間：${y}/${m}/${d} (共存取 ${ALL.length} 筆)`;
+  }
+})();
 </script>
 </body>
 </html>
