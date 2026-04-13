@@ -575,16 +575,6 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
 <header class="hdr">
   <div class="hdr-in">
     <div class="logo"><i class="ico-chii sparkle"></i> 股東會紀念品追蹤器 <i class="ico-chii chii"></i></div>
-    (async function init() {
-  // 新增這行，讓初始顯示也是今天的日期
-  const ut = document.getElementById('update-time');
-  if (ut) {
-    const now = new Date();
-    const y = now.getFullYear(), m = String(now.getMonth()+1).padStart(2,'0'), d = String(now.getDate()).padStart(2,'0');
-    ut.textContent = `更新時間：${y}/${m}/${d} (共存取 ${ALL.length} 筆)`;
-  }
-  await loadData();
-})();
     <span id="cloud-status" style="font-size:13px;font-weight:900;font-family:var(--mo);color:var(--tx3);margin-left:10px;padding:4px 10px;border:2px dashed var(--br);border-radius:12px;display:none;"></span>
     <a class="hlink" href="https://stockgift.tw/STOCK/Stock/Info" target="_blank">前往零股寶 <i class="ico-chii hachi"></i></a>
   </div>
@@ -754,7 +744,16 @@ tr.hr.sel td{background:rgba(98,177,176,.3)}
     <img src="https://raw.githubusercontent.com/cindypc33/stock-gift11/main/chiikawa.png" alt="吉伊卡哇小隊" class="chiikawa-img" id="c-img">
   </div>
 </div>
-
+(async function init() {
+  // 新增這行，讓初始顯示也是今天的日期
+  const ut = document.getElementById('update-time');
+  if (ut) {
+    const now = new Date();
+    const y = now.getFullYear(), m = String(now.getMonth()+1).padStart(2,'0'), d = String(now.getDate()).padStart(2,'0');
+    ut.textContent = `更新時間：${y}/${m}/${d} (共存取 ${ALL.length} 筆)`;
+  }
+  await loadData();
+})();
 <script>
 // 🧹 洗淨後的純粹資料清單：移除所有未公告標的，確保畫面上只顯示確定有東西領的標的
 const rawALL=[
