@@ -907,9 +907,15 @@ let WORKER_URL = 'https://stockgift-api.cindypc33.workers.dev';
 const PS=20;
 const ACCT_COLORS=['#62b1b0', '#8bbeea', '#f3b562', '#f28b82', '#cbbadd', '#a3d9a5', '#9ab7d3', '#e8a5b2'];
 
-// ⏳ 以 2026/03/30 為當前日計算剩餘天數 (LBO在3/29以前皆為負數，會自動標記已截止)
-const CURRENT_DATE = new Date("2026-03-30T00:00:00");
-const days=s=>Math.ceil((new Date(s.lbo)-CURRENT_DATE)/864e5);
+// ⏳ 以 2026/04/13 為當前日計算剩餘天數
+const CURRENT_DATE = new Date("2026-04-13T00:00:00");
+ 
+// ✅ 修正版 days()：加入日期格式防呆，無效日期視為已截止
+const days = s => {
+  const lboDate = new Date(s.lbo + 'T00:00:00');
+  if (isNaN(lboDate.getTime())) return -9999; // 日期無效視為已截止，排到最後
+  return Math.ceil((lboDate - CURRENT_DATE) / 864e5);
+};
 
 async function saveData(){
   const dataObj = {
@@ -1109,11 +1115,16 @@ function rHot(){
   }).join('');
 }
 
-function smartSort(a,b){
-  const da=days(a), db=days(b);
+function smartSort(a, b) {
+  const da = days(a), db = days(b);
   const aExp = da < 0, bExp = db < 0;
-  if(aExp && !bExp) return 1; if(!aExp && bExp) return -1;
-  if(aExp && bExp) return db-da; return da-db;
+  // 已截止的一律排到最後
+  if (aExp && !bExp) return 1;
+  if (!aExp && bExp) return -1;
+  // 兩個都截止：截止較晚的排前面（da 較大 = 較近截止 = 排前）
+  if (aExp && bExp) return db - da;
+  // 兩個都未截止：剩餘天數少的排前面
+  return da - db;
 }
 
 function rFull(){
